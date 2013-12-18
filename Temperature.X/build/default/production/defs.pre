@@ -5886,7 +5886,7 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 40 "defs.h"
+# 55 "defs.h"
 const uint32_t pow10[] = {
 1,
 10,
@@ -5900,7 +5900,7 @@ const uint32_t pow10[] = {
 1000000000
 };
 
-# 61
+# 72
 extern void wait(uint32_t count);
 
 uint8_t countBits(uint32_t num);

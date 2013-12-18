@@ -5886,7 +5886,7 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 40 "defs.h"
+# 55 "defs.h"
 const uint32_t pow10[] = {
 1,
 10,
@@ -5900,7 +5900,7 @@ const uint32_t pow10[] = {
 1000000000
 };
 
-# 61
+# 72
 extern void wait(uint32_t count);
 
 uint8_t countBits(uint32_t num);
@@ -5911,73 +5911,21 @@ uint32_t lowbit(uint32_t x);
 uint32_t log2(uint32_t num);
 int32_t maxSize(uint8_t digits);
 
-# 72 "RTC.h"
-enum inc {
-second = 0,
-minute,
-hour,
-day,
-month,
-year
+# 21 "menu.h"
+struct sMenu
+{
+uint8_t state;
+uint8_t digits;
+uint8_t num_states;
+void* (*printFn)(uint8_t digits);
 };
 
-void initRTC();
-uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
-uint8_t daysOfMonth(uint8_t month, uint16_t year);
-uint8_t tick(uint8_t val);
-void checkDST();
-void printRTC(uint8_t digits);
-struct sDate loadTime();
+struct sMenu* menu;
 
-enum views {
+uint8_t advState();
+void advMenu();
 
-hhmm = 0,
-hhmmss,
-ddd_hhmm,
-dd_hhmm,
-
-dd,
-ddd,
-DDMM,
-DD_MM,
-DDMMYY,
-DD_MM_YY
-};
-
-
-
-struct sDate {
-uint8_t second;
-uint8_t minute;
-uint8_t hour;
-
-uint8_t day;
-
-uint8_t dow;
-
-uint8_t month;
-uint16_t year;
-
-uint8_t dst;
-
-uint8_t view;
-} date;
-
-uint16_t rtc_big_ticks;
-uint16_t rtc_small_ticks;
-
-const char* dow[] = {
-"Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
-};
-
-# 27 "temp.h"
-void printTemp(uint8_t digits);
-double getTemp();
-void initTemp();
-
-double oldTemps[4];
-
-# 90 "disp.h"
+# 91 "disp.h"
 void startDisp();
 
 void update();
@@ -5996,10 +5944,12 @@ void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);
 
-# 114
-union uDigit {
+# 115
+union uDigit
+{
 
-struct digit_segs {
+struct digit_segs
+{
 uint8_t seg_a : 1;
 uint8_t seg_b : 1;
 uint8_t seg_c : 1;
@@ -6012,9 +5962,11 @@ uint8_t seg_dp : 1;
 uint8_t bits;
 };
 
-struct sScreen {
+struct sScreen
+{
 
-union uScreen_data {
+union uScreen_data
+{
 union uDigit screen[8];
 
 uint32_t bits[2];
@@ -6030,21 +5982,93 @@ uint8_t shutdown : 1;
 uint16_t changed;
 } screen;
 
-# 6 "RTC.c"
+# 92 "RTC.h"
+enum inc
+{
+second = 0,
+minute,
+hour,
+day,
+month,
+year
+};
+
+
+enum views
+{
+
+hhmm = 0,
+hhmmss,
+ddd_hhmm,
+dd_hhmm,
+
+dd,
+ddd,
+DDMM,
+DD_MM,
+DDMMYY,
+DD_MM_YY
+};
+
+
+
+struct sDate
+{
+uint8_t second;
+uint8_t minute;
+uint8_t hour;
+
+uint8_t day;
+
+uint8_t dow;
+
+uint8_t month;
+uint16_t year;
+
+uint8_t dst;
+} date;
+
+uint16_t rtc_big_ticks;
+uint16_t rtc_small_ticks;
+
+const char dow[7][4] = {
+"Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
+};
+
+struct sMenu rtcMenu;
+
+void initRTC();
+uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
+uint8_t daysOfMonth(uint8_t month, uint16_t year);
+uint8_t tick(uint8_t val);
+void checkDST();
+void* printRTC(uint8_t digits);
+struct sDate loadTime();
+void saveTime(struct sDate date);
+
+# 8 "RTC.c"
 void initRTC()
 {
-date.view = DD_MM_YY;
+rtcMenu.state = hhmmss;
+rtcMenu.digits = 0b01111111;
+rtcMenu.num_states = 10;
+rtcMenu.printFn = &printRTC;
+
 date.month = 1;
 date.day = 1;
 date.year = 2013;
 
+EECON1 = 0b0000000;
+LATC1 = 1;
 loadTime();
+LATC1 = 0;
 
 
 T1CON = 0b10110000;
 TMR1 = (65536-63765);
 TMR1IE = 1;
 TMR1IF = CLEAR;
+TMR1IP = 1;
 TMR1ON = 1;
 
 }
@@ -6052,12 +6076,81 @@ TMR1ON = 1;
 struct sDate loadTime()
 {
 struct sDate newDate;
+uint8_t cnt;
+
+for (cnt = 1; cnt < 7; cnt++)
+{
+EEADR = 0 + cnt;
+RD = 1;
+switch (cnt)
+{
+case minute:
+newDate.minute = EEDATA;
+break;
+case hour:
+newDate.hour = EEDATA;
+break;
+case day:
+newDate.day = EEDATA;
+break;
+case month:
+newDate.month = EEDATA;
+break;
+case year:
+newDate.year = EEDATA;
+break;
+case year + 1:
+newDate.year |= EEDATA << 8;
+break;
+}
+}
 return newDate;
+}
+
+void saveTime(struct sDate date)
+{
+WREN = 1;
+uint8_t cnt;
+
+for (cnt = 1; cnt < 7; cnt++)
+{
+EEADR = 0 + cnt;
+switch (cnt)
+{
+case minute:
+EEDATA = date.minute;
+break;
+case hour:
+EEDATA = date.hour;
+break;
+case day:
+EEDATA = date.day;
+break;
+case month:
+EEDATA = date.month;
+break;
+case year:
+EEDATA = date.year;
+break;
+case year + 1:
+EEDATA = date.year;
+break;
+}
+EECON2 = 0x55;
+EECON2 = 0xAA;
+WR = 1;
+while (WR)
+{
+LATC2 = 1;
+}
+LATC2 = 0;
+}
 }
 
 uint8_t daysOfMonth(uint8_t month, uint16_t year)
 {
-switch (month) {
+switch (month)
+{
 case 1:
 case 3:
 case 5:
@@ -6085,14 +6178,21 @@ return 0;
 
 void checkDST()
 {
-if ((date.dst ^ (1 & ((date.day >= ((((2)*7)-dayOfWeek((date.year),(3),((2)*7)))) && date.month >= 3) && (date.day < ((((1)*7)-dayOfWeek((date.year),(11),((1)*7)))) && date.month < 11)))) && date.hour == 1) {
+if ((date.dst ^ (1 & ((date.day >= ((((2)*7)-dayOfWeek((date.year),(3),((2)*7)))) && date.month >= 3) && (date.day < ((((1)*7)-dayOfWeek((date.year),(11),((1)*7)))) && date.month < 11)))) && date.hour == 1)
+{
 date.dst = !date.dst;
-if (date.dst) {
+if (date.dst)
+{
 tick(hour);
-} else {
-if (date.hour > 0) {
+}
+else
+{
+if (date.hour > 0)
+{
 date.hour--;
-} else {
+}
+else
+{
 date.hour = 0;
 date.day--;
 }
@@ -6102,23 +6202,30 @@ date.day--;
 
 uint8_t tick(uint8_t val)
 {
-switch (val) {
+switch (val)
+{
 case second:
-if (++date.second >= 60) {
+if (++date.second >= 60)
+{
 date.second = 0;
 case minute:
-if (++date.minute >= 60) {
+saveTime(date);
+if (++date.minute >= 60)
+{
 date.minute = 0;
 case hour:
 date.hour++;
 checkDST();
-if (date.hour >= 24) {
+if (date.hour >= 24)
+{
 date.hour = 0;
 case day:
-if (++date.day >= daysOfMonth(date.month, date.year)) {
+if (++date.day >= daysOfMonth(date.month, date.year))
+{
 date.day = 1;
 case month:
-if (++date.month > 12) {
+if (++date.month > 12)
+{
 date.month = 1;
 case year:
 ++date.year;
@@ -6137,7 +6244,8 @@ uint8_t dayOfWeek(uint8_t year, uint8_t month, uint8_t day)
 uint32_t tmp = (year % 200) * 365;
 tmp += (((year % 200) + 3) / 4);
 
-switch (month) {
+switch (month)
+{
 case 12:
 tmp += 30;
 
@@ -6168,7 +6276,8 @@ tmp += 31;
 case 3:
 tmp += 28;
 
-if ((year % 4) == 0) {
+if ((year % 4) == 0)
+{
 tmp++;
 }
 
@@ -6188,22 +6297,47 @@ tmp--;
 return (uint8_t) ((tmp + 6) % 7);
 }
 
-void printRTC(uint8_t digits)
+void* printRTC(uint8_t digits)
 {
-char str[9] = "";
-switch (countBits(digits)) {
-case 0 ... 3:
-return;
-case 4 ... 5:
-switch (date.view) {
+char str[12] = "";
+uint8_t cnt;
+bool first = 1;
+for (cnt = rtcMenu.state; cnt != rtcMenu.state && !first; cnt++)
+{
+if (cnt == 0)
+{
+first = 0;
+}
+switch (countBits(digits))
+{
+case 8:
+switch (cnt)
+{
+case ddd_hhmm:
+sprintf(&str, "%s %02d.%02d", (dow[date.dow]), date.hour, date.minute);
+break;
+case DD_MM_YY:
+sprintf(&str, "%02d %02d %02d", date.day, date.month, date.year % 100);
+break;
+case hhmmss:
+sprintf(&str, "  %02d.%02d.%02d", date.hour, date.minute, date.second);
+break;
+case dd_hhmm:
+sprintf(&str, " %c%c %02d.%02d", (dow[date.dow])[0], (dow[date.dow])[1], date.minute, date.second);
+break;
+case DDMMYY:
+sprintf(&str, "  %02d.%02d.%02d", date.day, date.month, date.year % 100);
+break;
 case hhmm:
-sprintf(&str, "%02d.%02d", date.hour, date.minute);
+sprintf(&str, "    %02d.%02d", date.hour, date.minute);
+break;
+case DDMM:
+sprintf(&str, "    %02d.%02d", date.day, date.month);
 break;
 }
-writeString(digits, &str);
-break;
 case 6 ... 7:
-switch (date.view) {
+switch (cnt)
+{
 case hhmmss:
 sprintf(&str, "%02d.%02d.%02d", date.hour, date.minute, date.second);
 break;
@@ -6213,21 +6347,36 @@ break;
 case DDMMYY:
 sprintf(&str, "%02d.%02d.%02d", date.day, date.month, date.year % 100);
 break;
-
+case hhmm:
+sprintf(&str, "  %02d.%02d", date.hour, date.minute);
+break;
+case DDMM:
+sprintf(&str, "  %02d.%02d", date.day, date.month);
+break;
+default:
+continue;
 }
+case 4 ... 5:
+switch (cnt)
+{
+case hhmm:
+sprintf(&str, "%02d.%02d", date.hour, date.minute);
+break;
+case DDMM:
+sprintf(&str, "%02d.%02d", date.day, date.month);
+break;
+default:
+continue;
+}
+case 0 ... 3:
+sprintf(&str, "    ");
+break;
+}
+}
+rtcMenu.state = cnt;
 writeString(digits, &str);
-break;
-case 8:
-switch (date.view) {
-case ddd_hhmm:
-sprintf(&str, "%s %02d.%02d", (dow[date.dow]), date.hour, date.minute);
-break;
-case DD_MM_YY:
-sprintf(&str, "%02d %02d %02d", date.day, date.month, date.year % 100);
-break;
+screen.changed |= digits;
+LATC1 = ~LATC1;
+return (0);
+}
 
-}
-writeString(digits, &str);
-break;
-}
-}

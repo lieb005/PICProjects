@@ -11,12 +11,15 @@
 
 void update()
 {
-	if (screen.changed == 0) {
+	if (!screen.changed)
+	{
 		return;
 	}
 	int8_t cnt;
-	for (cnt = 15; cnt >= 0; cnt--) {
-		switch (1 << cnt & screen.changed) {
+	for (cnt = 15; cnt >= 0; cnt--)
+	{
+		switch (1 << cnt & screen.changed)
+		{
 		case DIG0 ... DIG7:
 			writeDigit(1 << cnt, screen.digits.screen[cnt].bits);
 			break;
@@ -87,7 +90,8 @@ void spi(uint8_t addr, uint8_t data)
 	MOSI = OFF;
 	SCK = OFF;
 	int8_t cnt;
-	for (cnt = 15; cnt >= 0; cnt--) {
+	for (cnt = 15; cnt >= 0; cnt--)
+	{
 		MOSI = 0x1 & (send >> cnt);
 		wait(WAIT);
 		SCK = ON;
@@ -108,7 +112,8 @@ void writeDigit(uint8_t digit, uint8_t segs)
 
 	//cycle segs A-DP
 	int8_t cnt;
-	for (cnt = 7; cnt >= 0; cnt--) {
+	for (cnt = 7; cnt >= 0; cnt--)
+	{
 		// use Seg as Address and digit mask as data
 		spi(cnt + 1, rotate(cnt));
 	}
@@ -131,9 +136,12 @@ void writeLong(uint8_t digits, int32_t num)
 	num %= maxSize(digits)*10;
 	bool first = true;
 	bits += 1;
-	for (cnt = log2(lowbit(digits)); --bits; cnt++) {
-		if (0x1 & (digits >> cnt)) {
-			if (first && num < 0) {
+	for (cnt = log2(lowbit(digits)); --bits; cnt++)
+	{
+		if (0x1 & (digits >> cnt))
+		{
+			if (first && num < 0)
+			{
 				writeChar(hibit(digits), '-');
 				num *= -1;
 				cnt--;
@@ -172,29 +180,36 @@ void writeString(uint8_t digits, char* string)
 	uint8_t bits = countBits(digits);
 
 	bits += 1;
-	for (cnt = log2(hibit(digits)); --bits; cnt--) {
-		if (0x1 & (digits >> cnt)) {
-			if (string[i] == '\0') {
+	for (cnt = log2(hibit(digits)); --bits; cnt--)
+	{
+		if (0x1 & (digits >> cnt))
+		{
+			if (string[i] == '\0')
+			{
 				break;
 			}
-			if (string[i] == '.') {
+			if (string[i] == '.')
+			{
 				screen.digits.screen[cnt + 1].bits |= SEG_DP;
 				screen.changed |= 1 << (cnt + 1);
 				bits++;
 				i++;
 			}
-			writeChar(1 << cnt, string[i]);
+			if (getFontChar(string[i]) || string[i] == ' ')
+			{
+				writeChar(1 << cnt, string[i]);
+			}
 			i++;
 		}
 	}
-
 }
 
 uint8_t rotate(uint8_t seg)
 {
 	uint8_t ret = 0;
 	int8_t cnt;
-	for (cnt = 7; cnt >= 0; cnt--) {
+	for (cnt = 7; cnt >= 0; cnt--)
+	{
 		ret |= ((screen.digits.screen[cnt].bits >> seg) & 1) << cnt;
 	}
 	return ret;

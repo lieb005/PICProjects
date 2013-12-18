@@ -5886,7 +5886,7 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 40 "defs.h"
+# 45 "defs.h"
 const uint32_t pow10[] = {
 1,
 10,
@@ -5900,7 +5900,7 @@ const uint32_t pow10[] = {
 1000000000
 };
 
-# 61
+# 62
 extern void wait(uint32_t count);
 
 uint8_t countBits(uint32_t num);
@@ -5911,7 +5911,7 @@ uint32_t lowbit(uint32_t x);
 uint32_t log2(uint32_t num);
 int32_t maxSize(uint8_t digits);
 
-# 90 "disp.h"
+# 91 "disp.h"
 void startDisp();
 
 void update();
@@ -5930,10 +5930,12 @@ void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);
 
-# 114
-union uDigit {
+# 115
+union uDigit
+{
 
-struct digit_segs {
+struct digit_segs
+{
 uint8_t seg_a : 1;
 uint8_t seg_b : 1;
 uint8_t seg_c : 1;
@@ -5946,9 +5948,11 @@ uint8_t seg_dp : 1;
 uint8_t bits;
 };
 
-struct sScreen {
+struct sScreen
+{
 
-union uScreen_data {
+union uScreen_data
+{
 union uDigit screen[8];
 
 uint32_t bits[2];
@@ -6075,12 +6079,15 @@ return 0;
 # 12 "disp.c"
 void update()
 {
-if (screen.changed == 0) {
+if (screen.changed == 0)
+{
 return;
 }
 int8_t cnt;
-for (cnt = 15; cnt >= 0; cnt--) {
-switch (1 << cnt & screen.changed) {
+for (cnt = 15; cnt >= 0; cnt--)
+{
+switch (1 << cnt & screen.changed)
+{
 case 0b00000001 ... 0b10000000:
 writeDigit(1 << cnt, screen.digits.screen[cnt].bits);
 break;
@@ -6151,7 +6158,8 @@ LATA4 = 0;
 LATA1 = 0;
 LATA3 = 0;
 int8_t cnt;
-for (cnt = 15; cnt >= 0; cnt--) {
+for (cnt = 15; cnt >= 0; cnt--)
+{
 LATA1 = 0x1 & (send >> cnt);
 wait(0);
 LATA3 = 1;
@@ -6172,7 +6180,8 @@ screen.digits.screen[dig].bits = segs;
 
 
 int8_t cnt;
-for (cnt = 7; cnt >= 0; cnt--) {
+for (cnt = 7; cnt >= 0; cnt--)
+{
 
 spi(cnt + 1, rotate(cnt));
 }
@@ -6188,7 +6197,7 @@ screen.changed |= digit;
 void writeLong(uint8_t digits, int32_t num)
 {
 
-# 150
+# 158
 char str[9] = "00000000";
 sprintf(&str, "%*li", countBits(digits), num);
 writeString(digits, str);
@@ -6207,17 +6216,21 @@ writeString(digits, str);
 void writeString(uint8_t digits, char* string)
 {
 
-# 171
+# 179
 int8_t cnt = 0, i = 0;
 uint8_t bits = countBits(digits);
 
 bits += 1;
-for (cnt = log2(hibit(digits)); --bits; cnt--) {
-if (0x1 & (digits >> cnt)) {
-if (string[i] == '\0') {
+for (cnt = log2(hibit(digits)); --bits; cnt--)
+{
+if (0x1 & (digits >> cnt))
+{
+if (string[i] == '\0')
+{
 break;
 }
-if (string[i] == '.') {
+if (string[i] == '.')
+{
 screen.digits.screen[cnt + 1].bits |= 0b10000000;
 screen.changed |= 1 << (cnt + 1);
 bits++;
@@ -6234,7 +6247,8 @@ uint8_t rotate(uint8_t seg)
 {
 uint8_t ret = 0;
 int8_t cnt;
-for (cnt = 7; cnt >= 0; cnt--) {
+for (cnt = 7; cnt >= 0; cnt--)
+{
 ret |= ((screen.digits.screen[cnt].bits >> seg) & 1) << cnt;
 }
 return ret;

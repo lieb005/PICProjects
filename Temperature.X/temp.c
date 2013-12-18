@@ -1,7 +1,11 @@
 #include "defs.h"
 #include "temp.h"
+
+#ifdef TEMP
+
 #include "disp.h"
-#include "RTC.h"
+
+double temp = 0;
 
 void initTemp()
 {
@@ -29,38 +33,63 @@ void initTemp()
 	// TAQC = 1.29MHz; Aqct = 2 Tad
 	// Fosc = 16MHz; AD CS = Fosc/16
 	ADCON2 = 0b10001101;
+
+	tempMenu.digits = DIG0_4;
+	tempMenu.state = 0;
+	tempMenu.num_states = 2;
+	tempMenu.printFn = &printTemp;
 }
 
 double getTemp()
 {
 	double oldTempsTemp[3];
 	uint8_t cnt;
-	for (cnt = 3;cnt > 0;cnt--)
+	for (cnt = 3; cnt > 0; cnt--)
 	{
-		oldTempsTemp[cnt-1] = oldTemps[cnt];
+		oldTempsTemp[cnt - 1] = oldTemps[cnt];
 	}
 	GO = 1;
 	while (GO);
-	double temp = C(((double)ADRES) * SCALE - OFFSET);
+	double temp;
+
+	if (tempMenu.state == 0)
+	{
+		temp = C(((double) ADRES) * SCALE - OFFSET);
+	}
+	else
+	{
+		temp = F(((double) ADRES) * SCALE - OFFSET);
+	}
 	double total = temp;
-	for (cnt = 0;cnt < 3;cnt++)
+	for (cnt = 0; cnt < 3; cnt++)
 	{
 		oldTemps[cnt] = oldTempsTemp[cnt];
 		total += oldTemps[cnt];
 	}
 	oldTemps[3] = temp;
 
-	return total/4;
+	temp = total / 4;
+	return total / 4;
 }
 
-void printTemp(uint8_t digits)
+void* printTemp(uint8_t digits)
 {
 	uint8_t units = 0;
 	units |= lowbit(digits);
 	units |= lowbit(digits &= (~lowbit(digits)));
 	digits &= ~units;
-
-	writeString(units, (char*) "*C");
-	
-	writeFloat(digits, getTemp());
+	if (tempMenu.state == 0)
+	{
+		writeString(units, (char*) "*C");
+	}
+	else
+	{
+		writeString(units, (char*) "*F");
+	}
+	char* str = (char*)"    ";
+	sprintf(str, "%*g", countBits(digits), temp);
+	writeString(digits, str);
+	return NULL;
 }
+
+#endif //endif TEMP

@@ -2,6 +2,7 @@
  build/default/production/temp.p1:  \
  temp.c  \
 defs.h  \
-RTC.h  \
 temp.h  \
+temp_main.h  \
 disp.h  \
+menu.h  \

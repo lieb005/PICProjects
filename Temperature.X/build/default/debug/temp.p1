@@ -1,34 +1,41 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"125 disp.h
-[s S524 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S524 digit_segs seg_a seg_b seg_c seg_d seg_e seg_f seg_g seg_dp ]
-"127
-[u S523 `S524 1 `uc 1 ]
-[n S523 uDigit segs bits ]
-"136
-[u S526 `S523 -> 8 `i `ul -> 2 `i ]
-[n S526 uScreen_data screen bits ]
-"145
-[s S525 `S526 1 :8 `uc 1 :4 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 `ui 1 ]
-[n S525 sScreen digits decode brightness scan test shutdown changed ]
-"119 RTC.h
-[s S527 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ui 1 `uc 1 `uc 1 ]
-[n S527 sDate second minute hour day dow month year dst view ]
+"25 menu.h
+[v F4954 `(*v ~T0 @X0 0 tf1`uc ]
+"26
+[s S523 `uc 1 `uc 1 `uc 1 `*F4954 1 ]
+[n S523 sMenu state digits num_states printFn ]
+"128 disp.h
+[s S525 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S525 digit_segs seg_a seg_b seg_c seg_d seg_e seg_f seg_g seg_dp ]
+"130
+[u S524 `S525 1 `uc 1 ]
+[n S524 uDigit segs bits ]
+"141
+[u S527 `S524 -> 8 `i `ul -> 2 `i ]
+[n S527 uScreen_data screen bits ]
+"150
+[s S526 `S527 1 :8 `uc 1 :4 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 `ui 1 ]
+[n S526 sScreen digits decode brightness scan test shutdown changed ]
+"125 RTC.h
+[s S528 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ui 1 `uc 1 ]
+[n S528 sDate second minute hour day dow month year dst ]
 "6012 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
 [v _ADCON0 `Vuc ~T0 @X0 0 e@4034 ]
 "5922
 [v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
 "5852
 [v _ADCON2 `Vuc ~T0 @X0 0 e@4032 ]
-"8690
+"28 temp.h
+[v _printTemp `(*v ~T0 @X0 0 ef1`uc ]
+"8690 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
 [v _GO `Vb ~T0 @X0 0 e@32273 ]
 "6134
 [v _ADRES `Vus ~T0 @X0 0 e@4035 ]
-"65 defs.h
+"66 defs.h
 [v _lowbit `(ul ~T0 @X0 0 ef1`ul ]
-"104 disp.h
+"105 disp.h
 [v _writeString `(v ~T0 @X0 0 ef2`uc`*uc ]
-"103
+"104
 [v _writeFloat `(v ~T0 @X0 0 ef2`uc`d ]
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
@@ -4452,285 +4459,362 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 144: extern void _delay(unsigned long);
 [; ;pic18.h: 146: extern void _delaywdt(unsigned long);
 [; ;pic18.h: 148: extern void _delay3(unsigned char);
-"40 defs.h
+"45 defs.h
 [v _pow10 `Cul ~T0 @X0 -> 0 `x e ]
 [i _pow10
 :U ..
-"41
--> -> -> 1 `i `l `ul
-"42
--> -> -> 10 `i `l `ul
-"43
--> -> -> 100 `i `l `ul
-"44
--> -> -> 1000 `i `l `ul
-"45
--> -> -> 10000 `i `l `ul
 "46
--> -> 100000 `l `ul
+-> -> -> 1 `i `l `ul
 "47
--> -> 1000000 `l `ul
+-> -> -> 10 `i `l `ul
 "48
--> -> 10000000 `l `ul
+-> -> -> 100 `i `l `ul
 "49
--> -> 100000000 `l `ul
+-> -> -> 1000 `i `l `ul
+"50
+-> -> -> 10000 `i `l `ul
 "51
+-> -> 100000 `l `ul
+"52
+-> -> 1000000 `l `ul
+"53
+-> -> 10000000 `l `ul
+"54
+-> -> 100000000 `l `ul
+"56
 -> -> 1000000000 `l `ul
 ..
 ]
-[; ;defs.h: 40: const uint32_t pow10[] = {
-[; ;defs.h: 41: 1,
-[; ;defs.h: 42: 10,
-[; ;defs.h: 43: 100,
-[; ;defs.h: 44: 1000,
-[; ;defs.h: 45: 10000,
-[; ;defs.h: 46: 100000,
-[; ;defs.h: 47: 1000000,
-[; ;defs.h: 48: 10000000,
-[; ;defs.h: 49: 100000000,
-[; ;defs.h: 50: 1000000000
-[; ;defs.h: 51: };
-[; ;defs.h: 61: extern void wait(uint32_t count);
-[; ;defs.h: 63: uint8_t countBits(uint32_t num);
-[; ;defs.h: 64: uint32_t hibit(uint32_t x);
-[; ;defs.h: 65: uint32_t lowbit(uint32_t x);
-[; ;defs.h: 68: uint32_t log2(uint32_t num);
-[; ;defs.h: 69: int32_t maxSize(uint8_t digits);
-[; ;temp.h: 27: void printTemp(uint8_t digits);
-[; ;temp.h: 28: double getTemp();
-[; ;temp.h: 29: void initTemp();
-"31 temp.h
+[; ;defs.h: 45: const uint32_t pow10[] = {
+[; ;defs.h: 46: 1,
+[; ;defs.h: 47: 10,
+[; ;defs.h: 48: 100,
+[; ;defs.h: 49: 1000,
+[; ;defs.h: 50: 10000,
+[; ;defs.h: 51: 100000,
+[; ;defs.h: 52: 1000000,
+[; ;defs.h: 53: 10000000,
+[; ;defs.h: 54: 100000000,
+[; ;defs.h: 55: 1000000000
+[; ;defs.h: 56: };
+[; ;defs.h: 62: extern void wait(uint32_t count);
+[; ;defs.h: 64: uint8_t countBits(uint32_t num);
+[; ;defs.h: 65: uint32_t hibit(uint32_t x);
+[; ;defs.h: 66: uint32_t lowbit(uint32_t x);
+[; ;defs.h: 69: uint32_t log2(uint32_t num);
+[; ;defs.h: 70: int32_t maxSize(uint8_t digits);
+[; ;menu.h: 20: struct sMenu
+[; ;menu.h: 21: {
+[; ;menu.h: 22: uint8_t state;
+[; ;menu.h: 23: uint8_t digits;
+[; ;menu.h: 24: uint8_t num_states;
+[; ;menu.h: 25: void* (*printFn)(uint8_t digits);
+[; ;menu.h: 26: };
+"28 menu.h
+[v _menu `*S523 ~T0 @X0 1 e ]
+[; ;menu.h: 28: struct sMenu* menu;
+[; ;menu.h: 30: uint8_t advState();
+[; ;menu.h: 31: struct sMenu advMenu();
+[; ;temp.h: 28: void* printTemp(uint8_t digits);
+[; ;temp.h: 29: double getTemp();
+[; ;temp.h: 30: void initTemp();
+"32 temp.h
 [v _oldTemps `d ~T0 @X0 -> 4 `i e ]
-[; ;temp.h: 31: double oldTemps[4];
-[; ;disp.h: 90: void startDisp();
-[; ;disp.h: 92: void update();
-[; ;disp.h: 94: void spi(uint8_t addr, uint8_t data);
-[; ;disp.h: 96: void setBrightness(uint8_t bright);
-[; ;disp.h: 97: void setTest(bool state);
-[; ;disp.h: 99: void writeDigit(uint8_t digit, uint8_t segs);
-[; ;disp.h: 100: void writeChar(uint8_t digit, char num);
-[; ;disp.h: 102: void writeLong(uint8_t digits, int32_t num);
-[; ;disp.h: 103: void writeFloat(uint8_t digits, double num);
-[; ;disp.h: 104: void writeString(uint8_t digits, char* num);
-[; ;disp.h: 106: uint8_t rotate(uint8_t seg);
-[; ;disp.h: 114: union uDigit {
-[; ;disp.h: 116: struct digit_segs {
-[; ;disp.h: 117: uint8_t seg_a : 1;
-[; ;disp.h: 118: uint8_t seg_b : 1;
-[; ;disp.h: 119: uint8_t seg_c : 1;
-[; ;disp.h: 120: uint8_t seg_d : 1;
-[; ;disp.h: 121: uint8_t seg_e : 1;
-[; ;disp.h: 122: uint8_t seg_f : 1;
-[; ;disp.h: 123: uint8_t seg_g : 1;
-[; ;disp.h: 124: uint8_t seg_dp : 1;
-[; ;disp.h: 125: } segs;
-[; ;disp.h: 126: uint8_t bits;
-[; ;disp.h: 127: };
-"145 disp.h
-[v _screen `S525 ~T0 @X0 1 e ]
-[; ;disp.h: 129: struct sScreen {
-[; ;disp.h: 131: union uScreen_data {
-[; ;disp.h: 132: union uDigit screen[8];
-[; ;disp.h: 134: uint32_t bits[2];
-[; ;disp.h: 136: } digits;
-[; ;disp.h: 137: uint8_t decode : 8;
-[; ;disp.h: 138: uint8_t brightness : 4;
-[; ;disp.h: 139: uint8_t scan : 3;
-[; ;disp.h: 140: uint8_t test : 1;
-[; ;disp.h: 141: uint8_t shutdown : 1;
-[; ;disp.h: 144: uint16_t changed;
-[; ;disp.h: 145: } screen;
-[; ;RTC.h: 72: enum inc {
-[; ;RTC.h: 73: second = 0,
-[; ;RTC.h: 74: minute,
-[; ;RTC.h: 75: hour,
-[; ;RTC.h: 76: day,
-[; ;RTC.h: 77: month,
-[; ;RTC.h: 78: year
-[; ;RTC.h: 79: };
-[; ;RTC.h: 81: void initRTC();
-[; ;RTC.h: 82: uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
-[; ;RTC.h: 83: uint8_t daysOfMonth(uint8_t month, uint16_t year);
-[; ;RTC.h: 84: uint8_t tick(uint8_t val);
-[; ;RTC.h: 85: void checkDST();
-[; ;RTC.h: 86: void printRTC(uint8_t digits);
-[; ;RTC.h: 87: struct sDate loadTime();
-"119 RTC.h
-[v _date `S527 ~T0 @X0 1 e ]
-[; ;RTC.h: 104: struct sDate {
-[; ;RTC.h: 105: uint8_t second;
-[; ;RTC.h: 106: uint8_t minute;
-[; ;RTC.h: 107: uint8_t hour;
-[; ;RTC.h: 109: uint8_t day;
-[; ;RTC.h: 111: uint8_t dow;
-[; ;RTC.h: 113: uint8_t month;
-[; ;RTC.h: 114: uint16_t year;
-[; ;RTC.h: 116: uint8_t dst;
-[; ;RTC.h: 118: uint8_t view;
-[; ;RTC.h: 119: } date;
-"121
+[; ;temp.h: 32: double oldTemps[4];
+"34
+[v _tempMenu `S523 ~T0 @X0 1 e ]
+[; ;temp.h: 34: struct sMenu tempMenu;
+[; ;disp.h: 91: void startDisp();
+[; ;disp.h: 93: void update();
+[; ;disp.h: 95: void spi(uint8_t addr, uint8_t data);
+[; ;disp.h: 97: void setBrightness(uint8_t bright);
+[; ;disp.h: 98: void setTest(bool state);
+[; ;disp.h: 100: void writeDigit(uint8_t digit, uint8_t segs);
+[; ;disp.h: 101: void writeChar(uint8_t digit, char num);
+[; ;disp.h: 103: void writeLong(uint8_t digits, int32_t num);
+[; ;disp.h: 104: void writeFloat(uint8_t digits, double num);
+[; ;disp.h: 105: void writeString(uint8_t digits, char* num);
+[; ;disp.h: 107: uint8_t rotate(uint8_t seg);
+[; ;disp.h: 115: union uDigit
+[; ;disp.h: 116: {
+[; ;disp.h: 118: struct digit_segs
+[; ;disp.h: 119: {
+[; ;disp.h: 120: uint8_t seg_a : 1;
+[; ;disp.h: 121: uint8_t seg_b : 1;
+[; ;disp.h: 122: uint8_t seg_c : 1;
+[; ;disp.h: 123: uint8_t seg_d : 1;
+[; ;disp.h: 124: uint8_t seg_e : 1;
+[; ;disp.h: 125: uint8_t seg_f : 1;
+[; ;disp.h: 126: uint8_t seg_g : 1;
+[; ;disp.h: 127: uint8_t seg_dp : 1;
+[; ;disp.h: 128: } segs;
+[; ;disp.h: 129: uint8_t bits;
+[; ;disp.h: 130: };
+"150 disp.h
+[v _screen `S526 ~T0 @X0 1 e ]
+[; ;disp.h: 132: struct sScreen
+[; ;disp.h: 133: {
+[; ;disp.h: 135: union uScreen_data
+[; ;disp.h: 136: {
+[; ;disp.h: 137: union uDigit screen[8];
+[; ;disp.h: 139: uint32_t bits[2];
+[; ;disp.h: 141: } digits;
+[; ;disp.h: 142: uint8_t decode : 8;
+[; ;disp.h: 143: uint8_t brightness : 4;
+[; ;disp.h: 144: uint8_t scan : 3;
+[; ;disp.h: 145: uint8_t test : 1;
+[; ;disp.h: 146: uint8_t shutdown : 1;
+[; ;disp.h: 149: uint16_t changed;
+[; ;disp.h: 150: } screen;
+[; ;RTC.h: 75: enum inc
+[; ;RTC.h: 76: {
+[; ;RTC.h: 77: second = 0,
+[; ;RTC.h: 78: minute,
+[; ;RTC.h: 79: hour,
+[; ;RTC.h: 80: day,
+[; ;RTC.h: 81: month,
+[; ;RTC.h: 82: year
+[; ;RTC.h: 83: };
+[; ;RTC.h: 85: void initRTC();
+[; ;RTC.h: 86: uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
+[; ;RTC.h: 87: uint8_t daysOfMonth(uint8_t month, uint16_t year);
+[; ;RTC.h: 88: uint8_t tick(uint8_t val);
+[; ;RTC.h: 89: void checkDST();
+[; ;RTC.h: 90: void* printRTC(uint8_t digits);
+[; ;RTC.h: 91: struct sDate loadTime();
+[; ;RTC.h: 93: enum views
+[; ;RTC.h: 94: {
+[; ;RTC.h: 96: hhmm = 0,
+[; ;RTC.h: 97: hhmmss,
+[; ;RTC.h: 98: ddd_hhmm,
+[; ;RTC.h: 99: dd_hhmm,
+[; ;RTC.h: 101: dd,
+[; ;RTC.h: 102: ddd,
+[; ;RTC.h: 103: DDMM,
+[; ;RTC.h: 104: DD_MM,
+[; ;RTC.h: 105: DDMMYY,
+[; ;RTC.h: 106: DD_MM_YY
+[; ;RTC.h: 107: };
+"125 RTC.h
+[v _date `S528 ~T0 @X0 1 e ]
+[; ;RTC.h: 111: struct sDate
+[; ;RTC.h: 112: {
+[; ;RTC.h: 113: uint8_t second;
+[; ;RTC.h: 114: uint8_t minute;
+[; ;RTC.h: 115: uint8_t hour;
+[; ;RTC.h: 117: uint8_t day;
+[; ;RTC.h: 119: uint8_t dow;
+[; ;RTC.h: 121: uint8_t month;
+[; ;RTC.h: 122: uint16_t year;
+[; ;RTC.h: 124: uint8_t dst;
+[; ;RTC.h: 125: } date;
+"127
 [v _rtc_big_ticks `ui ~T0 @X0 1 e ]
-[; ;RTC.h: 121: uint16_t rtc_big_ticks;
-"122
+[; ;RTC.h: 127: uint16_t rtc_big_ticks;
+"128
 [v _rtc_small_ticks `ui ~T0 @X0 1 e ]
-[; ;RTC.h: 122: uint16_t rtc_small_ticks;
-"124
+[; ;RTC.h: 128: uint16_t rtc_small_ticks;
+"130
 [v _dow `*Cuc ~T0 @X0 -> 0 `x e ]
 [i _dow
 :U ..
-"125
+"131
 :s 1C
 :s 2C
 :s 3C
 :s 4C
 :s 5C
 :s 6C
-"126
+"132
 :s 7C
 ..
 ]
-[; ;RTC.h: 124: const char* dow[] = {
-[; ;RTC.h: 125: "Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
-[; ;RTC.h: 126: };
-"7 temp.c
+[; ;RTC.h: 130: const char* dow[] = {
+[; ;RTC.h: 131: "Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
+[; ;RTC.h: 132: };
+"134
+[v _rtcMenu `S523 ~T0 @X0 1 e ]
+[; ;RTC.h: 134: struct sMenu rtcMenu;
+"10 temp.c
 [v _initTemp `(v ~T0 @X0 1 ef ]
 {
-[; ;temp.c: 6: void initTemp()
-[; ;temp.c: 7: {
+[; ;temp.c: 9: void initTemp()
+[; ;temp.c: 10: {
 [e :U _initTemp ]
 [f ]
-[; ;temp.c: 15: ADCON0 = 0b00000001;
-"15
+[; ;temp.c: 18: ADCON0 = 0b00000001;
+"18
 [e = _ADCON0 -> -> 1 `i `uc ]
-[; ;temp.c: 22: ADCON1 = 0b00001110;
-"22
+[; ;temp.c: 25: ADCON1 = 0b00001110;
+"25
 [e = _ADCON1 -> -> 14 `i `uc ]
-[; ;temp.c: 31: ADCON2 = 0b10001101;
-"31
+[; ;temp.c: 34: ADCON2 = 0b10001101;
+"34
 [e = _ADCON2 -> -> 141 `i `uc ]
-[; ;temp.c: 32: }
-"32
-[e :UE 528 ]
-}
-"35
-[v _getTemp `(d ~T0 @X0 1 ef ]
-{
-[; ;temp.c: 34: double getTemp()
-[; ;temp.c: 35: {
-[e :U _getTemp ]
-[f ]
+[; ;temp.c: 36: tempMenu.digits = 0b00011111;
 "36
-[v _oldTempsTemp `d ~T0 @X0 -> 3 `i a ]
+[e = . _tempMenu 1 -> -> 31 `i `uc ]
+[; ;temp.c: 37: tempMenu.printFn = &printTemp;
 "37
-[v _cnt `uc ~T0 @X0 1 a ]
-[; ;temp.c: 36: double oldTempsTemp[3];
-[; ;temp.c: 37: uint8_t cnt;
-[; ;temp.c: 38: for (cnt = 3;cnt > 0;cnt--)
+[e = . _tempMenu 3 &U _printTemp ]
+[; ;temp.c: 38: tempMenu.state = 0;
 "38
-{
-[e = _cnt -> -> 3 `i `uc ]
-[e $ > -> _cnt `i -> 0 `i 530  ]
-[e $U 531  ]
+[e = . _tempMenu 0 -> -> 0 `i `uc ]
+[; ;temp.c: 39: tempMenu.num_states = 2;
 "39
-[e :U 530 ]
-[; ;temp.c: 39: {
-{
-[; ;temp.c: 40: oldTempsTemp[cnt-1] = oldTemps[cnt];
+[e = . _tempMenu 2 -> -> 2 `i `uc ]
+[; ;temp.c: 40: }
 "40
-[e = *U + &U _oldTempsTemp * -> -> - -> _cnt `i -> 1 `i `ui `ux -> -> # *U &U _oldTempsTemp `ui `ux *U + &U _oldTemps * -> _cnt `ux -> -> # *U &U _oldTemps `ui `ux ]
-"41
-}
-"38
-[e -- _cnt -> -> 1 `i `uc ]
-[e $ > -> _cnt `i -> 0 `i 530  ]
-[e :U 531 ]
-"41
-}
-[; ;temp.c: 41: }
-[; ;temp.c: 42: GO = 1;
-"42
-[e = _GO -> -> 1 `i `b ]
-[; ;temp.c: 43: while (GO);
-"43
-[e $U 533  ]
-[e :U 534 ]
-[e :U 533 ]
-[e $ _GO 534  ]
-[e :U 535 ]
-"44
-[v _temp `d ~T0 @X0 1 a ]
-[; ;temp.c: 44: double temp = (((double)ADRES) * ((0.0048828125)/0.0195/(4.03030303030303030303030303)) - (20.5128205128));
-[e = _temp - * -> _ADRES `d / / .0.0048828125 .0.0195 .4.03030303030303030303030303 .20.5128205128 ]
-"45
-[v _total `d ~T0 @X0 1 a ]
-[; ;temp.c: 45: double total = temp;
-[e = _total _temp ]
-[; ;temp.c: 46: for (cnt = 0;cnt < 3;cnt++)
-"46
-{
-[e = _cnt -> -> 0 `i `uc ]
-[e $ < -> _cnt `i -> 3 `i 536  ]
-[e $U 537  ]
-"47
-[e :U 536 ]
-[; ;temp.c: 47: {
-{
-[; ;temp.c: 48: oldTemps[cnt] = oldTempsTemp[cnt];
-"48
-[e = *U + &U _oldTemps * -> _cnt `ux -> -> # *U &U _oldTemps `ui `ux *U + &U _oldTempsTemp * -> _cnt `ux -> -> # *U &U _oldTempsTemp `ui `ux ]
-[; ;temp.c: 49: total += oldTemps[cnt];
-"49
-[e =+ _total *U + &U _oldTemps * -> _cnt `ux -> -> # *U &U _oldTemps `ui `ux ]
-"50
-}
-"46
-[e ++ _cnt -> -> 1 `i `uc ]
-[e $ < -> _cnt `i -> 3 `i 536  ]
-[e :U 537 ]
-"50
-}
-[; ;temp.c: 50: }
-[; ;temp.c: 51: oldTemps[3] = temp;
-"51
-[e = *U + &U _oldTemps * -> -> -> 3 `i `ui `ux -> -> # *U &U _oldTemps `ui `ux _temp ]
-[; ;temp.c: 53: return total/4;
-"53
-[e ) / _total -> -> 4 `i `d ]
-[e $UE 529  ]
-[; ;temp.c: 54: }
-"54
 [e :UE 529 ]
 }
-"57
-[v _printTemp `(v ~T0 @X0 1 ef1`uc ]
+"43
+[v _getTemp `(d ~T0 @X0 1 ef ]
 {
-[; ;temp.c: 56: void printTemp(uint8_t digits)
-[; ;temp.c: 57: {
+[; ;temp.c: 42: double getTemp()
+[; ;temp.c: 43: {
+[e :U _getTemp ]
+[f ]
+"44
+[v _oldTempsTemp `d ~T0 @X0 -> 3 `i a ]
+"45
+[v _cnt `uc ~T0 @X0 1 a ]
+[; ;temp.c: 44: double oldTempsTemp[3];
+[; ;temp.c: 45: uint8_t cnt;
+[; ;temp.c: 46: for (cnt = 3; cnt > 0; cnt--)
+"46
+{
+[e = _cnt -> -> 3 `i `uc ]
+[e $ > -> _cnt `i -> 0 `i 531  ]
+[e $U 532  ]
+"47
+[e :U 531 ]
+[; ;temp.c: 47: {
+{
+[; ;temp.c: 48: oldTempsTemp[cnt - 1] = oldTemps[cnt];
+"48
+[e = *U + &U _oldTempsTemp * -> -> - -> _cnt `i -> 1 `i `ui `ux -> -> # *U &U _oldTempsTemp `ui `ux *U + &U _oldTemps * -> _cnt `ux -> -> # *U &U _oldTemps `ui `ux ]
+"49
+}
+"46
+[e -- _cnt -> -> 1 `i `uc ]
+[e $ > -> _cnt `i -> 0 `i 531  ]
+[e :U 532 ]
+"49
+}
+[; ;temp.c: 49: }
+[; ;temp.c: 50: GO = 1;
+"50
+[e = _GO -> -> 1 `i `b ]
+[; ;temp.c: 51: while (GO);
+"51
+[e $U 534  ]
+[e :U 535 ]
+[e :U 534 ]
+[e $ _GO 535  ]
+[e :U 536 ]
+"52
+[v _temp `d ~T0 @X0 1 a ]
+[; ;temp.c: 52: double temp;
+[; ;temp.c: 54: if (tempMenu.state == 0)
+"54
+[e $ ! == -> . _tempMenu 0 `i -> 0 `i 537  ]
+[; ;temp.c: 55: {
+"55
+{
+[; ;temp.c: 56: temp = (((double) ADRES) * ((0.0048828125)/0.0195/(4.03030303030303030303030303)) - (20.5128205128));
+"56
+[e = _temp - * -> _ADRES `d / / .0.0048828125 .0.0195 .4.03030303030303030303030303 .20.5128205128 ]
+"57
+}
+[; ;temp.c: 57: }
+[e $U 538  ]
+"58
+[e :U 537 ]
+[; ;temp.c: 58: else
+[; ;temp.c: 59: {
+"59
+{
+[; ;temp.c: 60: temp = (((double) ADRES) * ((0.0048828125)/0.0195/(4.03030303030303030303030303)) - (20.5128205128) * 5 / 9 + 32);
+"60
+[e = _temp + - * -> _ADRES `d / / .0.0048828125 .0.0195 .4.03030303030303030303030303 / * .20.5128205128 -> -> 5 `i `d -> -> 9 `i `d -> -> 32 `i `d ]
+"61
+}
+[e :U 538 ]
+"62
+[v _total `d ~T0 @X0 1 a ]
+[; ;temp.c: 61: }
+[; ;temp.c: 62: double total = temp;
+[e = _total _temp ]
+[; ;temp.c: 63: for (cnt = 0; cnt < 3; cnt++)
+"63
+{
+[e = _cnt -> -> 0 `i `uc ]
+[e $ < -> _cnt `i -> 3 `i 539  ]
+[e $U 540  ]
+"64
+[e :U 539 ]
+[; ;temp.c: 64: {
+{
+[; ;temp.c: 65: oldTemps[cnt] = oldTempsTemp[cnt];
+"65
+[e = *U + &U _oldTemps * -> _cnt `ux -> -> # *U &U _oldTemps `ui `ux *U + &U _oldTempsTemp * -> _cnt `ux -> -> # *U &U _oldTempsTemp `ui `ux ]
+[; ;temp.c: 66: total += oldTemps[cnt];
+"66
+[e =+ _total *U + &U _oldTemps * -> _cnt `ux -> -> # *U &U _oldTemps `ui `ux ]
+"67
+}
+"63
+[e ++ _cnt -> -> 1 `i `uc ]
+[e $ < -> _cnt `i -> 3 `i 539  ]
+[e :U 540 ]
+"67
+}
+[; ;temp.c: 67: }
+[; ;temp.c: 68: oldTemps[3] = temp;
+"68
+[e = *U + &U _oldTemps * -> -> -> 3 `i `ui `ux -> -> # *U &U _oldTemps `ui `ux _temp ]
+[; ;temp.c: 70: return total / 4;
+"70
+[e ) / _total -> -> 4 `i `d ]
+[e $UE 530  ]
+[; ;temp.c: 71: }
+"71
+[e :UE 530 ]
+}
+"74
+[v _printTemp `(*v ~T0 @X0 1 ef1`uc ]
+{
+[; ;temp.c: 73: void* printTemp(uint8_t digits)
+[; ;temp.c: 74: {
 [e :U _printTemp ]
 [v _digits `uc ~T0 @X0 1 r1 ]
 [f ]
-"58
+"75
 [v _units `uc ~T0 @X0 1 a ]
-[; ;temp.c: 58: uint8_t units = 0;
+[; ;temp.c: 75: uint8_t units = 0;
 [e = _units -> -> 0 `i `uc ]
-[; ;temp.c: 59: units |= lowbit(digits);
-"59
+[; ;temp.c: 76: units |= lowbit(digits);
+"76
 [e =| _units -> ( _lowbit (1 -> _digits `ul `uc ]
-[; ;temp.c: 60: units |= lowbit(digits &= (~lowbit(digits)));
-"60
+[; ;temp.c: 77: units |= lowbit(digits &= (~lowbit(digits)));
+"77
 [e =| _units -> ( _lowbit (1 -> =& _digits -> ~ ( _lowbit (1 -> _digits `ul `uc `ul `uc ]
-[; ;temp.c: 61: digits &= ~units;
-"61
+[; ;temp.c: 78: digits &= ~units;
+"78
 [e =& _digits -> ~ -> _units `i `uc ]
-[; ;temp.c: 63: writeString(units, (char*) "*C");
-"63
+[; ;temp.c: 79: writeString(units, (char*) "*C");
+"79
 [e ( _writeString (2 , _units -> :s 8C `*uc ]
-[; ;temp.c: 65: writeFloat(digits, getTemp());
-"65
+[; ;temp.c: 80: writeFloat(digits, getTemp());
+"80
 [e ( _writeFloat (2 , _digits ( _getTemp ..  ]
-[; ;temp.c: 66: }
-"66
-[e :UE 539 ]
+[; ;temp.c: 81: return (0);
+"81
+[e ) -> -> 0 `i `*v ]
+[e $UE 542  ]
+[; ;temp.c: 83: }
+"83
+[e :UE 542 ]
 }
 [a 4C 77 105 116 0 ]
 [a 1C 83 111 110 0 ]

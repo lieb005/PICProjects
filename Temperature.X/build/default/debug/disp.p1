@@ -1,19 +1,19 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"125 disp.h
+"128 disp.h
 [s S524 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S524 digit_segs seg_a seg_b seg_c seg_d seg_e seg_f seg_g seg_dp ]
-"127
+"130
 [u S523 `S524 1 `uc 1 ]
 [n S523 uDigit segs bits ]
-"136
+"141
 [u S526 `S523 -> 8 `i `ul -> 2 `i ]
 [n S526 uScreen_data screen bits ]
-"145
+"150
 [s S525 `S526 1 :8 `uc 1 :4 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 `ui 1 ]
 [n S525 sScreen digits decode brightness scan test shutdown changed ]
-"99
+"100
 [v _writeDigit `(v ~T0 @X0 0 ef2`uc`uc ]
-"94
+"95
 [v _spi `(v ~T0 @X0 0 ef2`uc`uc ]
 "9342 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
 [v _TRISA1 `Vb ~T0 @X0 0 e@31889 ]
@@ -29,19 +29,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATA1 `Vb ~T0 @X0 0 e@31817 ]
 "8814
 [v _LATA3 `Vb ~T0 @X0 0 e@31819 ]
-"61 defs.h
+"62 defs.h
 [v _wait `(v ~T0 @X0 0 ef1`ul ]
-"68
+"69
 [v _log2 `(ul ~T0 @X0 0 ef1`ul ]
-"106 disp.h
+"107 disp.h
 [v _rotate `(uc ~T0 @X0 0 ef1`uc ]
 "205 /usr/opt/microchip/xc8/v1.20/include/stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"63 defs.h
-[v _countBits `(uc ~T0 @X0 0 ef1`ul ]
-"104 disp.h
-[v _writeString `(v ~T0 @X0 0 ef2`uc`*uc ]
 "64 defs.h
+[v _countBits `(uc ~T0 @X0 0 ef1`ul ]
+"105 disp.h
+[v _writeString `(v ~T0 @X0 0 ef2`uc`*uc ]
+"65 defs.h
 [v _hibit `(ul ~T0 @X0 0 ef1`ul ]
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
@@ -4465,88 +4465,92 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 144: extern void _delay(unsigned long);
 [; ;pic18.h: 146: extern void _delaywdt(unsigned long);
 [; ;pic18.h: 148: extern void _delay3(unsigned char);
-"40 defs.h
+"45 defs.h
 [v _pow10 `Cul ~T0 @X0 -> 0 `x e ]
 [i _pow10
 :U ..
-"41
--> -> -> 1 `i `l `ul
-"42
--> -> -> 10 `i `l `ul
-"43
--> -> -> 100 `i `l `ul
-"44
--> -> -> 1000 `i `l `ul
-"45
--> -> -> 10000 `i `l `ul
 "46
--> -> 100000 `l `ul
+-> -> -> 1 `i `l `ul
 "47
--> -> 1000000 `l `ul
+-> -> -> 10 `i `l `ul
 "48
--> -> 10000000 `l `ul
+-> -> -> 100 `i `l `ul
 "49
--> -> 100000000 `l `ul
+-> -> -> 1000 `i `l `ul
+"50
+-> -> -> 10000 `i `l `ul
 "51
+-> -> 100000 `l `ul
+"52
+-> -> 1000000 `l `ul
+"53
+-> -> 10000000 `l `ul
+"54
+-> -> 100000000 `l `ul
+"56
 -> -> 1000000000 `l `ul
 ..
 ]
-[; ;defs.h: 40: const uint32_t pow10[] = {
-[; ;defs.h: 41: 1,
-[; ;defs.h: 42: 10,
-[; ;defs.h: 43: 100,
-[; ;defs.h: 44: 1000,
-[; ;defs.h: 45: 10000,
-[; ;defs.h: 46: 100000,
-[; ;defs.h: 47: 1000000,
-[; ;defs.h: 48: 10000000,
-[; ;defs.h: 49: 100000000,
-[; ;defs.h: 50: 1000000000
-[; ;defs.h: 51: };
-[; ;defs.h: 61: extern void wait(uint32_t count);
-[; ;defs.h: 63: uint8_t countBits(uint32_t num);
-[; ;defs.h: 64: uint32_t hibit(uint32_t x);
-[; ;defs.h: 65: uint32_t lowbit(uint32_t x);
-[; ;defs.h: 68: uint32_t log2(uint32_t num);
-[; ;defs.h: 69: int32_t maxSize(uint8_t digits);
-[; ;disp.h: 90: void startDisp();
-[; ;disp.h: 92: void update();
-[; ;disp.h: 94: void spi(uint8_t addr, uint8_t data);
-[; ;disp.h: 96: void setBrightness(uint8_t bright);
-[; ;disp.h: 97: void setTest(bool state);
-[; ;disp.h: 99: void writeDigit(uint8_t digit, uint8_t segs);
-[; ;disp.h: 100: void writeChar(uint8_t digit, char num);
-[; ;disp.h: 102: void writeLong(uint8_t digits, int32_t num);
-[; ;disp.h: 103: void writeFloat(uint8_t digits, double num);
-[; ;disp.h: 104: void writeString(uint8_t digits, char* num);
-[; ;disp.h: 106: uint8_t rotate(uint8_t seg);
-[; ;disp.h: 114: union uDigit {
-[; ;disp.h: 116: struct digit_segs {
-[; ;disp.h: 117: uint8_t seg_a : 1;
-[; ;disp.h: 118: uint8_t seg_b : 1;
-[; ;disp.h: 119: uint8_t seg_c : 1;
-[; ;disp.h: 120: uint8_t seg_d : 1;
-[; ;disp.h: 121: uint8_t seg_e : 1;
-[; ;disp.h: 122: uint8_t seg_f : 1;
-[; ;disp.h: 123: uint8_t seg_g : 1;
-[; ;disp.h: 124: uint8_t seg_dp : 1;
-[; ;disp.h: 125: } segs;
-[; ;disp.h: 126: uint8_t bits;
-[; ;disp.h: 127: };
-"145 disp.h
+[; ;defs.h: 45: const uint32_t pow10[] = {
+[; ;defs.h: 46: 1,
+[; ;defs.h: 47: 10,
+[; ;defs.h: 48: 100,
+[; ;defs.h: 49: 1000,
+[; ;defs.h: 50: 10000,
+[; ;defs.h: 51: 100000,
+[; ;defs.h: 52: 1000000,
+[; ;defs.h: 53: 10000000,
+[; ;defs.h: 54: 100000000,
+[; ;defs.h: 55: 1000000000
+[; ;defs.h: 56: };
+[; ;defs.h: 62: extern void wait(uint32_t count);
+[; ;defs.h: 64: uint8_t countBits(uint32_t num);
+[; ;defs.h: 65: uint32_t hibit(uint32_t x);
+[; ;defs.h: 66: uint32_t lowbit(uint32_t x);
+[; ;defs.h: 69: uint32_t log2(uint32_t num);
+[; ;defs.h: 70: int32_t maxSize(uint8_t digits);
+[; ;disp.h: 91: void startDisp();
+[; ;disp.h: 93: void update();
+[; ;disp.h: 95: void spi(uint8_t addr, uint8_t data);
+[; ;disp.h: 97: void setBrightness(uint8_t bright);
+[; ;disp.h: 98: void setTest(bool state);
+[; ;disp.h: 100: void writeDigit(uint8_t digit, uint8_t segs);
+[; ;disp.h: 101: void writeChar(uint8_t digit, char num);
+[; ;disp.h: 103: void writeLong(uint8_t digits, int32_t num);
+[; ;disp.h: 104: void writeFloat(uint8_t digits, double num);
+[; ;disp.h: 105: void writeString(uint8_t digits, char* num);
+[; ;disp.h: 107: uint8_t rotate(uint8_t seg);
+[; ;disp.h: 115: union uDigit
+[; ;disp.h: 116: {
+[; ;disp.h: 118: struct digit_segs
+[; ;disp.h: 119: {
+[; ;disp.h: 120: uint8_t seg_a : 1;
+[; ;disp.h: 121: uint8_t seg_b : 1;
+[; ;disp.h: 122: uint8_t seg_c : 1;
+[; ;disp.h: 123: uint8_t seg_d : 1;
+[; ;disp.h: 124: uint8_t seg_e : 1;
+[; ;disp.h: 125: uint8_t seg_f : 1;
+[; ;disp.h: 126: uint8_t seg_g : 1;
+[; ;disp.h: 127: uint8_t seg_dp : 1;
+[; ;disp.h: 128: } segs;
+[; ;disp.h: 129: uint8_t bits;
+[; ;disp.h: 130: };
+"150 disp.h
 [v _screen `S525 ~T0 @X0 1 e ]
-[; ;disp.h: 129: struct sScreen {
-[; ;disp.h: 131: union uScreen_data {
-[; ;disp.h: 132: union uDigit screen[8];
-[; ;disp.h: 134: uint32_t bits[2];
-[; ;disp.h: 136: } digits;
-[; ;disp.h: 137: uint8_t decode : 8;
-[; ;disp.h: 138: uint8_t brightness : 4;
-[; ;disp.h: 139: uint8_t scan : 3;
-[; ;disp.h: 140: uint8_t test : 1;
-[; ;disp.h: 141: uint8_t shutdown : 1;
-[; ;disp.h: 144: uint16_t changed;
-[; ;disp.h: 145: } screen;
+[; ;disp.h: 132: struct sScreen
+[; ;disp.h: 133: {
+[; ;disp.h: 135: union uScreen_data
+[; ;disp.h: 136: {
+[; ;disp.h: 137: union uDigit screen[8];
+[; ;disp.h: 139: uint32_t bits[2];
+[; ;disp.h: 141: } digits;
+[; ;disp.h: 142: uint8_t decode : 8;
+[; ;disp.h: 143: uint8_t brightness : 4;
+[; ;disp.h: 144: uint8_t scan : 3;
+[; ;disp.h: 145: uint8_t test : 1;
+[; ;disp.h: 146: uint8_t shutdown : 1;
+[; ;disp.h: 149: uint16_t changed;
+[; ;disp.h: 150: } screen;
 "27 display1.h
 [v _lcd_font `Cuc ~T0 @X0 -> 0 `x e ]
 [i _lcd_font
@@ -4861,97 +4865,103 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;disp.c: 13: {
 [e :U _update ]
 [f ]
-[; ;disp.c: 14: if (screen.changed == 0) {
+[; ;disp.c: 14: if (screen.changed == 0)
 "14
 [e $ ! == . _screen 6 -> -> 0 `i `ui 541  ]
-{
-[; ;disp.c: 15: return;
+[; ;disp.c: 15: {
 "15
-[e $UE 540  ]
+{
+[; ;disp.c: 16: return;
 "16
+[e $UE 540  ]
+"17
 }
 [e :U 541 ]
-"17
-[v _cnt `c ~T0 @X0 1 a ]
-[; ;disp.c: 16: }
-[; ;disp.c: 17: int8_t cnt;
-[; ;disp.c: 18: for (cnt = 15; cnt >= 0; cnt--) {
 "18
+[v _cnt `c ~T0 @X0 1 a ]
+[; ;disp.c: 17: }
+[; ;disp.c: 18: int8_t cnt;
+[; ;disp.c: 19: for (cnt = 15; cnt >= 0; cnt--)
+"19
 {
 [e = _cnt -> -> 15 `i `c ]
 [e $ >= -> _cnt `i -> 0 `i 542  ]
 [e $U 543  ]
-[e :U 542 ]
-{
-[; ;disp.c: 19: switch (1 << cnt & screen.changed) {
-"19
-[e $U 546  ]
-{
-[; ;disp.c: 20: case 0b00000001 ... 0b10000000:
 "20
-[e :U 547 ]
-[; ;disp.c: 21: writeDigit(1 << cnt, screen.digits.screen[cnt].bits);
+[e :U 542 ]
+[; ;disp.c: 20: {
+{
+[; ;disp.c: 21: switch (1 << cnt & screen.changed)
 "21
-[e ( _writeDigit (2 , -> << -> 1 `i _cnt `uc . *U + &U . . _screen 0 0 * -> -> _cnt `uc `ux -> -> # *U &U . . _screen 0 0 `ui `ux 1 ]
-[; ;disp.c: 22: break;
+[e $U 546  ]
+[; ;disp.c: 22: {
 "22
-[e $U 545  ]
-[; ;disp.c: 23: case (1 << 9):
+{
+[; ;disp.c: 23: case 0b00000001 ... 0b10000000:
 "23
-[e :U 548 ]
-[; ;disp.c: 24: spi(0b1001, screen.decode);
+[e :U 547 ]
+[; ;disp.c: 24: writeDigit(1 << cnt, screen.digits.screen[cnt].bits);
 "24
-[e ( _spi (2 , -> -> 9 `i `uc . _screen 1 ]
+[e ( _writeDigit (2 , -> << -> 1 `i _cnt `uc . *U + &U . . _screen 0 0 * -> -> _cnt `uc `ux -> -> # *U &U . . _screen 0 0 `ui `ux 1 ]
 [; ;disp.c: 25: break;
 "25
 [e $U 545  ]
-[; ;disp.c: 26: case (1 << 10):
+[; ;disp.c: 26: case (1 << 9):
 "26
-[e :U 549 ]
-[; ;disp.c: 27: spi(0b1010, screen.brightness);
+[e :U 548 ]
+[; ;disp.c: 27: spi(0b1001, screen.decode);
 "27
-[e ( _spi (2 , -> -> 10 `i `uc . _screen 2 ]
+[e ( _spi (2 , -> -> 9 `i `uc . _screen 1 ]
 [; ;disp.c: 28: break;
 "28
 [e $U 545  ]
-[; ;disp.c: 29: case (1 << 11):
+[; ;disp.c: 29: case (1 << 10):
 "29
-[e :U 550 ]
-[; ;disp.c: 30: spi(0b1011, screen.scan);
+[e :U 549 ]
+[; ;disp.c: 30: spi(0b1010, screen.brightness);
 "30
-[e ( _spi (2 , -> -> 11 `i `uc . _screen 3 ]
+[e ( _spi (2 , -> -> 10 `i `uc . _screen 2 ]
 [; ;disp.c: 31: break;
 "31
 [e $U 545  ]
-[; ;disp.c: 32: case (1 << 12):
+[; ;disp.c: 32: case (1 << 11):
 "32
-[e :U 551 ]
-[; ;disp.c: 33: spi(0b1111, screen.test);
+[e :U 550 ]
+[; ;disp.c: 33: spi(0b1011, screen.scan);
 "33
-[e ( _spi (2 , -> -> 15 `i `uc . _screen 4 ]
+[e ( _spi (2 , -> -> 11 `i `uc . _screen 3 ]
 [; ;disp.c: 34: break;
 "34
 [e $U 545  ]
-[; ;disp.c: 35: case (1 << 13):
+[; ;disp.c: 35: case (1 << 12):
 "35
-[e :U 552 ]
-[; ;disp.c: 36: spi(0b1100, !screen.shutdown);
+[e :U 551 ]
+[; ;disp.c: 36: spi(0b1111, screen.test);
 "36
-[e ( _spi (2 , -> -> 12 `i `uc -> -> ! != -> . _screen 5 `i -> -> -> 0 `i `uc `i `i `uc ]
+[e ( _spi (2 , -> -> 15 `i `uc . _screen 4 ]
 [; ;disp.c: 37: break;
 "37
 [e $U 545  ]
-[; ;disp.c: 38: default:
+[; ;disp.c: 38: case (1 << 13):
 "38
-[e :U 553 ]
-[; ;disp.c: 39: break;
+[e :U 552 ]
+[; ;disp.c: 39: spi(0b1100, !screen.shutdown);
 "39
-[e $U 545  ]
+[e ( _spi (2 , -> -> 12 `i `uc -> -> ! != -> . _screen 5 `i -> -> -> 0 `i `uc `i `i `uc ]
+[; ;disp.c: 40: break;
 "40
-}
-[; ;disp.c: 40: }
 [e $U 545  ]
-"19
+[; ;disp.c: 41: default:
+"41
+[e :U 553 ]
+[; ;disp.c: 42: break;
+"42
+[e $U 545  ]
+"43
+}
+[; ;disp.c: 43: }
+[e $U 545  ]
+"21
 [e :U 546 ]
 [e [\ & -> << -> 1 `i _cnt `ui . _screen 6 , $ -> -> 1 `i `ui 547
  , $ -> + -> 1 `i -> 1 `i `ui 547
@@ -5087,259 +5097,263 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> << -> 1 `i -> 12 `i `ui 551
  , $ -> << -> 1 `i -> 13 `i `ui 552
  553 ]
-"40
+"43
 [e :U 545 ]
-[; ;disp.c: 41: screen.changed &= ~(1 << cnt);
-"41
+[; ;disp.c: 44: screen.changed &= ~(1 << cnt);
+"44
 [e =& . _screen 6 -> ~ << -> 1 `i _cnt `ui ]
-"42
+"45
 }
-"18
+"19
 [e -- _cnt -> -> 1 `i `c ]
 [e $ >= -> _cnt `i -> 0 `i 542  ]
 [e :U 543 ]
-"42
+"45
 }
-[; ;disp.c: 42: }
-[; ;disp.c: 43: }
-"43
+[; ;disp.c: 45: }
+[; ;disp.c: 46: }
+"46
 [e :UE 540 ]
 }
-"46
+"49
 [v _setBrightness `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;disp.c: 45: void setBrightness(uint8_t bright)
-[; ;disp.c: 46: {
+[; ;disp.c: 48: void setBrightness(uint8_t bright)
+[; ;disp.c: 49: {
 [e :U _setBrightness ]
 [v _bright `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;disp.c: 47: screen.brightness = bright;
-"47
-[e = . _screen 2 _bright ]
-[; ;disp.c: 48: screen.changed |= (1 << 10);
-"48
-[e =| . _screen 6 -> << -> 1 `i -> 10 `i `ui ]
-[; ;disp.c: 50: }
+[; ;disp.c: 50: screen.brightness = bright;
 "50
+[e = . _screen 2 _bright ]
+[; ;disp.c: 51: screen.changed |= (1 << 10);
+"51
+[e =| . _screen 6 -> << -> 1 `i -> 10 `i `ui ]
+[; ;disp.c: 53: }
+"53
 [e :UE 554 ]
 }
-"53
+"56
 [v _setTest `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;disp.c: 52: void setTest(bool state)
-[; ;disp.c: 53: {
+[; ;disp.c: 55: void setTest(bool state)
+[; ;disp.c: 56: {
 [e :U _setTest ]
 [v _state `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;disp.c: 54: screen.test = state;
-"54
+[; ;disp.c: 57: screen.test = state;
+"57
 [e = . _screen 4 _state ]
-[; ;disp.c: 55: screen.changed |= (1 << 12);
-"55
+[; ;disp.c: 58: screen.changed |= (1 << 12);
+"58
 [e =| . _screen 6 -> << -> 1 `i -> 12 `i `ui ]
-[; ;disp.c: 56: }
-"56
+[; ;disp.c: 59: }
+"59
 [e :UE 555 ]
 }
-"59
+"62
 [v _startDisp `(v ~T0 @X0 1 ef ]
 {
-[; ;disp.c: 58: void startDisp()
-[; ;disp.c: 59: {
+[; ;disp.c: 61: void startDisp()
+[; ;disp.c: 62: {
 [e :U _startDisp ]
 [f ]
-[; ;disp.c: 61: TRISA1 = 0;
-"61
-[e = _TRISA1 -> -> 0 `i `b ]
-[; ;disp.c: 62: TRISA3 = 0;
-"62
-[e = _TRISA3 -> -> 0 `i `b ]
-[; ;disp.c: 63: TRISA4 = 0;
-"63
-[e = _TRISA4 -> -> 0 `i `b ]
-[; ;disp.c: 64: TRISA2 = 1;
+[; ;disp.c: 64: TRISA1 = 0;
 "64
-[e = _TRISA2 -> -> 1 `i `b ]
-[; ;disp.c: 67: screen.digits.bits[0] = 0;
+[e = _TRISA1 -> -> 0 `i `b ]
+[; ;disp.c: 65: TRISA3 = 0;
+"65
+[e = _TRISA3 -> -> 0 `i `b ]
+[; ;disp.c: 66: TRISA4 = 0;
+"66
+[e = _TRISA4 -> -> 0 `i `b ]
+[; ;disp.c: 67: TRISA2 = 1;
 "67
-[e = *U + &U . . _screen 0 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . . _screen 0 1 `ui `ux -> -> -> 0 `i `l `ul ]
-[; ;disp.c: 68: screen.digits.bits[1] = 0;
-"68
-[e = *U + &U . . _screen 0 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . . _screen 0 1 `ui `ux -> -> -> 0 `i `l `ul ]
-[; ;disp.c: 70: setBrightness(0b1111);
+[e = _TRISA2 -> -> 1 `i `b ]
+[; ;disp.c: 70: screen.digits.bits[0] = 0;
 "70
+[e = *U + &U . . _screen 0 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . . _screen 0 1 `ui `ux -> -> -> 0 `i `l `ul ]
+[; ;disp.c: 71: screen.digits.bits[1] = 0;
+"71
+[e = *U + &U . . _screen 0 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . . _screen 0 1 `ui `ux -> -> -> 0 `i `l `ul ]
+[; ;disp.c: 73: setBrightness(0b1111);
+"73
 [e ( _setBrightness (1 -> -> 15 `i `uc ]
-[; ;disp.c: 72: screen.decode = 0;
-"72
+[; ;disp.c: 75: screen.decode = 0;
+"75
 [e = . _screen 1 -> -> 0 `i `uc ]
-[; ;disp.c: 74: screen.scan = 0b111;
-"74
+[; ;disp.c: 77: screen.scan = 0b111;
+"77
 [e = . _screen 3 -> -> 7 `i `uc ]
-[; ;disp.c: 76: setTest(0);
-"76
+[; ;disp.c: 79: setTest(0);
+"79
 [e ( _setTest (1 -> -> 0 `i `uc ]
-[; ;disp.c: 78: screen.shutdown = 0;
-"78
-[e = . _screen 5 -> -> 0 `i `uc ]
-[; ;disp.c: 80: screen.changed = 0xFFFF;
-"80
-[e = . _screen 6 -> 65535 `ui ]
-[; ;disp.c: 81: }
+[; ;disp.c: 81: screen.shutdown = 0;
 "81
+[e = . _screen 5 -> -> 0 `i `uc ]
+[; ;disp.c: 83: screen.changed = 0xFFFF;
+"83
+[e = . _screen 6 -> 65535 `ui ]
+[; ;disp.c: 84: }
+"84
 [e :UE 556 ]
 }
-"84
+"87
 [v _spi `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;disp.c: 83: void spi(uint8_t addr, uint8_t data)
-[; ;disp.c: 84: {
+[; ;disp.c: 86: void spi(uint8_t addr, uint8_t data)
+[; ;disp.c: 87: {
 [e :U _spi ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _data `uc ~T0 @X0 1 r2 ]
 [f ]
-"85
-[v _send `ui ~T0 @X0 1 a ]
-[; ;disp.c: 85: uint16_t send = (addr << 8) | data;
-[e = _send -> | << -> _addr `i -> 8 `i -> _data `i `ui ]
-[; ;disp.c: 86: LATA4 = 0;
-"86
-[e = _LATA4 -> -> 0 `i `b ]
-[; ;disp.c: 87: LATA1 = 0;
-"87
-[e = _LATA1 -> -> 0 `i `b ]
-[; ;disp.c: 88: LATA3 = 0;
 "88
-[e = _LATA3 -> -> 0 `i `b ]
+[v _send `ui ~T0 @X0 1 a ]
+[; ;disp.c: 88: uint16_t send = (addr << 8) | data;
+[e = _send -> | << -> _addr `i -> 8 `i -> _data `i `ui ]
+[; ;disp.c: 89: LATA4 = 0;
 "89
-[v _cnt `c ~T0 @X0 1 a ]
-[; ;disp.c: 89: int8_t cnt;
-[; ;disp.c: 90: for (cnt = 15; cnt >= 0; cnt--) {
+[e = _LATA4 -> -> 0 `i `b ]
+[; ;disp.c: 90: LATA1 = 0;
 "90
+[e = _LATA1 -> -> 0 `i `b ]
+[; ;disp.c: 91: LATA3 = 0;
+"91
+[e = _LATA3 -> -> 0 `i `b ]
+"92
+[v _cnt `c ~T0 @X0 1 a ]
+[; ;disp.c: 92: int8_t cnt;
+[; ;disp.c: 93: for (cnt = 15; cnt >= 0; cnt--)
+"93
 {
 [e = _cnt -> -> 15 `i `c ]
 [e $ >= -> _cnt `i -> 0 `i 558  ]
 [e $U 559  ]
-[e :U 558 ]
-{
-[; ;disp.c: 91: LATA1 = 0x1 & (send >> cnt);
-"91
-[e = _LATA1 -> & -> -> 1 `i `ui >> _send _cnt `b ]
-[; ;disp.c: 92: wait(0);
-"92
-[e ( _wait (1 -> -> -> 0 `i `l `ul ]
-[; ;disp.c: 93: LATA3 = 1;
-"93
-[e = _LATA3 -> -> 1 `i `b ]
-[; ;disp.c: 94: wait(0);
 "94
-[e ( _wait (1 -> -> -> 0 `i `l `ul ]
-[; ;disp.c: 95: LATA3 = 0;
+[e :U 558 ]
+[; ;disp.c: 94: {
+{
+[; ;disp.c: 95: LATA1 = 0x1 & (send >> cnt);
 "95
-[e = _LATA3 -> -> 0 `i `b ]
-[; ;disp.c: 96: LATA1 = 0;
+[e = _LATA1 -> & -> -> 1 `i `ui >> _send _cnt `b ]
+[; ;disp.c: 96: wait(0);
 "96
-[e = _LATA1 -> -> 0 `i `b ]
+[e ( _wait (1 -> -> -> 0 `i `l `ul ]
+[; ;disp.c: 97: LATA3 = 1;
 "97
-}
-"90
-[e -- _cnt -> -> 1 `i `c ]
-[e $ >= -> _cnt `i -> 0 `i 558  ]
-[e :U 559 ]
-"97
-}
-[; ;disp.c: 97: }
-[; ;disp.c: 98: LATA4 = 1;
+[e = _LATA3 -> -> 1 `i `b ]
+[; ;disp.c: 98: wait(0);
 "98
-[e = _LATA4 -> -> 1 `i `b ]
+[e ( _wait (1 -> -> -> 0 `i `l `ul ]
 [; ;disp.c: 99: LATA3 = 0;
 "99
 [e = _LATA3 -> -> 0 `i `b ]
 [; ;disp.c: 100: LATA1 = 0;
 "100
 [e = _LATA1 -> -> 0 `i `b ]
-[; ;disp.c: 101: wait(0);
 "101
-[e ( _wait (1 -> -> -> 0 `i `l `ul ]
-[; ;disp.c: 102: }
+}
+"93
+[e -- _cnt -> -> 1 `i `c ]
+[e $ >= -> _cnt `i -> 0 `i 558  ]
+[e :U 559 ]
+"101
+}
+[; ;disp.c: 101: }
+[; ;disp.c: 102: LATA4 = 1;
 "102
+[e = _LATA4 -> -> 1 `i `b ]
+[; ;disp.c: 103: LATA3 = 0;
+"103
+[e = _LATA3 -> -> 0 `i `b ]
+[; ;disp.c: 104: LATA1 = 0;
+"104
+[e = _LATA1 -> -> 0 `i `b ]
+[; ;disp.c: 105: wait(0);
+"105
+[e ( _wait (1 -> -> -> 0 `i `l `ul ]
+[; ;disp.c: 106: }
+"106
 [e :UE 557 ]
 }
-"105
+"109
 [v _writeDigit `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;disp.c: 104: void writeDigit(uint8_t digit, uint8_t segs)
-[; ;disp.c: 105: {
+[; ;disp.c: 108: void writeDigit(uint8_t digit, uint8_t segs)
+[; ;disp.c: 109: {
 [e :U _writeDigit ]
 [v _digit `uc ~T0 @X0 1 r1 ]
 [v _segs `uc ~T0 @X0 1 r2 ]
 [f ]
-"106
-[v _dig `uc ~T0 @X0 1 a ]
-[; ;disp.c: 106: uint8_t dig = (uint8_t) log2(digit);
-[e = _dig -> ( _log2 (1 -> _digit `ul `uc ]
-[; ;disp.c: 107: screen.digits.screen[dig].bits = segs;
-"107
-[e = . *U + &U . . _screen 0 0 * -> _dig `ux -> -> # *U &U . . _screen 0 0 `ui `ux 1 _segs ]
 "110
-[v _cnt `c ~T0 @X0 1 a ]
-[; ;disp.c: 110: int8_t cnt;
-[; ;disp.c: 111: for (cnt = 7; cnt >= 0; cnt--) {
+[v _dig `uc ~T0 @X0 1 a ]
+[; ;disp.c: 110: uint8_t dig = (uint8_t) log2(digit);
+[e = _dig -> ( _log2 (1 -> _digit `ul `uc ]
+[; ;disp.c: 111: screen.digits.screen[dig].bits = segs;
 "111
+[e = . *U + &U . . _screen 0 0 * -> _dig `ux -> -> # *U &U . . _screen 0 0 `ui `ux 1 _segs ]
+"114
+[v _cnt `c ~T0 @X0 1 a ]
+[; ;disp.c: 114: int8_t cnt;
+[; ;disp.c: 115: for (cnt = 7; cnt >= 0; cnt--)
+"115
 {
 [e = _cnt -> -> 7 `i `c ]
 [e $ >= -> _cnt `i -> 0 `i 562  ]
 [e $U 563  ]
+"116
 [e :U 562 ]
+[; ;disp.c: 116: {
 {
-[; ;disp.c: 113: spi(cnt + 1, rotate(cnt));
-"113
+[; ;disp.c: 118: spi(cnt + 1, rotate(cnt));
+"118
 [e ( _spi (2 , -> + -> _cnt `i -> 1 `i `uc ( _rotate (1 -> _cnt `uc ]
-"114
+"119
 }
-"111
+"115
 [e -- _cnt -> -> 1 `i `c ]
 [e $ >= -> _cnt `i -> 0 `i 562  ]
 [e :U 563 ]
-"114
+"119
 }
-[; ;disp.c: 114: }
-[; ;disp.c: 115: }
-"115
+[; ;disp.c: 119: }
+[; ;disp.c: 120: }
+"120
 [e :UE 561 ]
 }
-"118
+"123
 [v _writeChar `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;disp.c: 117: void writeChar(uint8_t digit, char ch)
-[; ;disp.c: 118: {
+[; ;disp.c: 122: void writeChar(uint8_t digit, char ch)
+[; ;disp.c: 123: {
 [e :U _writeChar ]
 [v _digit `uc ~T0 @X0 1 r1 ]
 [v _ch `uc ~T0 @X0 1 r2 ]
 [f ]
-"119
+"124
 [v _dig `uc ~T0 @X0 1 a ]
-[; ;disp.c: 119: uint8_t dig = (uint8_t) log2(digit);
+[; ;disp.c: 124: uint8_t dig = (uint8_t) log2(digit);
 [e = _dig -> ( _log2 (1 -> _digit `ul `uc ]
-[; ;disp.c: 120: screen.digits.screen[dig].bits = getFontChar(ch);
-"120
+[; ;disp.c: 125: screen.digits.screen[dig].bits = getFontChar(ch);
+"125
 [e = . *U + &U . . _screen 0 0 * -> _dig `ux -> -> # *U &U . . _screen 0 0 `ui `ux 1 ( _getFontChar (1 _ch ]
-[; ;disp.c: 121: screen.changed |= digit;
-"121
+[; ;disp.c: 126: screen.changed |= digit;
+"126
 [e =| . _screen 6 -> _digit `ui ]
-[; ;disp.c: 122: }
-"122
+[; ;disp.c: 127: }
+"127
 [e :UE 565 ]
 }
-"125
+"130
 [v _writeLong `(v ~T0 @X0 1 ef2`uc`l ]
 {
-[; ;disp.c: 124: void writeLong(uint8_t digits, int32_t num)
-[; ;disp.c: 125: {
+[; ;disp.c: 129: void writeLong(uint8_t digits, int32_t num)
+[; ;disp.c: 130: {
 [e :U _writeLong ]
 [v _digits `uc ~T0 @X0 1 r1 ]
 [v _num `l ~T0 @X0 1 r2 ]
 [f ]
-"150
+"158
 [v F5021 `uc ~T0 @X0 -> 9 `i s ]
 [i F5021
 :U ..
@@ -5355,28 +5369,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _str `uc ~T0 @X0 -> 9 `i a ]
-[; ;disp.c: 150: char str[9] = "00000000";
+[; ;disp.c: 158: char str[9] = "00000000";
 [e = _str F5021 ]
-[; ;disp.c: 151: sprintf(&str, "%*li", countBits(digits), num);
-"151
+[; ;disp.c: 159: sprintf(&str, "%*li", countBits(digits), num);
+"159
 [e ( _sprintf (1 , , (. , &U _str :s 1C -> ( _countBits (1 -> _digits `ul `i _num ]
-[; ;disp.c: 152: writeString(digits, str);
-"152
+[; ;disp.c: 160: writeString(digits, str);
+"160
 [e ( _writeString (2 , _digits &U _str ]
-[; ;disp.c: 154: }
-"154
+[; ;disp.c: 162: }
+"162
 [e :UE 566 ]
 }
-"157
+"165
 [v _writeFloat `(v ~T0 @X0 1 ef2`uc`d ]
 {
-[; ;disp.c: 156: void writeFloat(uint8_t digits, double num)
-[; ;disp.c: 157: {
+[; ;disp.c: 164: void writeFloat(uint8_t digits, double num)
+[; ;disp.c: 165: {
 [e :U _writeFloat ]
 [v _digits `uc ~T0 @X0 1 r1 ]
 [v _num `d ~T0 @X0 1 r2 ]
 [f ]
-"158
+"166
 [v F5025 `uc ~T0 @X0 -> 9 `i s ]
 [i F5025
 :U ..
@@ -5384,151 +5398,161 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _str `uc ~T0 @X0 -> 9 `i a ]
-[; ;disp.c: 158: char str[9] = "";
+[; ;disp.c: 166: char str[9] = "";
 [e = _str F5025 ]
-"159
+"167
 [v _bits `uc ~T0 @X0 1 a ]
-[; ;disp.c: 159: uint8_t bits = countBits(digits);
+[; ;disp.c: 167: uint8_t bits = countBits(digits);
 [e = _bits ( _countBits (1 -> _digits `ul ]
-[; ;disp.c: 160: sprintf(&str, "%.*f", bits, num);
-"160
+[; ;disp.c: 168: sprintf(&str, "%.*f", bits, num);
+"168
 [e ( _sprintf (1 , , (. , &U _str :s 2C -> _bits `i _num ]
-[; ;disp.c: 162: writeString(digits, str);
-"162
+[; ;disp.c: 170: writeString(digits, str);
+"170
 [e ( _writeString (2 , _digits &U _str ]
-[; ;disp.c: 163: }
-"163
+[; ;disp.c: 171: }
+"171
 [e :UE 567 ]
 }
-"166
+"174
 [v _writeString `(v ~T0 @X0 1 ef2`uc`*uc ]
 {
-[; ;disp.c: 165: void writeString(uint8_t digits, char* string)
-[; ;disp.c: 166: {
+[; ;disp.c: 173: void writeString(uint8_t digits, char* string)
+[; ;disp.c: 174: {
 [e :U _writeString ]
 [v _digits `uc ~T0 @X0 1 r1 ]
 [v _string `*uc ~T0 @X0 1 r2 ]
 [f ]
-"171
+"179
 [v _cnt `c ~T0 @X0 1 a ]
-[; ;disp.c: 171: int8_t cnt = 0, i = 0;
+[; ;disp.c: 179: int8_t cnt = 0, i = 0;
 [e = _cnt -> -> 0 `i `c ]
 [v _i `c ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `c ]
-"172
+"180
 [v _bits `uc ~T0 @X0 1 a ]
-[; ;disp.c: 172: uint8_t bits = countBits(digits);
+[; ;disp.c: 180: uint8_t bits = countBits(digits);
 [e = _bits ( _countBits (1 -> _digits `ul ]
-[; ;disp.c: 174: bits += 1;
-"174
+[; ;disp.c: 182: bits += 1;
+"182
 [e =+ _bits -> -> 1 `i `uc ]
-[; ;disp.c: 175: for (cnt = log2(hibit(digits)); --bits; cnt--) {
-"175
+[; ;disp.c: 183: for (cnt = log2(hibit(digits)); --bits; cnt--)
+"183
 {
 [e = _cnt -> ( _log2 (1 ( _hibit (1 -> _digits `ul `c ]
 [e $U 572  ]
+"184
 [e :U 569 ]
+[; ;disp.c: 184: {
 {
-[; ;disp.c: 176: if (0x1 & (digits >> cnt)) {
-"176
+[; ;disp.c: 185: if (0x1 & (digits >> cnt))
+"185
 [e $ ! != & -> 1 `i >> -> _digits `i _cnt -> 0 `i 573  ]
+[; ;disp.c: 186: {
+"186
 {
-[; ;disp.c: 177: if (string[i] == '\0') {
-"177
+[; ;disp.c: 187: if (string[i] == '\0')
+"187
 [e $ ! == -> *U + _string * -> _i `x -> -> # *U _string `i `x `ui -> 0 `ui 574  ]
+[; ;disp.c: 188: {
+"188
 {
-[; ;disp.c: 178: break;
-"178
+[; ;disp.c: 189: break;
+"189
 [e $U 570  ]
-"179
+"190
 }
 [e :U 574 ]
-[; ;disp.c: 179: }
-[; ;disp.c: 180: if (string[i] == '.') {
-"180
+[; ;disp.c: 190: }
+[; ;disp.c: 191: if (string[i] == '.')
+"191
 [e $ ! == -> *U + _string * -> _i `x -> -> # *U _string `i `x `ui -> 46 `ui 575  ]
+[; ;disp.c: 192: {
+"192
 {
-[; ;disp.c: 181: screen.digits.screen[cnt + 1].bits |= 0b10000000;
-"181
+[; ;disp.c: 193: screen.digits.screen[cnt + 1].bits |= 0b10000000;
+"193
 [e =| . *U + &U . . _screen 0 0 * -> -> + -> _cnt `i -> 1 `i `ui `ux -> -> # *U &U . . _screen 0 0 `ui `ux 1 -> -> 128 `i `uc ]
-[; ;disp.c: 182: screen.changed |= 1 << (cnt + 1);
-"182
+[; ;disp.c: 194: screen.changed |= 1 << (cnt + 1);
+"194
 [e =| . _screen 6 -> << -> 1 `i + -> _cnt `i -> 1 `i `ui ]
-[; ;disp.c: 183: bits++;
-"183
+[; ;disp.c: 195: bits++;
+"195
 [e ++ _bits -> -> 1 `i `uc ]
-[; ;disp.c: 184: i++;
-"184
+[; ;disp.c: 196: i++;
+"196
 [e ++ _i -> -> 1 `i `c ]
-"185
+"197
 }
 [e :U 575 ]
-[; ;disp.c: 185: }
-[; ;disp.c: 186: writeChar(1 << cnt, string[i]);
-"186
+[; ;disp.c: 197: }
+[; ;disp.c: 198: writeChar(1 << cnt, string[i]);
+"198
 [e ( _writeChar (2 , -> << -> 1 `i _cnt `uc *U + _string * -> _i `x -> -> # *U _string `i `x ]
-[; ;disp.c: 187: i++;
-"187
+[; ;disp.c: 199: i++;
+"199
 [e ++ _i -> -> 1 `i `c ]
-"188
+"200
 }
 [e :U 573 ]
-"189
+"201
 }
-"175
+"183
 [e -- _cnt -> -> 1 `i `c ]
 [e :U 572 ]
 [e $ != -> =- _bits -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 569  ]
 [e :U 570 ]
-"189
+"201
 }
-[; ;disp.c: 188: }
-[; ;disp.c: 189: }
-[; ;disp.c: 191: }
-"191
+[; ;disp.c: 200: }
+[; ;disp.c: 201: }
+[; ;disp.c: 203: }
+"203
 [e :UE 568 ]
 }
-"194
+"206
 [v _rotate `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;disp.c: 193: uint8_t rotate(uint8_t seg)
-[; ;disp.c: 194: {
+[; ;disp.c: 205: uint8_t rotate(uint8_t seg)
+[; ;disp.c: 206: {
 [e :U _rotate ]
 [v _seg `uc ~T0 @X0 1 r1 ]
 [f ]
-"195
+"207
 [v _ret `uc ~T0 @X0 1 a ]
-[; ;disp.c: 195: uint8_t ret = 0;
+[; ;disp.c: 207: uint8_t ret = 0;
 [e = _ret -> -> 0 `i `uc ]
-"196
+"208
 [v _cnt `c ~T0 @X0 1 a ]
-[; ;disp.c: 196: int8_t cnt;
-[; ;disp.c: 197: for (cnt = 7; cnt >= 0; cnt--) {
-"197
+[; ;disp.c: 208: int8_t cnt;
+[; ;disp.c: 209: for (cnt = 7; cnt >= 0; cnt--)
+"209
 {
 [e = _cnt -> -> 7 `i `c ]
 [e $ >= -> _cnt `i -> 0 `i 577  ]
 [e $U 578  ]
+"210
 [e :U 577 ]
+[; ;disp.c: 210: {
 {
-[; ;disp.c: 198: ret |= ((screen.digits.screen[cnt].bits >> seg) & 1) << cnt;
-"198
+[; ;disp.c: 211: ret |= ((screen.digits.screen[cnt].bits >> seg) & 1) << cnt;
+"211
 [e =| _ret -> << & >> -> . *U + &U . . _screen 0 0 * -> -> _cnt `uc `ux -> -> # *U &U . . _screen 0 0 `ui `ux 1 `i _seg -> 1 `i _cnt `uc ]
-"199
+"212
 }
-"197
+"209
 [e -- _cnt -> -> 1 `i `c ]
 [e $ >= -> _cnt `i -> 0 `i 577  ]
 [e :U 578 ]
-"199
+"212
 }
-[; ;disp.c: 199: }
-[; ;disp.c: 200: return ret;
-"200
+[; ;disp.c: 212: }
+[; ;disp.c: 213: return ret;
+"213
 [e ) _ret ]
 [e $UE 576  ]
-[; ;disp.c: 201: }
-"201
+[; ;disp.c: 214: }
+"214
 [e :UE 576 ]
 }
 [p f _sprintf 8626320 ]

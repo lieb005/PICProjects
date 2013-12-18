@@ -9,15 +9,27 @@
 #define	MENU_H
 
 #ifdef	__cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-	struct sMenu {
-		uint8_t state : 1;
-	} menu;
+#include "defs.h"
+#include "temp_main.h"
 
-	void (*printFn)(uint8_t digits);
+#define MENU_SIZE 2
 
+struct sMenu
+{
+	uint8_t state;
+	uint8_t digits;
+	uint8_t num_states;
+	void* (*printFn)(uint8_t digits);
+};
+
+struct sMenu* menu;
+
+uint8_t advState();
+void advMenu();
 
 #ifdef	__cplusplus
 }

@@ -5,3 +5,4 @@ defs.h  \
 RTC.h  \
 temp.h  \
 disp.h  \
+menu.h  \

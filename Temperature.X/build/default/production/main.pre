@@ -5886,7 +5886,7 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 40 "defs.h"
+# 54 "defs.h"
 const uint32_t pow10[] = {
 1,
 10,
@@ -5900,7 +5900,7 @@ const uint32_t pow10[] = {
 1000000000
 };
 
-# 61
+# 71
 extern void wait(uint32_t count);
 
 uint8_t countBits(uint32_t num);
@@ -5911,7 +5911,7 @@ uint32_t lowbit(uint32_t x);
 uint32_t log2(uint32_t num);
 int32_t maxSize(uint8_t digits);
 
-# 90 "disp.h"
+# 91 "disp.h"
 void startDisp();
 
 void update();
@@ -5930,10 +5930,12 @@ void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);
 
-# 114
-union uDigit {
+# 115
+union uDigit
+{
 
-struct digit_segs {
+struct digit_segs
+{
 uint8_t seg_a : 1;
 uint8_t seg_b : 1;
 uint8_t seg_c : 1;
@@ -5946,9 +5948,11 @@ uint8_t seg_dp : 1;
 uint8_t bits;
 };
 
-struct sScreen {
+struct sScreen
+{
 
-union uScreen_data {
+union uScreen_data
+{
 union uDigit screen[8];
 
 uint32_t bits[2];
@@ -5964,8 +5968,23 @@ uint8_t shutdown : 1;
 uint16_t changed;
 } screen;
 
-# 72 "RTC.h"
-enum inc {
+# 20 "menu.h"
+struct sMenu
+{
+uint8_t state;
+uint8_t digits;
+uint8_t num_states;
+void* (*printFn)(uint8_t digits);
+};
+
+struct sMenu* menu;
+
+uint8_t advState();
+void advMenu();
+
+# 91 "RTC.h"
+enum inc
+{
 second = 0,
 minute,
 hour,
@@ -5974,15 +5993,9 @@ month,
 year
 };
 
-void initRTC();
-uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
-uint8_t daysOfMonth(uint8_t month, uint16_t year);
-uint8_t tick(uint8_t val);
-void checkDST();
-void printRTC(uint8_t digits);
-struct sDate loadTime();
 
-enum views {
+enum views
+{
 
 hhmm = 0,
 hhmmss,
@@ -5999,7 +6012,8 @@ DD_MM_YY
 
 
 
-struct sDate {
+struct sDate
+{
 uint8_t second;
 uint8_t minute;
 uint8_t hour;
@@ -6012,39 +6026,49 @@ uint8_t month;
 uint16_t year;
 
 uint8_t dst;
-
-uint8_t view;
 } date;
 
 uint16_t rtc_big_ticks;
 uint16_t rtc_small_ticks;
 
-const char* dow[] = {
+const char dow[7][4] = {
 "Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
 };
 
-# 27 "temp.h"
-void printTemp(uint8_t digits);
+struct sMenu rtcMenu;
+
+void initRTC();
+uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
+uint8_t daysOfMonth(uint8_t month, uint16_t year);
+uint8_t tick(uint8_t val);
+void checkDST();
+void* printRTC(uint8_t digits);
+struct sDate loadTime();
+void saveTime(struct sDate date);
+
+# 28 "temp.h"
+void* printTemp(uint8_t digits);
 double getTemp();
 void initTemp();
 
 double oldTemps[4];
 
-# 15 "menu.h"
-struct sMenu {
-uint8_t state : 1;
-} menu;
+struct sMenu tempMenu;
 
-void (*printFn)(uint8_t digits);
-
-# 17 "buttons.h"
+# 34 "buttons.h"
 void setupButtons();
 void buttons();
 
 uint32_t tmr0BigCounts;
 
 
-# 22 "main.c"
+# 23 "main.c"
+#pragma config DEBUG = 0
+#pragma config MCLRE = 1
+#pragma config WDT = 1
+#pragma config LVP = 0
+
+
 #pragma config FOSC = HS
 #pragma config PWRT = 1
 #pragma config PBADEN = 0
@@ -6054,15 +6078,19 @@ uint32_t tmr0BigCounts;
 
 void setup();
 
-# 34
+# 41
 int main(int argc, char** argv)
 {
 setup();
 uint32_t cnt = 0;
-while (1) {
-if (cnt > 200L) {
+while (1)
+{
+if (cnt > 20L)
+{
 cnt = 0;
 
+
+update();
 
 }
 cnt++;
@@ -6078,52 +6106,57 @@ GIE = 1;
 PEIE = 1;
 
 startDisp();
+
 initRTC();
 
 
+
 initTemp();
+
 setupButtons();
 
-printFn = &printTemp;
+menu = &tempMenu;
+
 
 
 
 TRISA5 = 0;
+LATA5 = 0;
 
+TRISC = 0;
 }
 
 void interrupt high_isr(void)
 {
-if (TMR1IE && TMR1IF) {
-TMR1ON = 0;
+if (TMR1IE && TMR1IF)
+{
 TMR1IF = CLEAR;
+TMR1ON = 0;
 TMR1 = 0;
-if (++rtc_big_ticks > (1+1)) {
+if (++rtc_big_ticks > (1+1))
+{
 rtc_big_ticks = 0;
 TMR1 = (65536-63765);
-tick(second);
-if (printFn == &printTemp) {
-
-printFn(0b00011111);
-} else if (printFn == &printRTC) {
-printFn(0b11111111);
-}
-
-
-update();
-}
 TMR1ON = 1;
+tick(second);
+getTemp();
+menu->printFn(menu->digits);
+
 }
-if (TMR0IE && TMR0IF) {
+}
+if (TMR0IE && TMR0IF)
+{
 TMR0IF = CLEAR;
 TMR0ON = 0;
 TMR0 = 0;
-if (++tmr0BigCounts > (3+1)) {
-buttons();
-TMR0 = (65536-50356);
+if (++tmr0BigCounts > (0))
+{
 tmr0BigCounts = 0;
-}
+TMR0 = (65536-32767);
 TMR0ON = 1;
+
+buttons();
+}
 }
 }
 

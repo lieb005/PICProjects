@@ -4421,50 +4421,50 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 144: extern void _delay(unsigned long);
 [; ;pic18.h: 146: extern void _delaywdt(unsigned long);
 [; ;pic18.h: 148: extern void _delay3(unsigned char);
-"40 defs.h
+"45 defs.h
 [v _pow10 `Cul ~T0 @X0 -> 0 `x e ]
 [i _pow10
 :U ..
-"41
--> -> -> 1 `i `l `ul
-"42
--> -> -> 10 `i `l `ul
-"43
--> -> -> 100 `i `l `ul
-"44
--> -> -> 1000 `i `l `ul
-"45
--> -> -> 10000 `i `l `ul
 "46
--> -> 100000 `l `ul
+-> -> -> 1 `i `l `ul
 "47
--> -> 1000000 `l `ul
+-> -> -> 10 `i `l `ul
 "48
--> -> 10000000 `l `ul
+-> -> -> 100 `i `l `ul
 "49
--> -> 100000000 `l `ul
+-> -> -> 1000 `i `l `ul
+"50
+-> -> -> 10000 `i `l `ul
 "51
+-> -> 100000 `l `ul
+"52
+-> -> 1000000 `l `ul
+"53
+-> -> 10000000 `l `ul
+"54
+-> -> 100000000 `l `ul
+"56
 -> -> 1000000000 `l `ul
 ..
 ]
-[; ;defs.h: 40: const uint32_t pow10[] = {
-[; ;defs.h: 41: 1,
-[; ;defs.h: 42: 10,
-[; ;defs.h: 43: 100,
-[; ;defs.h: 44: 1000,
-[; ;defs.h: 45: 10000,
-[; ;defs.h: 46: 100000,
-[; ;defs.h: 47: 1000000,
-[; ;defs.h: 48: 10000000,
-[; ;defs.h: 49: 100000000,
-[; ;defs.h: 50: 1000000000
-[; ;defs.h: 51: };
-[; ;defs.h: 61: extern void wait(uint32_t count);
-[; ;defs.h: 63: uint8_t countBits(uint32_t num);
-[; ;defs.h: 64: uint32_t hibit(uint32_t x);
-[; ;defs.h: 65: uint32_t lowbit(uint32_t x);
-[; ;defs.h: 68: uint32_t log2(uint32_t num);
-[; ;defs.h: 69: int32_t maxSize(uint8_t digits);
+[; ;defs.h: 45: const uint32_t pow10[] = {
+[; ;defs.h: 46: 1,
+[; ;defs.h: 47: 10,
+[; ;defs.h: 48: 100,
+[; ;defs.h: 49: 1000,
+[; ;defs.h: 50: 10000,
+[; ;defs.h: 51: 100000,
+[; ;defs.h: 52: 1000000,
+[; ;defs.h: 53: 10000000,
+[; ;defs.h: 54: 100000000,
+[; ;defs.h: 55: 1000000000
+[; ;defs.h: 56: };
+[; ;defs.h: 62: extern void wait(uint32_t count);
+[; ;defs.h: 64: uint8_t countBits(uint32_t num);
+[; ;defs.h: 65: uint32_t hibit(uint32_t x);
+[; ;defs.h: 66: uint32_t lowbit(uint32_t x);
+[; ;defs.h: 69: uint32_t log2(uint32_t num);
+[; ;defs.h: 70: int32_t maxSize(uint8_t digits);
 "4 defs.c
 [v _wait `(v ~T0 @X0 1 ef1`ul ]
 {

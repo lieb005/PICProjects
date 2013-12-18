@@ -588,100 +588,109 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;doprnt.c: 673: break;
 "673
 [e $U 45  ]
+[; ;doprnt.c: 691: case 'g':
+"691
+[e :U 51 ]
+[; ;doprnt.c: 692: flag |= 0x200;
+"692
+[e =| _flag -> -> 512 `i `us ]
+[; ;doprnt.c: 693: break;
+"693
+[e $U 45  ]
 [; ;doprnt.c: 706: case 'd':
 "706
-[e :U 51 ]
-"707
 [e :U 52 ]
+"707
+[e :U 53 ]
 [; ;doprnt.c: 707: case 'i':
 [; ;doprnt.c: 708: break;
 "708
 [e $U 45  ]
 [; ;doprnt.c: 737: case 's':
 "737
-[e :U 53 ]
+[e :U 54 ]
 [; ;doprnt.c: 743: _val._str._cp = (*(const char * *)__va_arg((*(const char * **)ap), (const char *)0));
 "743
 [e = . . __val 1 0 *U -> ( ___va_arg , (. -> *U -> &U _ap `***Cuc `*v -> -> 0 `i `*Cuc `**Cuc ]
 [; ;doprnt.c: 749: if(!_val._str._cp)
 "749
-[e $ ! ! != . . __val 1 0 -> -> 0 `i `*Cuc 54  ]
+[e $ ! ! != . . __val 1 0 -> -> 0 `i `*Cuc 55  ]
 [; ;doprnt.c: 750: _val._str._cp = "(null)";
 "750
 [e = . . __val 1 0 :s 1C ]
-[e :U 54 ]
+[e :U 55 ]
 [; ;doprnt.c: 754: _val._str._len = 0;
 "754
 [e = . . __val 1 1 -> -> 0 `i `ui ]
 [; ;doprnt.c: 755: while(_val._str._cp[_val._str._len])
 "755
-[e $U 55  ]
-[e :U 56 ]
+[e $U 56  ]
+[e :U 57 ]
 [; ;doprnt.c: 756: _val._str._len++;
 "756
 [e ++ . . __val 1 1 -> -> 1 `i `ui ]
-[e :U 55 ]
+[e :U 56 ]
 "755
-[e $ != -> *U + . . __val 1 0 * -> . . __val 1 1 `ux -> -> # *U . . __val 1 0 `ui `ux `i -> -> -> 0 `i `Cuc `i 56  ]
-[e :U 57 ]
+[e $ != -> *U + . . __val 1 0 * -> . . __val 1 1 `ux -> -> # *U . . __val 1 0 `ui `ux `i -> -> -> 0 `i `Cuc `i 57  ]
+[e :U 58 ]
 [; ;doprnt.c: 759: dostring:
 "759
-[e :U 58 ]
+[e :U 59 ]
 [; ;doprnt.c: 762: if(prec && prec < _val._str._len)
 "762
-[e $ ! && != _prec -> 0 `i < -> _prec `ui . . __val 1 1 59  ]
+[e $ ! && != _prec -> 0 `i < -> _prec `ui . . __val 1 1 60  ]
 [; ;doprnt.c: 763: _val._str._len = prec;
 "763
 [e = . . __val 1 1 -> _prec `ui ]
-[e :U 59 ]
+[e :U 60 ]
 [; ;doprnt.c: 766: if(width > _val._str._len)
 "766
-[e $ ! > -> _width `ui . . __val 1 1 60  ]
+[e $ ! > -> _width `ui . . __val 1 1 61  ]
 [; ;doprnt.c: 767: width -= _val._str._len;
 "767
 [e =- _width -> . . __val 1 1 `i ]
-[e $U 61  ]
+[e $U 62  ]
 "768
-[e :U 60 ]
+[e :U 61 ]
 [; ;doprnt.c: 768: else
 [; ;doprnt.c: 769: width = 0;
 "769
 [e = _width -> 0 `i ]
-[e :U 61 ]
+[e :U 62 ]
 [; ;doprnt.c: 773: while(width--)
 "773
-[e $U 62  ]
-[e :U 63 ]
+[e $U 63  ]
+[e :U 64 ]
 [; ;doprnt.c: 774: ((*sp++ = (' ')));
 "774
 [e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 32 `ui `uc ]
-[e :U 62 ]
+[e :U 63 ]
 "773
-[e $ != -- _width -> 1 `i -> 0 `i 63  ]
-[e :U 64 ]
+[e $ != -- _width -> 1 `i -> 0 `i 64  ]
+[e :U 65 ]
 [; ;doprnt.c: 776: while(_val._str._len--)
 "776
-[e $U 65  ]
-[e :U 66 ]
+[e $U 66  ]
+[e :U 67 ]
 [; ;doprnt.c: 777: ((*sp++ = (*_val._str._cp++)));
 "777
 [e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x *U ++ . . __val 1 0 * -> -> 1 `i `x -> -> # *U . . __val 1 0 `i `x ]
-[e :U 65 ]
+[e :U 66 ]
 "776
-[e $ != -- . . __val 1 1 -> -> 1 `i `ui -> -> 0 `i `ui 66  ]
-[e :U 67 ]
+[e $ != -- . . __val 1 1 -> -> 1 `i `ui -> -> 0 `i `ui 67  ]
+[e :U 68 ]
 [; ;doprnt.c: 783: continue;
 "783
 [e $U 21  ]
 [; ;doprnt.c: 793: case 'c':
 "793
-[e :U 68 ]
+[e :U 69 ]
 [; ;doprnt.c: 808: c = (*(int *)__va_arg((*(int **)ap), (int)0));
 "808
 [e = _c -> *U -> ( ___va_arg , (. -> *U -> &U _ap `**i `*v -> 0 `i `*i `c ]
 [; ;doprnt.c: 811: default:
 "811
-[e :U 69 ]
+[e :U 70 ]
 [; ;doprnt.c: 814: _val._str._cp = (char *)&c;
 "814
 [e = . . __val 1 0 -> -> &U _c `*uc `*Cuc ]
@@ -690,7 +699,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . __val 1 1 -> -> 1 `i `ui ]
 [; ;doprnt.c: 816: goto dostring;
 "816
-[e $U 58  ]
+[e $U 59  ]
 "831
 }
 [; ;doprnt.c: 831: }
@@ -700,30 +709,31 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e [\ = _c -> *U ++ _f * -> -> 1 `i `x -> -> # *U _f `i `x `c , $ -> -> 0 `i `c 47
  , $ -> -> 108 `ui `c 49
  , $ -> -> 102 `ui `c 50
- , $ -> -> 100 `ui `c 51
- , $ -> -> 105 `ui `c 52
- , $ -> -> 115 `ui `c 53
- , $ -> -> 99 `ui `c 68
- 69 ]
+ , $ -> -> 103 `ui `c 51
+ , $ -> -> 100 `ui `c 52
+ , $ -> -> 105 `ui `c 53
+ , $ -> -> 115 `ui `c 54
+ , $ -> -> 99 `ui `c 69
+ 70 ]
 "831
 [e :U 45 ]
 [; ;doprnt.c: 834: if(flag & (0x700)) {
 "834
-[e $ ! != & -> _flag `ui -> -> 1792 `i `ui -> -> 0 `i `ui 70  ]
+[e $ ! != & -> _flag `ui -> -> 1792 `i `ui -> -> 0 `i `ui 71  ]
 {
 [; ;doprnt.c: 836: if(flag & 0x1000)
 "836
-[e $ ! != & -> _flag `ui -> -> 4096 `i `ui -> -> 0 `i `ui 71  ]
+[e $ ! != & -> _flag `ui -> -> 4096 `i `ui -> -> 0 `i `ui 72  ]
 [; ;doprnt.c: 838: prec = 6;
 "838
 [e = _prec -> 6 `i ]
-[e :U 71 ]
+[e :U 72 ]
 [; ;doprnt.c: 839: fval = (*(double *)__va_arg((*(double **)ap), (double)0));
 "839
 [e = _fval *U -> ( ___va_arg , (. -> *U -> &U _ap `**d `*v -> -> 0 `i `d `*d ]
 [; ;doprnt.c: 840: if(fval < 0.0) {
 "840
-[e $ ! < _fval .0.0 72  ]
+[e $ ! < _fval .0.0 73  ]
 {
 [; ;doprnt.c: 841: fval = -fval;
 "841
@@ -733,14 +743,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _flag -> -> 3 `i `us ]
 "843
 }
-[e :U 72 ]
+[e :U 73 ]
 [; ;doprnt.c: 843: }
 [; ;doprnt.c: 844: exp = 0;
 "844
 [e = _exp -> 0 `i ]
 [; ;doprnt.c: 845: if( fval!=0) {
 "845
-[e $ ! != _fval -> -> 0 `i `d 73  ]
+[e $ ! != _fval -> -> 0 `i `d 74  ]
 {
 [; ;doprnt.c: 846: (void)(*(&exp) = ((*(unsigned long *)&fval >> 15) & 255) - 126);
 "846
@@ -756,11 +766,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =/ _exp -> -> 10 `uc `i ]
 [; ;doprnt.c: 850: if(exp < 0)
 "850
-[e $ ! < _exp -> 0 `i 74  ]
+[e $ ! < _exp -> 0 `i 75  ]
 [; ;doprnt.c: 851: exp--;
 "851
 [e -- _exp -> 1 `i ]
-[e :U 74 ]
+[e :U 75 ]
 [; ;doprnt.c: 855: integ = scale(-exp);
 "855
 [e = _integ ( _scale (1 -> -U _exp `c ]
@@ -769,38 +779,389 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =* _integ _fval ]
 [; ;doprnt.c: 857: if(integ < 1.0)
 "857
-[e $ ! < _integ .1.0 75  ]
+[e $ ! < _integ .1.0 76  ]
 [; ;doprnt.c: 858: exp--;
 "858
 [e -- _exp -> 1 `i ]
-[e $U 76  ]
+[e $U 77  ]
 "859
-[e :U 75 ]
+[e :U 76 ]
 [; ;doprnt.c: 859: else if(integ >= 10.0)
-[e $ ! >= _integ .10.0 77  ]
+[e $ ! >= _integ .10.0 78  ]
 [; ;doprnt.c: 860: exp++;
 "860
 [e ++ _exp -> 1 `i ]
-[e :U 77 ]
+[e :U 78 ]
 "861
-[e :U 76 ]
+[e :U 77 ]
 }
-[e :U 73 ]
+[e :U 74 ]
 [; ;doprnt.c: 861: }
+[; ;doprnt.c: 863: if(exp <= 0)
+"863
+[e $ ! <= _exp -> 0 `i 79  ]
+[; ;doprnt.c: 864: c = 1;
+"864
+[e = _c -> -> 1 `i `c ]
+[e $U 80  ]
+"865
+[e :U 79 ]
+[; ;doprnt.c: 865: else
+[; ;doprnt.c: 866: c = exp;
+"866
+[e = _c -> _exp `c ]
+[e :U 80 ]
+[; ;doprnt.c: 867: if(
+[; ;doprnt.c: 875: flag & 0x200 && (exp < -4 || exp >= (int)prec)
+[; ;doprnt.c: 877: ) {
+"877
+[e $ ! && != & -> _flag `ui -> -> 512 `i `ui -> -> 0 `i `ui || < _exp -U -> 4 `i >= _exp _prec 81  ]
+{
+[; ;doprnt.c: 879: if(prec && flag & 0x200)
+"879
+[e $ ! && != _prec -> 0 `i != & -> _flag `ui -> -> 512 `i `ui -> -> 0 `i `ui 82  ]
+[; ;doprnt.c: 880: prec--;
+"880
+[e -- _prec -> 1 `i ]
+[e :U 82 ]
+[; ;doprnt.c: 882: if((unsigned)prec > (sizeof dpowers/sizeof dpowers[0]) - 2)
+"882
+[e $ ! > -> _prec `ui - / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui -> -> 2 `i `ui 83  ]
+[; ;doprnt.c: 883: c = (sizeof dpowers/sizeof dpowers[0]) - 2;
+"883
+[e = _c -> - / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui -> -> 2 `i `ui `c ]
+[e $U 84  ]
+"884
+[e :U 83 ]
+[; ;doprnt.c: 884: else
+[; ;doprnt.c: 885: c = prec;
+"885
+[e = _c -> _prec `c ]
+[e :U 84 ]
+[; ;doprnt.c: 886: if( fval!=0) {
+"886
+[e $ ! != _fval -> -> 0 `i `d 85  ]
+{
+[; ;doprnt.c: 887: fval /= scale(exp-c);
+"887
+[e =/ _fval ( _scale (1 -> - _exp -> _c `i `c ]
+[; ;doprnt.c: 902: if(fval - (double)(unsigned long)fval >= 0.5)
+"902
+[e $ ! >= - _fval -> -> _fval `ul `d .0.5 86  ]
+[; ;doprnt.c: 903: fval += 0.5;
+"903
+[e =+ _fval .0.5 ]
+[e :U 86 ]
+[; ;doprnt.c: 904: if((unsigned long)fval >= dpowers[c+1]) {
+"904
+[e $ ! >= -> _fval `ul *U + &U _dpowers * -> -> + -> _c `i -> 1 `i `ui `ux -> -> # *U &U _dpowers `ui `ux 87  ]
+{
+[; ;doprnt.c: 905: fval *= 1e-1;
+"905
+[e =* _fval .1e-1 ]
+[; ;doprnt.c: 906: exp++;
+"906
+[e ++ _exp -> 1 `i ]
+"907
+}
+[; ;doprnt.c: 907: } else if((unsigned long)fval < dpowers[c]) {
+[e $U 88  ]
+[e :U 87 ]
+[e $ ! < -> _fval `ul *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux 89  ]
+{
+[; ;doprnt.c: 908: fval *= 10.0;
+"908
+[e =* _fval .10.0 ]
+[; ;doprnt.c: 909: exp--;
+"909
+[e -- _exp -> 1 `i ]
+"910
+}
+[e :U 89 ]
+"912
+[e :U 88 ]
+}
+[e :U 85 ]
+[; ;doprnt.c: 910: }
+[; ;doprnt.c: 912: }
+[; ;doprnt.c: 938: width -= prec + 5;
+"938
+[e =- _width + _prec -> 5 `i ]
+[; ;doprnt.c: 943: if(flag & 0x03)
+"943
+[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 90  ]
+[; ;doprnt.c: 944: width--;
+"944
+[e -- _width -> 1 `i ]
+[e :U 90 ]
+[; ;doprnt.c: 955: if(flag & 0x04) {
+"955
+[e $ ! != & -> _flag `ui -> -> 4 `i `ui -> -> 0 `i `ui 91  ]
+{
+[; ;doprnt.c: 962: while(width > 0) {
+"962
+[e $U 92  ]
+[e :U 93 ]
+{
+[; ;doprnt.c: 963: ((*sp++ = ('0')));
+"963
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 48 `ui `uc ]
+[; ;doprnt.c: 964: width--;
+"964
+[e -- _width -> 1 `i ]
+"965
+}
+[e :U 92 ]
+"962
+[e $ > _width -> 0 `i 93  ]
+[e :U 94 ]
+"966
+}
+[; ;doprnt.c: 965: }
+[; ;doprnt.c: 966: } else
+[e $U 95  ]
+[e :U 91 ]
+[; ;doprnt.c: 968: {
+"968
+{
+[; ;doprnt.c: 973: while(width > 0) {
+"973
+[e $U 96  ]
+[e :U 97 ]
+{
+[; ;doprnt.c: 974: ((*sp++ = (' ')));
+"974
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 32 `ui `uc ]
+[; ;doprnt.c: 975: width--;
+"975
+[e -- _width -> 1 `i ]
+"976
+}
+[e :U 96 ]
+"973
+[e $ > _width -> 0 `i 97  ]
+[e :U 98 ]
+[; ;doprnt.c: 976: }
+[; ;doprnt.c: 982: if(flag & 0x03)
+"982
+[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 99  ]
+[; ;doprnt.c: 983: ((*sp++ = ('-')));
+"983
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 45 `ui `uc ]
+[e :U 99 ]
+"989
+}
+[e :U 95 ]
+[; ;doprnt.c: 989: }
+[; ;doprnt.c: 994: _val._val = (unsigned long)fval;
+"994
+[e = . __val 0 -> _fval `ul ]
+[; ;doprnt.c: 995: ((*sp++ = (_val._val/dpowers[c] + '0')));
+"995
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> + / . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux -> -> 48 `ui `ul `uc ]
+[; ;doprnt.c: 996: _val._val %= dpowers[c];
+"996
+[e =% . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux ]
+[; ;doprnt.c: 1001: if(prec)
+"1001
+[e $ ! != _prec -> 0 `i 100  ]
+[; ;doprnt.c: 1003: {
+"1003
+{
+[; ;doprnt.c: 1004: ((*sp++ = ('.')));
+"1004
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 46 `ui `uc ]
+[; ;doprnt.c: 1005: prec -= c;
+"1005
+[e =- _prec -> _c `i ]
+[; ;doprnt.c: 1006: while(c--) {
+"1006
+[e $U 101  ]
+[e :U 102 ]
+{
+[; ;doprnt.c: 1011: if(flag & 0x200 && _val._val == 0) {
+"1011
+[e $ ! && != & -> _flag `ui -> -> 512 `i `ui -> -> 0 `i `ui == . __val 0 -> -> -> 0 `i `l `ul 104  ]
+{
+[; ;doprnt.c: 1012: prec = c = 0;
+"1012
+[e = _prec -> = _c -> -> 0 `i `c `i ]
+[; ;doprnt.c: 1013: break;
+"1013
+[e $U 103  ]
+"1014
+}
+[e :U 104 ]
+[; ;doprnt.c: 1014: }
+[; ;doprnt.c: 1016: ((*sp++ = ('0' + (_val._val/dpowers[c]))));
+"1016
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> + -> -> 48 `ui `ul / . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux `uc ]
+[; ;doprnt.c: 1017: _val._val %= dpowers[c];
+"1017
+[e =% . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux ]
+"1019
+}
+[e :U 101 ]
+"1006
+[e $ != -> -- _c -> -> 1 `i `c `i -> -> -> 0 `i `c `i 102  ]
+[e :U 103 ]
+[; ;doprnt.c: 1019: }
+[; ;doprnt.c: 1020: while(prec) {
+"1020
+[e $U 105  ]
+[e :U 106 ]
+{
+[; ;doprnt.c: 1021: ((*sp++ = ('0')));
+"1021
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 48 `ui `uc ]
+[; ;doprnt.c: 1022: prec--;
+"1022
+[e -- _prec -> 1 `i ]
+"1023
+}
+[e :U 105 ]
+"1020
+[e $ != _prec -> 0 `i 106  ]
+[e :U 107 ]
+"1024
+}
+[e :U 100 ]
+[; ;doprnt.c: 1023: }
+[; ;doprnt.c: 1024: }
+[; ;doprnt.c: 1030: ((*sp++ = ('e')));
+"1030
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 101 `ui `uc ]
+[; ;doprnt.c: 1031: if(exp < 0) {
+"1031
+[e $ ! < _exp -> 0 `i 108  ]
+{
+[; ;doprnt.c: 1032: exp = -exp;
+"1032
+[e = _exp -U _exp ]
+[; ;doprnt.c: 1033: ((*sp++ = ('-')));
+"1033
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 45 `ui `uc ]
+"1034
+}
+[; ;doprnt.c: 1034: } else
+[e $U 109  ]
+[e :U 108 ]
+[; ;doprnt.c: 1035: ((*sp++ = ('+')));
+"1035
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 43 `ui `uc ]
+[e :U 109 ]
+[; ;doprnt.c: 1048: ((*sp++ = (exp / 10 + '0')));
+"1048
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> + -> / _exp -> 10 `i `ui -> 48 `ui `uc ]
+[; ;doprnt.c: 1049: ((*sp++ = (exp % 10 + '0')));
+"1049
+[e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> + -> % _exp -> 10 `i `ui -> 48 `ui `uc ]
+[; ;doprnt.c: 1056: continue;
+"1056
+[e $U 21  ]
+"1057
+}
+[e :U 81 ]
+[; ;doprnt.c: 1057: }
+[; ;doprnt.c: 1096: if(flag & 0x200) {
+"1096
+[e $ ! != & -> _flag `ui -> -> 512 `i `ui -> -> 0 `i `ui 110  ]
+{
+[; ;doprnt.c: 1097: if(exp < 0)
+"1097
+[e $ ! < _exp -> 0 `i 111  ]
+[; ;doprnt.c: 1098: prec -= (exp+1);
+"1098
+[e =- _prec + _exp -> 1 `i ]
+[e :U 111 ]
+[; ;doprnt.c: 1100: _val._val = (unsigned long)fval;
+"1100
+[e = . __val 0 -> _fval `ul ]
+[; ;doprnt.c: 1101: for(c = 0 ; c != (sizeof dpowers/sizeof dpowers[0]) ; c++)
+"1101
+{
+[e = _c -> -> 0 `i `c ]
+[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 112  ]
+[e $U 113  ]
+"1102
+[e :U 112 ]
+[; ;doprnt.c: 1102: if(_val._val < dpowers[c])
+[e $ ! < . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux 115  ]
+[; ;doprnt.c: 1103: break;
+"1103
+[e $U 113  ]
+[e :U 115 ]
+"1101
+[e ++ _c -> -> 1 `i `c ]
+[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 112  ]
+[e :U 113 ]
+"1104
+}
+[; ;doprnt.c: 1104: prec -= c;
+[e =- _prec -> _c `i ]
+[; ;doprnt.c: 1105: if(prec <= 12)
+"1105
+[e $ ! <= _prec -> 12 `i 116  ]
+[; ;doprnt.c: 1106: fval += fround(prec);
+"1106
+[e =+ _fval ( _fround (1 -> _prec `uc ]
+[e :U 116 ]
+[; ;doprnt.c: 1109: {
+"1109
+{
+"1110
+[v _temp `d ~T0 @X0 1 a ]
+[; ;doprnt.c: 1110: double temp;
+[; ;doprnt.c: 1111: temp = scale(prec);
+"1111
+[e = _temp ( _scale (1 -> _prec `c ]
+[; ;doprnt.c: 1112: temp *= fval - (double)_val._val;
+"1112
+[e =* _temp - _fval -> . __val 0 `d ]
+[; ;doprnt.c: 1113: _val._val = (unsigned long)temp;
+"1113
+[e = . __val 0 -> _temp `ul ]
+"1114
+}
+[; ;doprnt.c: 1114: }
+[; ;doprnt.c: 1115: while(prec && _val._val % 10 == 0) {
+"1115
+[e $U 117  ]
+[e :U 118 ]
+{
+[; ;doprnt.c: 1116: _val._val /= 10;
+"1116
+[e =/ . __val 0 -> -> 10 `uc `ul ]
+[; ;doprnt.c: 1117: prec--;
+"1117
+[e -- _prec -> 1 `i ]
+"1118
+}
+[e :U 117 ]
+"1115
+[e $ && != _prec -> 0 `i == % . __val 0 -> -> -> 10 `i `l `ul -> -> -> 0 `i `l `ul 118  ]
+[e :U 119 ]
+"1119
+}
+[; ;doprnt.c: 1118: }
+[; ;doprnt.c: 1119: } else
+[e $U 120  ]
+[e :U 110 ]
 [; ;doprnt.c: 1121: if(prec <= 12)
 "1121
-[e $ ! <= _prec -> 12 `i 78  ]
+[e $ ! <= _prec -> 12 `i 121  ]
 [; ;doprnt.c: 1122: fval += fround(prec);
 "1122
 [e =+ _fval ( _fround (1 -> _prec `uc ]
-[e :U 78 ]
-[; ;doprnt.c: 1125: if((exp > 9)||(fval != 0 && (unsigned long)fval == 0 && exp > 1)) {
+[e :U 121 ]
 "1125
-[e $ ! || > _exp -> 9 `i && && != _fval -> -> 0 `i `d == -> _fval `ul -> -> -> 0 `i `l `ul > _exp -> 1 `i 79  ]
+[e :U 120 ]
+[; ;doprnt.c: 1125: if((exp > 9)||(fval != 0 && (unsigned long)fval == 0 && exp > 1)) {
+[e $ ! || > _exp -> 9 `i && && != _fval -> -> 0 `i `d == -> _fval `ul -> -> -> 0 `i `l `ul > _exp -> 1 `i 122  ]
 {
 [; ;doprnt.c: 1129: if(integ < 4.294967296){
 "1129
-[e $ ! < _integ .4.294967296 80  ]
+[e $ ! < _integ .4.294967296 123  ]
 {
 [; ;doprnt.c: 1130: exp -= (sizeof dpowers/sizeof dpowers[0])-1;
 "1130
@@ -808,15 +1169,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 "1131
 }
 [; ;doprnt.c: 1131: }else{
-[e $U 81  ]
-[e :U 80 ]
+[e $U 124  ]
+[e :U 123 ]
 {
 [; ;doprnt.c: 1132: exp -= (sizeof dpowers/sizeof dpowers[0])-2;
 "1132
 [e =- _exp -> - / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui -> -> 2 `i `ui `i ]
 "1133
 }
-[e :U 81 ]
+[e :U 124 ]
 [; ;doprnt.c: 1133: }
 [; ;doprnt.c: 1134: integ = scale(exp);
 "1134
@@ -830,8 +1191,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "1139
 }
 [; ;doprnt.c: 1139: } else {
-[e $U 82  ]
-[e :U 79 ]
+[e $U 125  ]
+[e :U 122 ]
 {
 [; ;doprnt.c: 1140: _val._val = (unsigned long)fval;
 "1140
@@ -844,26 +1205,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _exp -> 0 `i ]
 "1143
 }
-[e :U 82 ]
+[e :U 125 ]
 [; ;doprnt.c: 1143: }
 [; ;doprnt.c: 1145: for(c = 1 ; c != (sizeof dpowers/sizeof dpowers[0]) ; c++)
 "1145
 {
 [e = _c -> -> 1 `i `c ]
-[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 83  ]
-[e $U 84  ]
+[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 126  ]
+[e $U 127  ]
 "1146
-[e :U 83 ]
+[e :U 126 ]
 [; ;doprnt.c: 1146: if(_val._val < dpowers[c])
-[e $ ! < . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux 86  ]
+[e $ ! < . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux 129  ]
 [; ;doprnt.c: 1147: break;
 "1147
-[e $U 84  ]
-[e :U 86 ]
+[e $U 127  ]
+[e :U 129 ]
 "1145
 [e ++ _c -> -> 1 `i `c ]
-[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 83  ]
-[e :U 84 ]
+[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 126  ]
+[e :U 127 ]
 "1151
 }
 [; ;doprnt.c: 1151: width -= prec + c + exp;
@@ -871,26 +1232,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;doprnt.c: 1152: if(
 [; ;doprnt.c: 1156: prec)
 "1156
-[e $ ! != _prec -> 0 `i 87  ]
+[e $ ! != _prec -> 0 `i 130  ]
 [; ;doprnt.c: 1157: width--;
 "1157
 [e -- _width -> 1 `i ]
-[e :U 87 ]
+[e :U 130 ]
 [; ;doprnt.c: 1158: if(flag & 0x03)
 "1158
-[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 88  ]
+[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 131  ]
 [; ;doprnt.c: 1159: width--;
 "1159
 [e -- _width -> 1 `i ]
-[e :U 88 ]
+[e :U 131 ]
 [; ;doprnt.c: 1162: if(flag & 0x04) {
 "1162
-[e $ ! != & -> _flag `ui -> -> 4 `i `ui -> -> 0 `i `ui 89  ]
+[e $ ! != & -> _flag `ui -> -> 4 `i `ui -> -> 0 `i `ui 132  ]
 {
 [; ;doprnt.c: 1175: while(width > 0) {
 "1175
-[e $U 90  ]
-[e :U 91 ]
+[e $U 133  ]
+[e :U 134 ]
 {
 [; ;doprnt.c: 1176: ((*sp++ = ('0')));
 "1176
@@ -900,23 +1261,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e -- _width -> 1 `i ]
 "1178
 }
-[e :U 90 ]
+[e :U 133 ]
 "1175
-[e $ > _width -> 0 `i 91  ]
-[e :U 92 ]
+[e $ > _width -> 0 `i 134  ]
+[e :U 135 ]
 "1180
 }
 [; ;doprnt.c: 1178: }
 [; ;doprnt.c: 1180: } else
-[e $U 93  ]
-[e :U 89 ]
+[e $U 136  ]
+[e :U 132 ]
 [; ;doprnt.c: 1182: {
 "1182
 {
 [; ;doprnt.c: 1187: while(width > 0) {
 "1187
-[e $U 94  ]
-[e :U 95 ]
+[e $U 137  ]
+[e :U 138 ]
 {
 [; ;doprnt.c: 1188: ((*sp++ = (' ')));
 "1188
@@ -926,26 +1287,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e -- _width -> 1 `i ]
 "1190
 }
-[e :U 94 ]
+[e :U 137 ]
 "1187
-[e $ > _width -> 0 `i 95  ]
-[e :U 96 ]
+[e $ > _width -> 0 `i 138  ]
+[e :U 139 ]
 [; ;doprnt.c: 1190: }
 [; ;doprnt.c: 1195: if(flag & 0x03)
 "1195
-[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 97  ]
+[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 140  ]
 [; ;doprnt.c: 1197: ((*sp++ = ('-')));
 "1197
 [e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 45 `ui `uc ]
-[e :U 97 ]
+[e :U 140 ]
 "1202
 }
-[e :U 93 ]
+[e :U 136 ]
 [; ;doprnt.c: 1202: }
 [; ;doprnt.c: 1203: while(c--) {
 "1203
-[e $U 98  ]
-[e :U 99 ]
+[e $U 141  ]
+[e :U 142 ]
 {
 [; ;doprnt.c: 1207: {
 "1207
@@ -964,16 +1325,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "1213
 }
-[e :U 98 ]
+[e :U 141 ]
 "1203
-[e $ != -> -- _c -> -> 1 `i `c `i -> -> -> 0 `i `c `i 99  ]
-[e :U 100 ]
+[e $ != -> -- _c -> -> 1 `i `c `i -> -> -> 0 `i `c `i 142  ]
+[e :U 143 ]
 [; ;doprnt.c: 1211: }
 [; ;doprnt.c: 1213: }
 [; ;doprnt.c: 1214: while(exp > 0) {
 "1214
-[e $U 101  ]
-[e :U 102 ]
+[e $U 144  ]
+[e :U 145 ]
 {
 [; ;doprnt.c: 1215: ((*sp++ = ('0')));
 "1215
@@ -983,42 +1344,42 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e -- _exp -> 1 `i ]
 "1217
 }
-[e :U 101 ]
+[e :U 144 ]
 "1214
-[e $ > _exp -> 0 `i 102  ]
-[e :U 103 ]
+[e $ > _exp -> 0 `i 145  ]
+[e :U 146 ]
 [; ;doprnt.c: 1217: }
 [; ;doprnt.c: 1218: if(prec > (int)((sizeof dpowers/sizeof dpowers[0])-2))
 "1218
-[e $ ! > _prec -> - / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui -> -> 2 `i `ui `i 104  ]
+[e $ ! > _prec -> - / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui -> -> 2 `i `ui `i 147  ]
 [; ;doprnt.c: 1219: c = (sizeof dpowers/sizeof dpowers[0])-2;
 "1219
 [e = _c -> - / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui -> -> 2 `i `ui `c ]
-[e $U 105  ]
+[e $U 148  ]
 "1220
-[e :U 104 ]
+[e :U 147 ]
 [; ;doprnt.c: 1220: else
 [; ;doprnt.c: 1221: c = prec;
 "1221
 [e = _c -> _prec `c ]
-[e :U 105 ]
+[e :U 148 ]
 [; ;doprnt.c: 1222: prec -= c;
 "1222
 [e =- _prec -> _c `i ]
 [; ;doprnt.c: 1226: if(c)
 "1226
-[e $ ! != -> _c `i -> -> -> 0 `i `c `i 106  ]
+[e $ ! != -> _c `i -> -> -> 0 `i `c `i 149  ]
 [; ;doprnt.c: 1228: ((*sp++ = ('.')));
 "1228
 [e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 46 `ui `uc ]
-[e :U 106 ]
+[e :U 149 ]
 [; ;doprnt.c: 1234: _val._val = (long)(fval * scale(c));
 "1234
 [e = . __val 0 -> -> * _fval ( _scale (1 _c `l `ul ]
 [; ;doprnt.c: 1235: while(c--) {
 "1235
-[e $U 107  ]
-[e :U 108 ]
+[e $U 150  ]
+[e :U 151 ]
 {
 "1236
 [v _vd `ui ~T0 @X0 1 a ]
@@ -1035,15 +1396,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =% . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux ]
 "1240
 }
-[e :U 107 ]
+[e :U 150 ]
 "1235
-[e $ != -> -- _c -> -> 1 `i `c `i -> -> -> 0 `i `c `i 108  ]
-[e :U 109 ]
+[e $ != -> -- _c -> -> 1 `i `c `i -> -> -> 0 `i `c `i 151  ]
+[e :U 152 ]
 [; ;doprnt.c: 1240: }
 [; ;doprnt.c: 1242: while(prec) {
 "1242
-[e $U 110  ]
-[e :U 111 ]
+[e $U 153  ]
+[e :U 154 ]
 {
 [; ;doprnt.c: 1243: ((*sp++ = ('0')));
 "1243
@@ -1053,38 +1414,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e -- _prec -> 1 `i ]
 "1245
 }
-[e :U 110 ]
+[e :U 153 ]
 "1242
-[e $ != _prec -> 0 `i 111  ]
-[e :U 112 ]
+[e $ != _prec -> 0 `i 154  ]
+[e :U 155 ]
 [; ;doprnt.c: 1245: }
 [; ;doprnt.c: 1252: continue;
 "1252
 [e $U 21  ]
 "1253
 }
-[e :U 70 ]
+[e :U 71 ]
 [; ;doprnt.c: 1253: }
 [; ;doprnt.c: 1260: {
 "1260
 {
 [; ;doprnt.c: 1262: if(flag & 0x10)
 "1262
-[e $ ! != & -> _flag `ui -> -> 16 `i `ui -> -> 0 `i `ui 113  ]
+[e $ ! != & -> _flag `ui -> -> 16 `i `ui -> -> 0 `i `ui 156  ]
 [; ;doprnt.c: 1263: _val._val = (*(long *)__va_arg((*(long **)ap), (long)0));
 "1263
 [e = . __val 0 -> *U -> ( ___va_arg , (. -> *U -> &U _ap `**l `*v -> -> 0 `i `l `*l `ul ]
-[e $U 114  ]
+[e $U 157  ]
 "1264
-[e :U 113 ]
+[e :U 156 ]
 [; ;doprnt.c: 1264: else
 [; ;doprnt.c: 1266: _val._val = (long)(*(int *)__va_arg((*(int **)ap), (int)0));
 "1266
 [e = . __val 0 -> -> *U -> ( ___va_arg , (. -> *U -> &U _ap `**i `*v -> 0 `i `*i `l `ul ]
-[e :U 114 ]
+[e :U 157 ]
 [; ;doprnt.c: 1268: if((long)_val._val < 0) {
 "1268
-[e $ ! < -> . __val 0 `l -> -> 0 `i `l 115  ]
+[e $ ! < -> . __val 0 `l -> -> 0 `i `l 158  ]
 {
 [; ;doprnt.c: 1269: flag |= 0x03;
 "1269
@@ -1094,159 +1455,159 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . __val 0 -U . __val 0 ]
 "1271
 }
-[e :U 115 ]
+[e :U 158 ]
 "1273
 }
 [; ;doprnt.c: 1271: }
 [; ;doprnt.c: 1273: }
 [; ;doprnt.c: 1297: if(prec == 0 && _val._val == 0)
 "1297
-[e $ ! && == _prec -> 0 `i == . __val 0 -> -> -> 0 `i `l `ul 116  ]
+[e $ ! && == _prec -> 0 `i == . __val 0 -> -> -> 0 `i `l `ul 159  ]
 [; ;doprnt.c: 1298: prec++;
 "1298
 [e ++ _prec -> 1 `i ]
-[e :U 116 ]
+[e :U 159 ]
 [; ;doprnt.c: 1312: for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
 "1312
 {
 [e = _c -> -> 1 `i `c ]
-[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 117  ]
-[e $U 118  ]
+[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 160  ]
+[e $U 161  ]
 "1313
-[e :U 117 ]
+[e :U 160 ]
 [; ;doprnt.c: 1313: if(_val._val < dpowers[c])
-[e $ ! < . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux 120  ]
+[e $ ! < . __val 0 *U + &U _dpowers * -> -> _c `uc `ux -> -> # *U &U _dpowers `ui `ux 163  ]
 [; ;doprnt.c: 1314: break;
 "1314
-[e $U 118  ]
-[e :U 120 ]
+[e $U 161  ]
+[e :U 163 ]
 "1312
 [e ++ _c -> -> 1 `i `c ]
-[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 117  ]
-[e :U 118 ]
+[e $ != -> -> _c `i `ui / -> # _dpowers `ui -> # *U + &U _dpowers * -> -> -> 0 `i `ui `ux -> -> # *U &U _dpowers `ui `ux `ui 160  ]
+[e :U 161 ]
 "1346
 }
 [; ;doprnt.c: 1346: if(c < prec)
-[e $ ! < -> _c `i _prec 121  ]
+[e $ ! < -> _c `i _prec 164  ]
 [; ;doprnt.c: 1347: c = prec;
 "1347
 [e = _c -> _prec `c ]
-[e $U 122  ]
+[e $U 165  ]
 "1348
-[e :U 121 ]
+[e :U 164 ]
 [; ;doprnt.c: 1348: else if(prec < c)
-[e $ ! < _prec -> _c `i 123  ]
+[e $ ! < _prec -> _c `i 166  ]
 [; ;doprnt.c: 1349: prec = c;
 "1349
 [e = _prec -> _c `i ]
-[e :U 123 ]
+[e :U 166 ]
 "1352
-[e :U 122 ]
+[e :U 165 ]
 [; ;doprnt.c: 1352: if(width && flag & 0x03)
-[e $ ! && != _width -> 0 `i != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 124  ]
+[e $ ! && != _width -> 0 `i != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 167  ]
 [; ;doprnt.c: 1353: width--;
 "1353
 [e -- _width -> 1 `i ]
-[e :U 124 ]
+[e :U 167 ]
 [; ;doprnt.c: 1355: if(flag & 0x4000) {
 "1355
-[e $ ! != & -> _flag `ui -> -> 16384 `i `ui -> -> 0 `i `ui 125  ]
+[e $ ! != & -> _flag `ui -> -> 16384 `i `ui -> -> 0 `i `ui 168  ]
 {
 [; ;doprnt.c: 1356: if(width > prec)
 "1356
-[e $ ! > _width _prec 126  ]
+[e $ ! > _width _prec 169  ]
 [; ;doprnt.c: 1357: width -= prec;
 "1357
 [e =- _width _prec ]
-[e $U 127  ]
+[e $U 170  ]
 "1358
-[e :U 126 ]
+[e :U 169 ]
 [; ;doprnt.c: 1358: else
 [; ;doprnt.c: 1359: width = 0;
 "1359
 [e = _width -> 0 `i ]
-[e :U 127 ]
+[e :U 170 ]
 "1360
 }
-[e :U 125 ]
+[e :U 168 ]
 [; ;doprnt.c: 1360: }
 [; ;doprnt.c: 1388: if(width > c)
 "1388
-[e $ ! > _width -> _c `i 128  ]
+[e $ ! > _width -> _c `i 171  ]
 [; ;doprnt.c: 1389: width -= c;
 "1389
 [e =- _width -> _c `i ]
-[e $U 129  ]
+[e $U 172  ]
 "1390
-[e :U 128 ]
+[e :U 171 ]
 [; ;doprnt.c: 1390: else
 [; ;doprnt.c: 1391: width = 0;
 "1391
 [e = _width -> 0 `i ]
-[e :U 129 ]
+[e :U 172 ]
 [; ;doprnt.c: 1394: if(flag & 0x04) {
 "1394
-[e $ ! != & -> _flag `ui -> -> 4 `i `ui -> -> 0 `i `ui 130  ]
+[e $ ! != & -> _flag `ui -> -> 4 `i `ui -> -> 0 `i `ui 173  ]
 {
 [; ;doprnt.c: 1399: if(flag & 0x03)
 "1399
-[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 131  ]
+[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 174  ]
 [; ;doprnt.c: 1400: ((*sp++ = ('-')));
 "1400
 [e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 45 `ui `uc ]
-[e :U 131 ]
+[e :U 174 ]
 [; ;doprnt.c: 1422: if(width)
 "1422
-[e $ ! != _width -> 0 `i 132  ]
+[e $ ! != _width -> 0 `i 175  ]
 [; ;doprnt.c: 1423: do
 "1423
-[e :U 135 ]
+[e :U 178 ]
 [; ;doprnt.c: 1424: ((*sp++ = ('0')));
 "1424
 [e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 48 `ui `uc ]
 [; ;doprnt.c: 1425: while(--width);
 "1425
-[e $ != =- _width -> 1 `i -> 0 `i 135  ]
-[e :U 134 ]
-[e :U 132 ]
+[e $ != =- _width -> 1 `i -> 0 `i 178  ]
+[e :U 177 ]
+[e :U 175 ]
 "1427
 }
 [; ;doprnt.c: 1427: } else
-[e $U 136  ]
-[e :U 130 ]
+[e $U 179  ]
+[e :U 173 ]
 [; ;doprnt.c: 1429: {
 "1429
 {
 [; ;doprnt.c: 1431: if(width
 [; ;doprnt.c: 1435: )
 "1435
-[e $ ! != _width -> 0 `i 137  ]
+[e $ ! != _width -> 0 `i 180  ]
 [; ;doprnt.c: 1436: do
 "1436
-[e :U 140 ]
+[e :U 183 ]
 [; ;doprnt.c: 1437: ((*sp++ = (' ')));
 "1437
 [e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 32 `ui `uc ]
 [; ;doprnt.c: 1438: while(--width);
 "1438
-[e $ != =- _width -> 1 `i -> 0 `i 140  ]
-[e :U 139 ]
-[e :U 137 ]
+[e $ != =- _width -> 1 `i -> 0 `i 183  ]
+[e :U 182 ]
+[e :U 180 ]
 [; ;doprnt.c: 1445: if(flag & 0x03)
 "1445
-[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 141  ]
+[e $ ! != & -> _flag `ui -> -> 3 `i `ui -> -> 0 `i `ui 184  ]
 [; ;doprnt.c: 1446: ((*sp++ = ('-')));
 "1446
 [e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> -> 45 `ui `uc ]
-[e :U 141 ]
+[e :U 184 ]
 "1476
 }
-[e :U 136 ]
+[e :U 179 ]
 [; ;doprnt.c: 1476: }
 [; ;doprnt.c: 1481: while(prec--) {
 "1481
-[e $U 142  ]
-[e :U 143 ]
+[e $U 185  ]
+[e :U 186 ]
 {
 [; ;doprnt.c: 1485: {
 "1485
@@ -1262,10 +1623,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U ++ _sp * -> -> 1 `i `x -> -> # *U _sp `i `x -> _c `uc ]
 "1532
 }
-[e :U 142 ]
+[e :U 185 ]
 "1481
-[e $ != -- _prec -> 1 `i -> 0 `i 143  ]
-[e :U 144 ]
+[e $ != -- _prec -> 1 `i -> 0 `i 186  ]
+[e :U 187 ]
 "1540
 }
 [e :U 21 ]

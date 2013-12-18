@@ -5886,7 +5886,7 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 40 "defs.h"
+# 55 "defs.h"
 const uint32_t pow10[] = {
 1,
 10,
@@ -5900,7 +5900,7 @@ const uint32_t pow10[] = {
 1000000000
 };
 
-# 61
+# 72
 extern void wait(uint32_t count);
 
 uint8_t countBits(uint32_t num);
@@ -5911,20 +5911,27 @@ uint32_t lowbit(uint32_t x);
 uint32_t log2(uint32_t num);
 int32_t maxSize(uint8_t digits);
 
-# 17 "buttons.h"
+# 35 "buttons.h"
 void setupButtons();
 void buttons();
 
 uint32_t tmr0BigCounts;
 
-# 15 "menu.h"
-struct sMenu {
-uint8_t state : 1;
-} menu;
+# 21 "menu.h"
+struct sMenu
+{
+uint8_t state;
+uint8_t digits;
+uint8_t num_states;
+void* (*printFn)(uint8_t digits);
+};
 
-void (*printFn)(uint8_t digits);
+struct sMenu* menu;
 
-# 90 "disp.h"
+uint8_t advState();
+void advMenu();
+
+# 91 "disp.h"
 void startDisp();
 
 void update();
@@ -5943,10 +5950,12 @@ void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);
 
-# 114
-union uDigit {
+# 115
+union uDigit
+{
 
-struct digit_segs {
+struct digit_segs
+{
 uint8_t seg_a : 1;
 uint8_t seg_b : 1;
 uint8_t seg_c : 1;
@@ -5959,9 +5968,11 @@ uint8_t seg_dp : 1;
 uint8_t bits;
 };
 
-struct sScreen {
+struct sScreen
+{
 
-union uScreen_data {
+union uScreen_data
+{
 union uDigit screen[8];
 
 uint32_t bits[2];
@@ -5977,8 +5988,9 @@ uint8_t shutdown : 1;
 uint16_t changed;
 } screen;
 
-# 72 "RTC.h"
-enum inc {
+# 92 "RTC.h"
+enum inc
+{
 second = 0,
 minute,
 hour,
@@ -5987,15 +5999,9 @@ month,
 year
 };
 
-void initRTC();
-uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
-uint8_t daysOfMonth(uint8_t month, uint16_t year);
-uint8_t tick(uint8_t val);
-void checkDST();
-void printRTC(uint8_t digits);
-struct sDate loadTime();
 
-enum views {
+enum views
+{
 
 hhmm = 0,
 hhmmss,
@@ -6012,7 +6018,8 @@ DD_MM_YY
 
 
 
-struct sDate {
+struct sDate
+{
 uint8_t second;
 uint8_t minute;
 uint8_t hour;
@@ -6025,81 +6032,119 @@ uint8_t month;
 uint16_t year;
 
 uint8_t dst;
-
-uint8_t view;
 } date;
 
 uint16_t rtc_big_ticks;
 uint16_t rtc_small_ticks;
 
-const char* dow[] = {
+const char dow[7][4] = {
 "Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
 };
 
-# 27 "temp.h"
-void printTemp(uint8_t digits);
+struct sMenu rtcMenu;
+
+void initRTC();
+uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
+uint8_t daysOfMonth(uint8_t month, uint16_t year);
+uint8_t tick(uint8_t val);
+void checkDST();
+void* printRTC(uint8_t digits);
+struct sDate loadTime();
+void saveTime(struct sDate date);
+
+# 29 "temp.h"
+void* printTemp(uint8_t digits);
 double getTemp();
 void initTemp();
 
 double oldTemps[4];
 
+struct sMenu tempMenu;
+
 # 8 "buttons.c"
+uint8_t oldLATB = 0;
+uint32_t waitCnt[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+uint32_t waitcnt = 0;
+
 void setupButtons()
 {
+LATC = 0;
+LATB = 0;
 
-TRISB = 0xFF;
+
+TRISB = 0b11111111;
+
 nRBPU = !0;
-
-# 21
 tmr0BigCounts = 0;
-T0CON = 0b00000111;
-TMR0 = (65536-50356);
+
+T0CON = (0b00001000);
+TMR0 = (65536-32767);
 TMR0IE = 1;
 TMR0IF = CLEAR;
+TMR1IP = 1;
 TMR0ON = 1;
 }
 
 void buttons()
 {
-uint8_t cnt;
-LATA5 = 0;
-for (cnt = 0; cnt < 8; cnt++) {
-switch (LATB & (1 << cnt)) {
-case 1 << 0:
-menu.state += 1;
-screen.changed |= 0b11111111;
-break;
-case 1 << 1:
-screen.brightness = 0xF;
-screen.changed |= (1 << 10);
-break;
-case 1 << 2:
-menu.state -= 1;
-screen.changed |= 0b11111111;
-break;
-case 1 << 3:
-screen.brightness = 0;
-screen.changed |= (1 << 10);
-break;
-case 1 << 4:
-LATA5 = 1;
-break;
-case 1 << 5:
-LATA5 = 1;
-break;
-case 1 << 6:
-date.view = 10 % (date.view + 1);
-screen.changed |= 0b11111111;
-break;
-case 1 << 7:
-if (menu.state) {
-printFn = &printTemp;
-} else {
-printFn = &printRTC;
+waitcnt++;
+
+LATC2 = 0;
+if ((( PORTB) & 0b1) && ((int32_t) (waitCnt[0] - waitcnt) <= 0))
+{
+waitCnt[0] = waitcnt + 15;
+LATC2 = advState();
 }
-break;
-default:
-break;
+if ((( PORTB) & 0b10) && ((int32_t) (waitCnt[1] - waitcnt) <= 0))
+{
+waitCnt[1] = waitcnt + 15;
+screen.brightness++;
+screen.changed |= (1 << 10);
 }
+if ((( PORTB) & 0b100) && ((int32_t) (waitCnt[2] - waitcnt) <= 0))
+{
+waitCnt[2] = waitcnt + 15;
+advMenu();
+}
+if ((( PORTB) & 0b1000) && ((int32_t) (waitCnt[3] - waitcnt) <= 0))
+{
+waitCnt[3] = waitcnt + 15;
+screen.brightness--;
+screen.changed |= (1 << 10);
+}
+LATC0 = 0;
+if ((( PORTB) & 0b10000) && ((int32_t) (waitCnt[4] - waitcnt) <= 0))
+{
+waitCnt[4] = waitcnt + 15;
+LATC0 = 1;
+}
+if ((( PORTB) & 0b100000) && ((int32_t) (waitCnt[5] - waitcnt) <= 0))
+{
+waitCnt[5] = waitcnt + 15;
+}
+if ((( PORTB) & 0b1000000) && ((int32_t) (waitCnt[6] - waitcnt) <= 0))
+{
+waitCnt[6] = waitcnt + 15;
+}
+if ((( PORTB) & 0b10000000) && ((int32_t) (waitCnt[7] - waitcnt) <= 0))
+{
+waitCnt[7] = waitcnt + 15;
+}
+LATC2 = 0;
+if ( PORTB)
+{
+
+update();
+}
+if (! PORTB)
+{
+waitCnt[0] = 0;
+waitCnt[1] = 0;
+waitCnt[2] = 0;
+waitCnt[3] = 0;
+waitCnt[4] = 0;
+waitCnt[5] = 0;
+waitCnt[6] = 0;
+waitCnt[7] = 0;
 }
 }

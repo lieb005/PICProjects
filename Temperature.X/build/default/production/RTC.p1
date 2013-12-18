@@ -1,24 +1,35 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"121 RTC.h
-[s S523 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ui 1 `uc 1 `uc 1 ]
-[n S523 sDate second minute hour day dow month year dst view ]
-"125 disp.h
+"26 menu.h
+[v F4954 `(*v ~T0 @X0 0 tf1`uc ]
+"27
+[s S523 `uc 1 `uc 1 `uc 1 `*F4954 1 ]
+[n S523 sMenu state digits num_states printFn ]
+"128 disp.h
 [s S525 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S525 digit_segs seg_a seg_b seg_c seg_d seg_e seg_f seg_g seg_dp ]
-"127
+"130
 [u S524 `S525 1 `uc 1 ]
 [n S524 uDigit segs bits ]
-"136
+"141
 [u S527 `S524 -> 8 `i `ul -> 2 `i ]
 [n S527 uScreen_data screen bits ]
-"145
+"150
 [s S526 `S527 1 :8 `uc 1 :4 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 `ui 1 ]
 [n S526 sScreen digits decode brightness scan test shutdown changed ]
-"8 RTC.c
-[c E4971 0 1 2 3 4 5 6 7 8 9 .. ]
-[n E4971 views hhmm hhmmss ddd_hhmm dd_hhmm dd ddd DDMM DD_MM DDMMYY DD_MM_YY  ]
-"87 RTC.h
-[v _loadTime `(S523 ~T0 @X0 0 ef ]
+"135 RTC.h
+[s S528 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ui 1 `uc 1 ]
+[n S528 sDate second minute hour day dow month year dst ]
+"10 RTC.c
+[c E5016 0 1 2 3 4 5 6 7 8 9 .. ]
+[n E5016 views hhmm hhmmss ddd_hhmm dd_hhmm dd ddd DDMM DD_MM DDMMYY DD_MM_YY  ]
+"151 RTC.h
+[v _printRTC `(*v ~T0 @X0 0 ef1`uc ]
+"4482 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
+[v _EECON1 `Vuc ~T0 @X0 0 e@4006 ]
+"8842
+[v _LATC1 `Vb ~T0 @X0 0 e@31833 ]
+"152 RTC.h
+[v _loadTime `(S528 ~T0 @X0 0 ef ]
 "6674 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
 [v _T1CON `Vuc ~T0 @X0 0 e@4045 ]
 "6778
@@ -27,24 +38,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR1IE `Vb ~T0 @X0 0 e@31976 ]
 "9306
 [v _TMR1IF `Vb ~T0 @X0 0 e@31984 ]
-"19 RTC.c
+"28 RTC.c
 [c E4302 0 1 .. ]
 [n E4302 _BIT CLEAR SET  ]
-"9310 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
+"9308 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
+[v _TMR1IP `Vb ~T0 @X0 0 e@31992 ]
+"9310
 [v _TMR1ON `Vb ~T0 @X0 0 e@32360 ]
-"82 RTC.h
+"4559
+[v _EEADR `Vuc ~T0 @X0 0 e@4009 ]
+"9096
+[v _RD `Vb ~T0 @X0 0 e@32048 ]
+"4553
+[v _EEDATA `Vuc ~T0 @X0 0 e@4008 ]
+"43 RTC.c
+[c E5009 0 1 2 3 4 5 .. ]
+[n E5009 inc second minute hour day month year  ]
+"9482 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
+[v _WREN `Vb ~T0 @X0 0 e@32050 ]
+"4547
+[v _EECON2 `Vuc ~T0 @X0 0 e@4007 ]
+"9478
+[v _WR `Vb ~T0 @X0 0 e@32049 ]
+"8844
+[v _LATC2 `Vb ~T0 @X0 0 e@31834 ]
+"147 RTC.h
 [v _dayOfWeek `(uc ~T0 @X0 0 ef3`uc`uc`uc ]
-"84
+"149
 [v _tick `(uc ~T0 @X0 0 ef1`uc ]
-"63 RTC.c
-[c E4949 0 1 2 3 4 5 .. ]
-[n E4949 inc second minute hour day month year  ]
 "205 /usr/opt/microchip/xc8/v1.20/include/stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"104 disp.h
-[v _writeString `(v ~T0 @X0 0 ef2`uc`*uc ]
-"63 defs.h
+"74 defs.h
 [v _countBits `(uc ~T0 @X0 0 ef1`ul ]
+"105 disp.h
+[v _writeString `(v ~T0 @X0 0 ef2`uc`*uc ]
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -4467,827 +4494,1323 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 144: extern void _delay(unsigned long);
 [; ;pic18.h: 146: extern void _delaywdt(unsigned long);
 [; ;pic18.h: 148: extern void _delay3(unsigned char);
-"40 defs.h
+"55 defs.h
 [v _pow10 `Cul ~T0 @X0 -> 0 `x e ]
 [i _pow10
 :U ..
-"41
+"56
 -> -> -> 1 `i `l `ul
-"42
+"57
 -> -> -> 10 `i `l `ul
-"43
+"58
 -> -> -> 100 `i `l `ul
-"44
+"59
 -> -> -> 1000 `i `l `ul
-"45
+"60
 -> -> -> 10000 `i `l `ul
-"46
+"61
 -> -> 100000 `l `ul
-"47
+"62
 -> -> 1000000 `l `ul
-"48
+"63
 -> -> 10000000 `l `ul
-"49
+"64
 -> -> 100000000 `l `ul
-"51
+"66
 -> -> 1000000000 `l `ul
 ..
 ]
-[; ;defs.h: 40: const uint32_t pow10[] = {
-[; ;defs.h: 41: 1,
-[; ;defs.h: 42: 10,
-[; ;defs.h: 43: 100,
-[; ;defs.h: 44: 1000,
-[; ;defs.h: 45: 10000,
-[; ;defs.h: 46: 100000,
-[; ;defs.h: 47: 1000000,
-[; ;defs.h: 48: 10000000,
-[; ;defs.h: 49: 100000000,
-[; ;defs.h: 50: 1000000000
-[; ;defs.h: 51: };
-[; ;defs.h: 61: extern void wait(uint32_t count);
-[; ;defs.h: 63: uint8_t countBits(uint32_t num);
-[; ;defs.h: 64: uint32_t hibit(uint32_t x);
-[; ;defs.h: 65: uint32_t lowbit(uint32_t x);
-[; ;defs.h: 68: uint32_t log2(uint32_t num);
-[; ;defs.h: 69: int32_t maxSize(uint8_t digits);
-[; ;RTC.h: 72: enum inc {
-[; ;RTC.h: 73: second = 0,
-[; ;RTC.h: 74: minute,
-[; ;RTC.h: 75: hour,
-[; ;RTC.h: 76: day,
-[; ;RTC.h: 77: month,
-[; ;RTC.h: 78: year
-[; ;RTC.h: 79: };
-[; ;RTC.h: 81: void initRTC();
-[; ;RTC.h: 82: uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
-[; ;RTC.h: 83: uint8_t daysOfMonth(uint8_t month, uint16_t year);
-[; ;RTC.h: 84: uint8_t tick(uint8_t val);
-[; ;RTC.h: 85: void checkDST();
-[; ;RTC.h: 86: void printRTC(uint8_t digits);
-[; ;RTC.h: 87: struct sDate loadTime();
-[; ;RTC.h: 89: enum views {
-[; ;RTC.h: 91: hhmm = 0,
-[; ;RTC.h: 92: hhmmss,
-[; ;RTC.h: 93: ddd_hhmm,
-[; ;RTC.h: 94: dd_hhmm,
-[; ;RTC.h: 96: dd,
-[; ;RTC.h: 97: ddd,
-[; ;RTC.h: 98: DDMM,
-[; ;RTC.h: 99: DD_MM,
-[; ;RTC.h: 100: DDMMYY,
-[; ;RTC.h: 101: DD_MM_YY
-[; ;RTC.h: 102: };
-"121 RTC.h
-[v _date `S523 ~T0 @X0 1 e ]
-[; ;RTC.h: 106: struct sDate {
-[; ;RTC.h: 107: uint8_t second;
-[; ;RTC.h: 108: uint8_t minute;
-[; ;RTC.h: 109: uint8_t hour;
-[; ;RTC.h: 111: uint8_t day;
-[; ;RTC.h: 113: uint8_t dow;
-[; ;RTC.h: 115: uint8_t month;
-[; ;RTC.h: 116: uint16_t year;
-[; ;RTC.h: 118: uint8_t dst;
-[; ;RTC.h: 120: uint8_t view;
-[; ;RTC.h: 121: } date;
-"123
+[; ;defs.h: 55: const uint32_t pow10[] = {
+[; ;defs.h: 56: 1,
+[; ;defs.h: 57: 10,
+[; ;defs.h: 58: 100,
+[; ;defs.h: 59: 1000,
+[; ;defs.h: 60: 10000,
+[; ;defs.h: 61: 100000,
+[; ;defs.h: 62: 1000000,
+[; ;defs.h: 63: 10000000,
+[; ;defs.h: 64: 100000000,
+[; ;defs.h: 65: 1000000000
+[; ;defs.h: 66: };
+[; ;defs.h: 72: extern void wait(uint32_t count);
+[; ;defs.h: 74: uint8_t countBits(uint32_t num);
+[; ;defs.h: 75: uint32_t hibit(uint32_t x);
+[; ;defs.h: 76: uint32_t lowbit(uint32_t x);
+[; ;defs.h: 79: uint32_t log2(uint32_t num);
+[; ;defs.h: 80: int32_t maxSize(uint8_t digits);
+[; ;menu.h: 21: struct sMenu
+[; ;menu.h: 22: {
+[; ;menu.h: 23: uint8_t state;
+[; ;menu.h: 24: uint8_t digits;
+[; ;menu.h: 25: uint8_t num_states;
+[; ;menu.h: 26: void* (*printFn)(uint8_t digits);
+[; ;menu.h: 27: };
+"29 menu.h
+[v _menu `*S523 ~T0 @X0 1 e ]
+[; ;menu.h: 29: struct sMenu* menu;
+[; ;menu.h: 31: uint8_t advState();
+[; ;menu.h: 32: void advMenu();
+[; ;disp.h: 91: void startDisp();
+[; ;disp.h: 93: void update();
+[; ;disp.h: 95: void spi(uint8_t addr, uint8_t data);
+[; ;disp.h: 97: void setBrightness(uint8_t bright);
+[; ;disp.h: 98: void setTest(bool state);
+[; ;disp.h: 100: void writeDigit(uint8_t digit, uint8_t segs);
+[; ;disp.h: 101: void writeChar(uint8_t digit, char num);
+[; ;disp.h: 103: void writeLong(uint8_t digits, int32_t num);
+[; ;disp.h: 104: void writeFloat(uint8_t digits, double num);
+[; ;disp.h: 105: void writeString(uint8_t digits, char* num);
+[; ;disp.h: 107: uint8_t rotate(uint8_t seg);
+[; ;disp.h: 115: union uDigit
+[; ;disp.h: 116: {
+[; ;disp.h: 118: struct digit_segs
+[; ;disp.h: 119: {
+[; ;disp.h: 120: uint8_t seg_a : 1;
+[; ;disp.h: 121: uint8_t seg_b : 1;
+[; ;disp.h: 122: uint8_t seg_c : 1;
+[; ;disp.h: 123: uint8_t seg_d : 1;
+[; ;disp.h: 124: uint8_t seg_e : 1;
+[; ;disp.h: 125: uint8_t seg_f : 1;
+[; ;disp.h: 126: uint8_t seg_g : 1;
+[; ;disp.h: 127: uint8_t seg_dp : 1;
+[; ;disp.h: 128: } segs;
+[; ;disp.h: 129: uint8_t bits;
+[; ;disp.h: 130: };
+"150 disp.h
+[v _screen `S526 ~T0 @X0 1 e ]
+[; ;disp.h: 132: struct sScreen
+[; ;disp.h: 133: {
+[; ;disp.h: 135: union uScreen_data
+[; ;disp.h: 136: {
+[; ;disp.h: 137: union uDigit screen[8];
+[; ;disp.h: 139: uint32_t bits[2];
+[; ;disp.h: 141: } digits;
+[; ;disp.h: 142: uint8_t decode : 8;
+[; ;disp.h: 143: uint8_t brightness : 4;
+[; ;disp.h: 144: uint8_t scan : 3;
+[; ;disp.h: 145: uint8_t test : 1;
+[; ;disp.h: 146: uint8_t shutdown : 1;
+[; ;disp.h: 149: uint16_t changed;
+[; ;disp.h: 150: } screen;
+[; ;RTC.h: 92: enum inc
+[; ;RTC.h: 93: {
+[; ;RTC.h: 94: second = 0,
+[; ;RTC.h: 95: minute,
+[; ;RTC.h: 96: hour,
+[; ;RTC.h: 97: day,
+[; ;RTC.h: 98: month,
+[; ;RTC.h: 99: year
+[; ;RTC.h: 100: };
+[; ;RTC.h: 103: enum views
+[; ;RTC.h: 104: {
+[; ;RTC.h: 106: hhmm = 0,
+[; ;RTC.h: 107: hhmmss,
+[; ;RTC.h: 108: ddd_hhmm,
+[; ;RTC.h: 109: dd_hhmm,
+[; ;RTC.h: 111: dd,
+[; ;RTC.h: 112: ddd,
+[; ;RTC.h: 113: DDMM,
+[; ;RTC.h: 114: DD_MM,
+[; ;RTC.h: 115: DDMMYY,
+[; ;RTC.h: 116: DD_MM_YY
+[; ;RTC.h: 117: };
+"135 RTC.h
+[v _date `S528 ~T0 @X0 1 e ]
+[; ;RTC.h: 121: struct sDate
+[; ;RTC.h: 122: {
+[; ;RTC.h: 123: uint8_t second;
+[; ;RTC.h: 124: uint8_t minute;
+[; ;RTC.h: 125: uint8_t hour;
+[; ;RTC.h: 127: uint8_t day;
+[; ;RTC.h: 129: uint8_t dow;
+[; ;RTC.h: 131: uint8_t month;
+[; ;RTC.h: 132: uint16_t year;
+[; ;RTC.h: 134: uint8_t dst;
+[; ;RTC.h: 135: } date;
+"137
 [v _rtc_big_ticks `ui ~T0 @X0 1 e ]
-[; ;RTC.h: 123: uint16_t rtc_big_ticks;
-"124
+[; ;RTC.h: 137: uint16_t rtc_big_ticks;
+"138
 [v _rtc_small_ticks `ui ~T0 @X0 1 e ]
-[; ;RTC.h: 124: uint16_t rtc_small_ticks;
-"126
-[v _dow `*Cuc ~T0 @X0 -> 0 `x e ]
+[; ;RTC.h: 138: uint16_t rtc_small_ticks;
+"140
+[v F5040 `Cuc ~T0 @X0 -> 4 `i t ]
+[v _dow `F5040 ~T0 @X0 -> 7 `i e ]
 [i _dow
 :U ..
-"127
-:s 1C
-:s 2C
-:s 3C
-:s 4C
-:s 5C
-:s 6C
-"128
-:s 7C
+:U ..
+-> 83 `c
+-> 111 `c
+-> 110 `c
+-> 0 `c
+..
+:U ..
+-> 77 `c
+-> 111 `c
+-> 110 `c
+-> 0 `c
+..
+:U ..
+-> 68 `c
+-> 101 `c
+-> 105 `c
+-> 0 `c
+..
+:U ..
+-> 77 `c
+-> 105 `c
+-> 116 `c
+-> 0 `c
+..
+:U ..
+-> 68 `c
+-> 111 `c
+-> 110 `c
+-> 0 `c
+..
+:U ..
+-> 70 `c
+-> 114 `c
+-> 105 `c
+-> 0 `c
+..
+:U ..
+-> 83 `c
+-> 97 `c
+-> 109 `c
+-> 0 `c
+..
 ..
 ]
-[; ;RTC.h: 126: const char* dow[] = {
-[; ;RTC.h: 127: "Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
-[; ;RTC.h: 128: };
-[; ;temp.h: 27: void printTemp(uint8_t digits);
-[; ;temp.h: 28: double getTemp();
-[; ;temp.h: 29: void initTemp();
-"31 temp.h
-[v _oldTemps `d ~T0 @X0 -> 4 `i e ]
-[; ;temp.h: 31: double oldTemps[4];
-[; ;disp.h: 90: void startDisp();
-[; ;disp.h: 92: void update();
-[; ;disp.h: 94: void spi(uint8_t addr, uint8_t data);
-[; ;disp.h: 96: void setBrightness(uint8_t bright);
-[; ;disp.h: 97: void setTest(bool state);
-[; ;disp.h: 99: void writeDigit(uint8_t digit, uint8_t segs);
-[; ;disp.h: 100: void writeChar(uint8_t digit, char num);
-[; ;disp.h: 102: void writeLong(uint8_t digits, int32_t num);
-[; ;disp.h: 103: void writeFloat(uint8_t digits, double num);
-[; ;disp.h: 104: void writeString(uint8_t digits, char* num);
-[; ;disp.h: 106: uint8_t rotate(uint8_t seg);
-[; ;disp.h: 114: union uDigit {
-[; ;disp.h: 116: struct digit_segs {
-[; ;disp.h: 117: uint8_t seg_a : 1;
-[; ;disp.h: 118: uint8_t seg_b : 1;
-[; ;disp.h: 119: uint8_t seg_c : 1;
-[; ;disp.h: 120: uint8_t seg_d : 1;
-[; ;disp.h: 121: uint8_t seg_e : 1;
-[; ;disp.h: 122: uint8_t seg_f : 1;
-[; ;disp.h: 123: uint8_t seg_g : 1;
-[; ;disp.h: 124: uint8_t seg_dp : 1;
-[; ;disp.h: 125: } segs;
-[; ;disp.h: 126: uint8_t bits;
-[; ;disp.h: 127: };
-"145 disp.h
-[v _screen `S526 ~T0 @X0 1 e ]
-[; ;disp.h: 129: struct sScreen {
-[; ;disp.h: 131: union uScreen_data {
-[; ;disp.h: 132: union uDigit screen[8];
-[; ;disp.h: 134: uint32_t bits[2];
-[; ;disp.h: 136: } digits;
-[; ;disp.h: 137: uint8_t decode : 8;
-[; ;disp.h: 138: uint8_t brightness : 4;
-[; ;disp.h: 139: uint8_t scan : 3;
-[; ;disp.h: 140: uint8_t test : 1;
-[; ;disp.h: 141: uint8_t shutdown : 1;
-[; ;disp.h: 144: uint16_t changed;
-[; ;disp.h: 145: } screen;
-"7 RTC.c
+[; ;RTC.h: 140: const char dow[7][4] = {
+[; ;RTC.h: 141: "Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
+[; ;RTC.h: 142: };
+"144
+[v _rtcMenu `S523 ~T0 @X0 1 e ]
+[; ;RTC.h: 144: struct sMenu rtcMenu;
+[; ;RTC.h: 146: void initRTC();
+[; ;RTC.h: 147: uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
+[; ;RTC.h: 148: uint8_t daysOfMonth(uint8_t month, uint16_t year);
+[; ;RTC.h: 149: uint8_t tick(uint8_t val);
+[; ;RTC.h: 150: void checkDST();
+[; ;RTC.h: 151: void* printRTC(uint8_t digits);
+[; ;RTC.h: 152: struct sDate loadTime();
+[; ;RTC.h: 153: void saveTime(struct sDate date);
+"9 RTC.c
 [v _initRTC `(v ~T0 @X0 1 ef ]
 {
-[; ;RTC.c: 6: void initRTC()
-[; ;RTC.c: 7: {
+[; ;RTC.c: 8: void initRTC()
+[; ;RTC.c: 9: {
 [e :U _initRTC ]
 [f ]
-[; ;RTC.c: 8: date.view = DD_MM_YY;
-"8
-[e = . _date 8 -> . `E4971 9 `uc ]
-[; ;RTC.c: 9: date.month = 1;
-"9
-[e = . _date 5 -> -> 1 `i `uc ]
-[; ;RTC.c: 10: date.day = 1;
+[; ;RTC.c: 10: rtcMenu.state = hhmmss;
 "10
-[e = . _date 3 -> -> 1 `i `uc ]
-[; ;RTC.c: 11: date.year = 2013;
+[e = . _rtcMenu 0 -> . `E5016 1 `uc ]
+[; ;RTC.c: 11: rtcMenu.digits = 0b01111111;
 "11
-[e = . _date 6 -> -> 2013 `i `ui ]
-[; ;RTC.c: 13: loadTime();
+[e = . _rtcMenu 1 -> -> 127 `i `uc ]
+[; ;RTC.c: 12: rtcMenu.num_states = 10;
+"12
+[e = . _rtcMenu 2 -> -> 10 `i `uc ]
+[; ;RTC.c: 13: rtcMenu.printFn = &printRTC;
 "13
-[e ( _loadTime ..  ]
-[; ;RTC.c: 16: T1CON = 0b10110000;
+[e = . _rtcMenu 3 &U _printRTC ]
+[; ;RTC.c: 15: date.month = 1;
+"15
+[e = . _date 5 -> -> 1 `i `uc ]
+[; ;RTC.c: 16: date.day = 1;
 "16
-[e = _T1CON -> -> 176 `i `uc ]
-[; ;RTC.c: 17: TMR1 = (65536-63765);
+[e = . _date 3 -> -> 1 `i `uc ]
+[; ;RTC.c: 17: date.year = 2013;
 "17
-[e = _TMR1 -> - -> 65536 `l -> 63765 `l `us ]
-[; ;RTC.c: 18: TMR1IE = 1;
-"18
-[e = _TMR1IE -> -> 1 `i `b ]
-[; ;RTC.c: 19: TMR1IF = CLEAR;
+[e = . _date 6 -> -> 2013 `i `ui ]
+[; ;RTC.c: 19: EECON1 = 0b0000000;
 "19
-[e = _TMR1IF -> . `E4302 0 `b ]
-[; ;RTC.c: 20: TMR1ON = 1;
+[e = _EECON1 -> -> 0 `i `uc ]
+[; ;RTC.c: 20: LATC1 = 1;
 "20
-[e = _TMR1ON -> -> 1 `i `b ]
-[; ;RTC.c: 22: }
+[e = _LATC1 -> -> 1 `i `b ]
+[; ;RTC.c: 21: loadTime();
+"21
+[e ( _loadTime ..  ]
+[; ;RTC.c: 22: LATC1 = 0;
 "22
-[e :UE 528 ]
-}
+[e = _LATC1 -> -> 0 `i `b ]
+[; ;RTC.c: 25: T1CON = 0b10110000;
 "25
-[v _loadTime `(S523 ~T0 @X0 1 ef ]
-{
-[; ;RTC.c: 24: struct sDate loadTime()
-[; ;RTC.c: 25: {
-[e :U _loadTime ]
-[f ]
+[e = _T1CON -> -> 176 `i `uc ]
+[; ;RTC.c: 26: TMR1 = (65536-63765);
 "26
-[v _newDate `S523 ~T0 @X0 1 a ]
-[; ;RTC.c: 26: struct sDate newDate;
-[; ;RTC.c: 27: return newDate;
+[e = _TMR1 -> - -> 65536 `l -> 63765 `l `us ]
+[; ;RTC.c: 27: TMR1IE = 1;
 "27
-[e ) _newDate ]
-[e $UE 529  ]
-[; ;RTC.c: 28: }
+[e = _TMR1IE -> -> 1 `i `b ]
+[; ;RTC.c: 28: TMR1IF = CLEAR;
 "28
+[e = _TMR1IF -> . `E4302 0 `b ]
+[; ;RTC.c: 29: TMR1IP = 1;
+"29
+[e = _TMR1IP -> -> 1 `i `b ]
+[; ;RTC.c: 30: TMR1ON = 1;
+"30
+[e = _TMR1ON -> -> 1 `i `b ]
+[; ;RTC.c: 32: }
+"32
 [e :UE 529 ]
 }
-"31
+"35
+[v _loadTime `(S528 ~T0 @X0 1 ef ]
+{
+[; ;RTC.c: 34: struct sDate loadTime()
+[; ;RTC.c: 35: {
+[e :U _loadTime ]
+[f ]
+"36
+[v _newDate `S528 ~T0 @X0 1 a ]
+"37
+[v _cnt `uc ~T0 @X0 1 a ]
+[; ;RTC.c: 36: struct sDate newDate;
+[; ;RTC.c: 37: uint8_t cnt;
+[; ;RTC.c: 39: for (cnt = 1; cnt < 7; cnt++)
+"39
+{
+[e = _cnt -> -> 1 `i `uc ]
+[e $ < -> _cnt `i -> 7 `i 531  ]
+[e $U 532  ]
+"40
+[e :U 531 ]
+[; ;RTC.c: 40: {
+{
+[; ;RTC.c: 41: EEADR = 0 + cnt;
+"41
+[e = _EEADR -> + -> 0 `i -> _cnt `i `uc ]
+[; ;RTC.c: 42: RD = 1;
+"42
+[e = _RD -> -> 1 `i `b ]
+[; ;RTC.c: 43: switch (cnt)
+"43
+[e $U 535  ]
+[; ;RTC.c: 44: {
+"44
+{
+[; ;RTC.c: 45: case minute:
+"45
+[e :U 536 ]
+[; ;RTC.c: 46: newDate.minute = EEDATA;
+"46
+[e = . _newDate 1 _EEDATA ]
+[; ;RTC.c: 47: break;
+"47
+[e $U 534  ]
+[; ;RTC.c: 48: case hour:
+"48
+[e :U 537 ]
+[; ;RTC.c: 49: newDate.hour = EEDATA;
+"49
+[e = . _newDate 2 _EEDATA ]
+[; ;RTC.c: 50: break;
+"50
+[e $U 534  ]
+[; ;RTC.c: 51: case day:
+"51
+[e :U 538 ]
+[; ;RTC.c: 52: newDate.day = EEDATA;
+"52
+[e = . _newDate 3 _EEDATA ]
+[; ;RTC.c: 53: break;
+"53
+[e $U 534  ]
+[; ;RTC.c: 54: case month:
+"54
+[e :U 539 ]
+[; ;RTC.c: 55: newDate.month = EEDATA;
+"55
+[e = . _newDate 5 _EEDATA ]
+[; ;RTC.c: 56: break;
+"56
+[e $U 534  ]
+[; ;RTC.c: 57: case year:
+"57
+[e :U 540 ]
+[; ;RTC.c: 58: newDate.year = EEDATA;
+"58
+[e = . _newDate 6 -> _EEDATA `ui ]
+[; ;RTC.c: 59: break;
+"59
+[e $U 534  ]
+[; ;RTC.c: 60: case year + 1:
+"60
+[e :U 541 ]
+[; ;RTC.c: 61: newDate.year |= EEDATA << 8;
+"61
+[e =| . _newDate 6 -> << -> _EEDATA `i -> 8 `i `ui ]
+[; ;RTC.c: 62: break;
+"62
+[e $U 534  ]
+"63
+}
+[; ;RTC.c: 63: }
+[e $U 534  ]
+"43
+[e :U 535 ]
+[e [\ _cnt , $ -> . `E5009 1 `uc 536
+ , $ -> . `E5009 2 `uc 537
+ , $ -> . `E5009 3 `uc 538
+ , $ -> . `E5009 4 `uc 539
+ , $ -> . `E5009 5 `uc 540
+ , $ -> + -> . `E5009 5 `i -> 1 `i `uc 541
+ 534 ]
+"63
+[e :U 534 ]
+"64
+}
+"39
+[e ++ _cnt -> -> 1 `i `uc ]
+[e $ < -> _cnt `i -> 7 `i 531  ]
+[e :U 532 ]
+"64
+}
+[; ;RTC.c: 64: }
+[; ;RTC.c: 65: return newDate;
+"65
+[e ) _newDate ]
+[e $UE 530  ]
+[; ;RTC.c: 66: }
+"66
+[e :UE 530 ]
+}
+"69
+[v _saveTime `(v ~T0 @X0 1 ef1`S528 ]
+{
+[; ;RTC.c: 68: void saveTime(struct sDate date)
+[; ;RTC.c: 69: {
+[e :U _saveTime ]
+[v _date `S528 ~T0 @X0 1 r1 ]
+[f ]
+[; ;RTC.c: 70: WREN = 1;
+"70
+[e = _WREN -> -> 1 `i `b ]
+"71
+[v _cnt `uc ~T0 @X0 1 a ]
+[; ;RTC.c: 71: uint8_t cnt;
+[; ;RTC.c: 73: for (cnt = 1; cnt < 7; cnt++)
+"73
+{
+[e = _cnt -> -> 1 `i `uc ]
+[e $ < -> _cnt `i -> 7 `i 543  ]
+[e $U 544  ]
+"74
+[e :U 543 ]
+[; ;RTC.c: 74: {
+{
+[; ;RTC.c: 75: EEADR = 0 + cnt;
+"75
+[e = _EEADR -> + -> 0 `i -> _cnt `i `uc ]
+[; ;RTC.c: 76: switch (cnt)
+"76
+[e $U 547  ]
+[; ;RTC.c: 77: {
+"77
+{
+[; ;RTC.c: 78: case minute:
+"78
+[e :U 548 ]
+[; ;RTC.c: 79: EEDATA = date.minute;
+"79
+[e = _EEDATA . _date 1 ]
+[; ;RTC.c: 80: break;
+"80
+[e $U 546  ]
+[; ;RTC.c: 81: case hour:
+"81
+[e :U 549 ]
+[; ;RTC.c: 82: EEDATA = date.hour;
+"82
+[e = _EEDATA . _date 2 ]
+[; ;RTC.c: 83: break;
+"83
+[e $U 546  ]
+[; ;RTC.c: 84: case day:
+"84
+[e :U 550 ]
+[; ;RTC.c: 85: EEDATA = date.day;
+"85
+[e = _EEDATA . _date 3 ]
+[; ;RTC.c: 86: break;
+"86
+[e $U 546  ]
+[; ;RTC.c: 87: case month:
+"87
+[e :U 551 ]
+[; ;RTC.c: 88: EEDATA = date.month;
+"88
+[e = _EEDATA . _date 5 ]
+[; ;RTC.c: 89: break;
+"89
+[e $U 546  ]
+[; ;RTC.c: 90: case year:
+"90
+[e :U 552 ]
+[; ;RTC.c: 91: EEDATA = date.year;
+"91
+[e = _EEDATA -> . _date 6 `uc ]
+[; ;RTC.c: 92: break;
+"92
+[e $U 546  ]
+[; ;RTC.c: 93: case year + 1:
+"93
+[e :U 553 ]
+[; ;RTC.c: 94: EEDATA = date.year;
+"94
+[e = _EEDATA -> . _date 6 `uc ]
+[; ;RTC.c: 95: break;
+"95
+[e $U 546  ]
+"96
+}
+[; ;RTC.c: 96: }
+[e $U 546  ]
+"76
+[e :U 547 ]
+[e [\ _cnt , $ -> . `E5009 1 `uc 548
+ , $ -> . `E5009 2 `uc 549
+ , $ -> . `E5009 3 `uc 550
+ , $ -> . `E5009 4 `uc 551
+ , $ -> . `E5009 5 `uc 552
+ , $ -> + -> . `E5009 5 `i -> 1 `i `uc 553
+ 546 ]
+"96
+[e :U 546 ]
+[; ;RTC.c: 97: EECON2 = 0x55;
+"97
+[e = _EECON2 -> -> 85 `i `uc ]
+[; ;RTC.c: 98: EECON2 = 0xAA;
+"98
+[e = _EECON2 -> -> 170 `i `uc ]
+[; ;RTC.c: 99: WR = 1;
+"99
+[e = _WR -> -> 1 `i `b ]
+[; ;RTC.c: 100: while (WR)
+"100
+[e $U 554  ]
+[e :U 555 ]
+[; ;RTC.c: 101: {
+"101
+{
+[; ;RTC.c: 102: LATC2 = 1;
+"102
+[e = _LATC2 -> -> 1 `i `b ]
+"103
+}
+[e :U 554 ]
+"100
+[e $ _WR 555  ]
+[e :U 556 ]
+[; ;RTC.c: 103: }
+[; ;RTC.c: 104: LATC2 = 0;
+"104
+[e = _LATC2 -> -> 0 `i `b ]
+"105
+}
+"73
+[e ++ _cnt -> -> 1 `i `uc ]
+[e $ < -> _cnt `i -> 7 `i 543  ]
+[e :U 544 ]
+"105
+}
+[; ;RTC.c: 105: }
+[; ;RTC.c: 106: }
+"106
+[e :UE 542 ]
+}
+"109
 [v _daysOfMonth `(uc ~T0 @X0 1 ef2`uc`ui ]
 {
-[; ;RTC.c: 30: uint8_t daysOfMonth(uint8_t month, uint16_t year)
-[; ;RTC.c: 31: {
+[; ;RTC.c: 108: uint8_t daysOfMonth(uint8_t month, uint16_t year)
+[; ;RTC.c: 109: {
 [e :U _daysOfMonth ]
 [v _month `uc ~T0 @X0 1 r1 ]
 [v _year `ui ~T0 @X0 1 r2 ]
 [f ]
-[; ;RTC.c: 32: switch (month) {
-"32
-[e $U 532  ]
+[; ;RTC.c: 110: switch (month)
+"110
+[e $U 559  ]
+[; ;RTC.c: 111: {
+"111
 {
-[; ;RTC.c: 33: case 1:
-"33
-[e :U 533 ]
-"34
-[e :U 534 ]
-"35
-[e :U 535 ]
-"36
-[e :U 536 ]
-"37
-[e :U 537 ]
-"38
-[e :U 538 ]
-"39
-[e :U 539 ]
-[; ;RTC.c: 34: case 3:
-[; ;RTC.c: 35: case 5:
-[; ;RTC.c: 36: case 7:
-[; ;RTC.c: 37: case 8:
-[; ;RTC.c: 38: case 10:
-[; ;RTC.c: 39: case 12:
-[; ;RTC.c: 40: return 31;
-"40
+[; ;RTC.c: 112: case 1:
+"112
+[e :U 560 ]
+"113
+[e :U 561 ]
+"114
+[e :U 562 ]
+"115
+[e :U 563 ]
+"116
+[e :U 564 ]
+"117
+[e :U 565 ]
+"118
+[e :U 566 ]
+[; ;RTC.c: 113: case 3:
+[; ;RTC.c: 114: case 5:
+[; ;RTC.c: 115: case 7:
+[; ;RTC.c: 116: case 8:
+[; ;RTC.c: 117: case 10:
+[; ;RTC.c: 118: case 12:
+[; ;RTC.c: 119: return 31;
+"119
 [e ) -> -> 31 `i `uc ]
-[e $UE 530  ]
-[; ;RTC.c: 42: case 4:
-"42
-[e :U 540 ]
-"43
-[e :U 541 ]
-"44
-[e :U 542 ]
-"45
-[e :U 543 ]
-[; ;RTC.c: 43: case 6:
-[; ;RTC.c: 44: case 9:
-[; ;RTC.c: 45: case 11:
-[; ;RTC.c: 46: return 30;
-"46
+[e $UE 557  ]
+[; ;RTC.c: 121: case 4:
+"121
+[e :U 567 ]
+"122
+[e :U 568 ]
+"123
+[e :U 569 ]
+"124
+[e :U 570 ]
+[; ;RTC.c: 122: case 6:
+[; ;RTC.c: 123: case 9:
+[; ;RTC.c: 124: case 11:
+[; ;RTC.c: 125: return 30;
+"125
 [e ) -> -> 30 `i `uc ]
-[e $UE 530  ]
-[; ;RTC.c: 48: case 2:
-"48
-[e :U 544 ]
-[; ;RTC.c: 49: if ((((year)%4 == 0) && (((year)%100 != 0) || ((year)%400 == 0))))
-"49
-[e $ ! && == % _year -> -> 4 `i `ui -> -> 0 `i `ui || != % _year -> -> 100 `i `ui -> -> 0 `i `ui == % _year -> -> 400 `i `ui -> -> 0 `i `ui 545  ]
-[; ;RTC.c: 50: return 29;
-"50
+[e $UE 557  ]
+[; ;RTC.c: 127: case 2:
+"127
+[e :U 571 ]
+[; ;RTC.c: 128: if ((((year)%4 == 0) && (((year)%100 != 0) || ((year)%400 == 0))))
+"128
+[e $ ! && == % _year -> -> 4 `i `ui -> -> 0 `i `ui || != % _year -> -> 100 `i `ui -> -> 0 `i `ui == % _year -> -> 400 `i `ui -> -> 0 `i `ui 572  ]
+[; ;RTC.c: 129: return 29;
+"129
 [e ) -> -> 29 `i `uc ]
-[e $UE 530  ]
-[e $U 546  ]
-"51
-[e :U 545 ]
-[; ;RTC.c: 51: else
-[; ;RTC.c: 52: return 28;
-"52
+[e $UE 557  ]
+[e $U 573  ]
+"130
+[e :U 572 ]
+[; ;RTC.c: 130: else
+[; ;RTC.c: 131: return 28;
+"131
 [e ) -> -> 28 `i `uc ]
-[e $UE 530  ]
-[e :U 546 ]
-"53
+[e $UE 557  ]
+[e :U 573 ]
+"132
 }
-[; ;RTC.c: 53: }
-[e $U 531  ]
-"32
-[e :U 532 ]
-[e [\ _month , $ -> -> 1 `i `uc 533
- , $ -> -> 3 `i `uc 534
- , $ -> -> 5 `i `uc 535
- , $ -> -> 7 `i `uc 536
- , $ -> -> 8 `i `uc 537
- , $ -> -> 10 `i `uc 538
- , $ -> -> 12 `i `uc 539
- , $ -> -> 4 `i `uc 540
- , $ -> -> 6 `i `uc 541
- , $ -> -> 9 `i `uc 542
- , $ -> -> 11 `i `uc 543
- , $ -> -> 2 `i `uc 544
- 531 ]
-"53
-[e :U 531 ]
-[; ;RTC.c: 55: return 0;
-"55
+[; ;RTC.c: 132: }
+[e $U 558  ]
+"110
+[e :U 559 ]
+[e [\ _month , $ -> -> 1 `i `uc 560
+ , $ -> -> 3 `i `uc 561
+ , $ -> -> 5 `i `uc 562
+ , $ -> -> 7 `i `uc 563
+ , $ -> -> 8 `i `uc 564
+ , $ -> -> 10 `i `uc 565
+ , $ -> -> 12 `i `uc 566
+ , $ -> -> 4 `i `uc 567
+ , $ -> -> 6 `i `uc 568
+ , $ -> -> 9 `i `uc 569
+ , $ -> -> 11 `i `uc 570
+ , $ -> -> 2 `i `uc 571
+ 558 ]
+"132
+[e :U 558 ]
+[; ;RTC.c: 134: return 0;
+"134
 [e ) -> -> 0 `i `uc ]
-[e $UE 530  ]
-[; ;RTC.c: 56: }
-"56
-[e :UE 530 ]
+[e $UE 557  ]
+[; ;RTC.c: 135: }
+"135
+[e :UE 557 ]
 }
-"59
+"138
 [v _checkDST `(v ~T0 @X0 1 ef ]
 {
-[; ;RTC.c: 58: void checkDST()
-[; ;RTC.c: 59: {
+[; ;RTC.c: 137: void checkDST()
+[; ;RTC.c: 138: {
 [e :U _checkDST ]
 [f ]
-[; ;RTC.c: 60: if ((date.dst ^ (1 & ((date.day >= ((((2)*7)-dayOfWeek((date.year),(3),((2)*7)))) && date.month >= 3) && (date.day < ((((1)*7)-dayOfWeek((date.year),(11),((1)*7)))) && date.month < 11)))) && date.hour == 1) {
-"60
-[e $ ! && != ^ -> . _date 7 `i & -> 1 `i -> && && >= -> . _date 3 `i - * -> 2 `i -> 7 `i -> ( _dayOfWeek (3 , , -> . _date 6 `uc -> -> 3 `i `uc -> * -> 2 `i -> 7 `i `uc `i >= -> . _date 5 `i -> 3 `i && < -> . _date 3 `i - * -> 1 `i -> 7 `i -> ( _dayOfWeek (3 , , -> . _date 6 `uc -> -> 11 `i `uc -> * -> 1 `i -> 7 `i `uc `i < -> . _date 5 `i -> 11 `i `i -> 0 `i == -> . _date 2 `i -> 1 `i 548  ]
+[; ;RTC.c: 139: if ((date.dst ^ (1 & ((date.day >= ((((2)*7)-dayOfWeek((date.year),(3),((2)*7)))) && date.month >= 3) && (date.day < ((((1)*7)-dayOfWeek((date.year),(11),((1)*7)))) && date.month < 11)))) && date.hour == 1)
+"139
+[e $ ! && != ^ -> . _date 7 `i & -> 1 `i -> && && >= -> . _date 3 `i - * -> 2 `i -> 7 `i -> ( _dayOfWeek (3 , , -> . _date 6 `uc -> -> 3 `i `uc -> * -> 2 `i -> 7 `i `uc `i >= -> . _date 5 `i -> 3 `i && < -> . _date 3 `i - * -> 1 `i -> 7 `i -> ( _dayOfWeek (3 , , -> . _date 6 `uc -> -> 11 `i `uc -> * -> 1 `i -> 7 `i `uc `i < -> . _date 5 `i -> 11 `i `i -> 0 `i == -> . _date 2 `i -> 1 `i 575  ]
+[; ;RTC.c: 140: {
+"140
 {
-[; ;RTC.c: 61: date.dst = !date.dst;
-"61
+[; ;RTC.c: 141: date.dst = !date.dst;
+"141
 [e = . _date 7 -> -> ! != -> . _date 7 `i -> -> -> 0 `i `uc `i `i `uc ]
-[; ;RTC.c: 62: if (date.dst) {
-"62
-[e $ ! != -> . _date 7 `i -> -> -> 0 `i `uc `i 549  ]
+[; ;RTC.c: 142: if (date.dst)
+"142
+[e $ ! != -> . _date 7 `i -> -> -> 0 `i `uc `i 576  ]
+[; ;RTC.c: 143: {
+"143
 {
-[; ;RTC.c: 63: tick(hour);
-"63
-[e ( _tick (1 -> . `E4949 2 `uc ]
-"64
+[; ;RTC.c: 144: tick(hour);
+"144
+[e ( _tick (1 -> . `E5009 2 `uc ]
+"145
 }
-[; ;RTC.c: 64: } else {
-[e $U 550  ]
-[e :U 549 ]
+[; ;RTC.c: 145: }
+[e $U 577  ]
+"146
+[e :U 576 ]
+[; ;RTC.c: 146: else
+[; ;RTC.c: 147: {
+"147
 {
-[; ;RTC.c: 65: if (date.hour > 0) {
-"65
-[e $ ! > -> . _date 2 `i -> 0 `i 551  ]
+[; ;RTC.c: 148: if (date.hour > 0)
+"148
+[e $ ! > -> . _date 2 `i -> 0 `i 578  ]
+[; ;RTC.c: 149: {
+"149
 {
-[; ;RTC.c: 66: date.hour--;
-"66
+[; ;RTC.c: 150: date.hour--;
+"150
 [e -- . _date 2 -> -> 1 `i `uc ]
-"67
+"151
 }
-[; ;RTC.c: 67: } else {
-[e $U 552  ]
-[e :U 551 ]
+[; ;RTC.c: 151: }
+[e $U 579  ]
+"152
+[e :U 578 ]
+[; ;RTC.c: 152: else
+[; ;RTC.c: 153: {
+"153
 {
-[; ;RTC.c: 68: date.hour = 0;
-"68
+[; ;RTC.c: 154: date.hour = 0;
+"154
 [e = . _date 2 -> -> 0 `i `uc ]
-[; ;RTC.c: 69: date.day--;
-"69
+[; ;RTC.c: 155: date.day--;
+"155
 [e -- . _date 3 -> -> 1 `i `uc ]
-"70
+"156
 }
-[e :U 552 ]
-"71
+[e :U 579 ]
+"157
 }
-[e :U 550 ]
-"72
+[e :U 577 ]
+"158
 }
-[e :U 548 ]
-[; ;RTC.c: 70: }
-[; ;RTC.c: 71: }
-[; ;RTC.c: 72: }
-[; ;RTC.c: 73: }
-"73
-[e :UE 547 ]
+[e :U 575 ]
+[; ;RTC.c: 156: }
+[; ;RTC.c: 157: }
+[; ;RTC.c: 158: }
+[; ;RTC.c: 159: }
+"159
+[e :UE 574 ]
 }
-"76
+"162
 [v _tick `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;RTC.c: 75: uint8_t tick(uint8_t val)
-[; ;RTC.c: 76: {
+[; ;RTC.c: 161: uint8_t tick(uint8_t val)
+[; ;RTC.c: 162: {
 [e :U _tick ]
 [v _val `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;RTC.c: 77: switch (val) {
-"77
-[e $U 555  ]
+[; ;RTC.c: 163: switch (val)
+"163
+[e $U 582  ]
+[; ;RTC.c: 164: {
+"164
 {
-[; ;RTC.c: 78: case second:
-"78
-[e :U 556 ]
-[; ;RTC.c: 79: if (++date.second >= 60) {
-"79
-[e $ ! >= -> =+ . _date 0 -> -> 1 `i `uc `i -> 60 `i 557  ]
+[; ;RTC.c: 165: case second:
+"165
+[e :U 583 ]
+[; ;RTC.c: 166: if (++date.second >= 60)
+"166
+[e $ ! >= -> =+ . _date 0 -> -> 1 `i `uc `i -> 60 `i 584  ]
+[; ;RTC.c: 167: {
+"167
 {
-[; ;RTC.c: 80: date.second = 0;
-"80
+[; ;RTC.c: 168: date.second = 0;
+"168
 [e = . _date 0 -> -> 0 `i `uc ]
-[; ;RTC.c: 81: case minute:
-"81
-[e :U 558 ]
-[; ;RTC.c: 82: if (++date.minute >= 60) {
-"82
-[e $ ! >= -> =+ . _date 1 -> -> 1 `i `uc `i -> 60 `i 559  ]
+[; ;RTC.c: 169: case minute:
+"169
+[e :U 585 ]
+[; ;RTC.c: 170: saveTime(date);
+"170
+[e ( _saveTime (1 _date ]
+[; ;RTC.c: 171: if (++date.minute >= 60)
+"171
+[e $ ! >= -> =+ . _date 1 -> -> 1 `i `uc `i -> 60 `i 586  ]
+[; ;RTC.c: 172: {
+"172
 {
-[; ;RTC.c: 83: date.minute = 0;
-"83
+[; ;RTC.c: 173: date.minute = 0;
+"173
 [e = . _date 1 -> -> 0 `i `uc ]
-[; ;RTC.c: 84: case hour:
-"84
-[e :U 560 ]
-[; ;RTC.c: 85: date.hour++;
-"85
+[; ;RTC.c: 174: case hour:
+"174
+[e :U 587 ]
+[; ;RTC.c: 175: date.hour++;
+"175
 [e ++ . _date 2 -> -> 1 `i `uc ]
-[; ;RTC.c: 86: checkDST();
-"86
+[; ;RTC.c: 176: checkDST();
+"176
 [e ( _checkDST ..  ]
-[; ;RTC.c: 87: if (date.hour >= 24) {
-"87
-[e $ ! >= -> . _date 2 `i -> 24 `i 561  ]
+[; ;RTC.c: 177: if (date.hour >= 24)
+"177
+[e $ ! >= -> . _date 2 `i -> 24 `i 588  ]
+[; ;RTC.c: 178: {
+"178
 {
-[; ;RTC.c: 88: date.hour = 0;
-"88
+[; ;RTC.c: 179: date.hour = 0;
+"179
 [e = . _date 2 -> -> 0 `i `uc ]
-[; ;RTC.c: 89: case day:
-"89
-[e :U 562 ]
-[; ;RTC.c: 90: if (++date.day >= daysOfMonth(date.month, date.year)) {
-"90
-[e $ ! >= -> =+ . _date 3 -> -> 1 `i `uc `i -> ( _daysOfMonth (2 , . _date 5 . _date 6 `i 563  ]
+[; ;RTC.c: 180: case day:
+"180
+[e :U 589 ]
+[; ;RTC.c: 181: if (++date.day >= daysOfMonth(date.month, date.year))
+"181
+[e $ ! >= -> =+ . _date 3 -> -> 1 `i `uc `i -> ( _daysOfMonth (2 , . _date 5 . _date 6 `i 590  ]
+[; ;RTC.c: 182: {
+"182
 {
-[; ;RTC.c: 91: date.day = 1;
-"91
+[; ;RTC.c: 183: date.day = 1;
+"183
 [e = . _date 3 -> -> 1 `i `uc ]
-[; ;RTC.c: 92: case month:
-"92
-[e :U 564 ]
-[; ;RTC.c: 93: if (++date.month > 12) {
-"93
-[e $ ! > -> =+ . _date 5 -> -> 1 `i `uc `i -> 12 `i 565  ]
+[; ;RTC.c: 184: case month:
+"184
+[e :U 591 ]
+[; ;RTC.c: 185: if (++date.month > 12)
+"185
+[e $ ! > -> =+ . _date 5 -> -> 1 `i `uc `i -> 12 `i 592  ]
+[; ;RTC.c: 186: {
+"186
 {
-[; ;RTC.c: 94: date.month = 1;
-"94
+[; ;RTC.c: 187: date.month = 1;
+"187
 [e = . _date 5 -> -> 1 `i `uc ]
-[; ;RTC.c: 95: case year:
-"95
-[e :U 566 ]
-[; ;RTC.c: 96: ++date.year;
-"96
+[; ;RTC.c: 188: case year:
+"188
+[e :U 593 ]
+[; ;RTC.c: 189: ++date.year;
+"189
 [e =+ . _date 6 -> -> 1 `i `ui ]
-"97
+"190
 }
-[e :U 565 ]
-"98
+[e :U 592 ]
+"191
 }
-[e :U 563 ]
-"99
+[e :U 590 ]
+"192
 }
-[e :U 561 ]
-"100
+[e :U 588 ]
+"193
 }
-[e :U 559 ]
-"101
+[e :U 586 ]
+"194
 }
-[e :U 557 ]
-"102
+[e :U 584 ]
+"195
 }
-[; ;RTC.c: 97: }
-[; ;RTC.c: 98: }
-[; ;RTC.c: 99: }
-[; ;RTC.c: 100: }
-[; ;RTC.c: 101: }
-[; ;RTC.c: 102: }
-[e $U 554  ]
-"77
-[e :U 555 ]
-[e [\ _val , $ -> . `E4949 0 `uc 556
- , $ -> . `E4949 1 `uc 558
- , $ -> . `E4949 2 `uc 560
- , $ -> . `E4949 3 `uc 562
- , $ -> . `E4949 4 `uc 564
- , $ -> . `E4949 5 `uc 566
- 554 ]
-"102
-[e :U 554 ]
-[; ;RTC.c: 103: return 0;
-"103
+[; ;RTC.c: 190: }
+[; ;RTC.c: 191: }
+[; ;RTC.c: 192: }
+[; ;RTC.c: 193: }
+[; ;RTC.c: 194: }
+[; ;RTC.c: 195: }
+[e $U 581  ]
+"163
+[e :U 582 ]
+[e [\ _val , $ -> . `E5009 0 `uc 583
+ , $ -> . `E5009 1 `uc 585
+ , $ -> . `E5009 2 `uc 587
+ , $ -> . `E5009 3 `uc 589
+ , $ -> . `E5009 4 `uc 591
+ , $ -> . `E5009 5 `uc 593
+ 581 ]
+"195
+[e :U 581 ]
+[; ;RTC.c: 196: return 0;
+"196
 [e ) -> -> 0 `i `uc ]
-[e $UE 553  ]
-[; ;RTC.c: 104: }
-"104
-[e :UE 553 ]
+[e $UE 580  ]
+[; ;RTC.c: 197: }
+"197
+[e :UE 580 ]
 }
-"107
+"200
 [v _dayOfWeek `(uc ~T0 @X0 1 ef3`uc`uc`uc ]
 {
-[; ;RTC.c: 106: uint8_t dayOfWeek(uint8_t year, uint8_t month, uint8_t day)
-[; ;RTC.c: 107: {
+[; ;RTC.c: 199: uint8_t dayOfWeek(uint8_t year, uint8_t month, uint8_t day)
+[; ;RTC.c: 200: {
 [e :U _dayOfWeek ]
 [v _year `uc ~T0 @X0 1 r1 ]
 [v _month `uc ~T0 @X0 1 r2 ]
 [v _day `uc ~T0 @X0 1 r3 ]
 [f ]
-"109
+"202
 [v _tmp `ul ~T0 @X0 1 a ]
-[; ;RTC.c: 109: uint32_t tmp = (year % 200) * 365;
+[; ;RTC.c: 202: uint32_t tmp = (year % 200) * 365;
 [e = _tmp -> -> * % -> _year `i -> 200 `i -> 365 `i `l `ul ]
-[; ;RTC.c: 110: tmp += (((year % 200) + 3) / 4);
-"110
+[; ;RTC.c: 203: tmp += (((year % 200) + 3) / 4);
+"203
 [e =+ _tmp -> -> / + % -> _year `i -> 200 `i -> 3 `i -> 4 `i `l `ul ]
-[; ;RTC.c: 112: switch (month) {
-"112
-[e $U 569  ]
+[; ;RTC.c: 205: switch (month)
+"205
+[e $U 596  ]
+[; ;RTC.c: 206: {
+"206
 {
-[; ;RTC.c: 113: case 12:
-"113
-[e :U 570 ]
-[; ;RTC.c: 114: tmp += 30;
-"114
+[; ;RTC.c: 207: case 12:
+"207
+[e :U 597 ]
+[; ;RTC.c: 208: tmp += 30;
+"208
 [e =+ _tmp -> -> -> 30 `i `l `ul ]
-[; ;RTC.c: 116: case 11:
-"116
-[e :U 571 ]
-[; ;RTC.c: 117: tmp += 31;
-"117
+[; ;RTC.c: 210: case 11:
+"210
+[e :U 598 ]
+[; ;RTC.c: 211: tmp += 31;
+"211
 [e =+ _tmp -> -> -> 31 `i `l `ul ]
-[; ;RTC.c: 119: case 10:
-"119
-[e :U 572 ]
-[; ;RTC.c: 120: tmp += 30;
-"120
+[; ;RTC.c: 213: case 10:
+"213
+[e :U 599 ]
+[; ;RTC.c: 214: tmp += 30;
+"214
 [e =+ _tmp -> -> -> 30 `i `l `ul ]
-[; ;RTC.c: 122: case 9:
-"122
-[e :U 573 ]
-[; ;RTC.c: 123: tmp += 31;
-"123
+[; ;RTC.c: 216: case 9:
+"216
+[e :U 600 ]
+[; ;RTC.c: 217: tmp += 31;
+"217
 [e =+ _tmp -> -> -> 31 `i `l `ul ]
-[; ;RTC.c: 125: case 8:
-"125
-[e :U 574 ]
-[; ;RTC.c: 126: tmp += 31;
-"126
+[; ;RTC.c: 219: case 8:
+"219
+[e :U 601 ]
+[; ;RTC.c: 220: tmp += 31;
+"220
 [e =+ _tmp -> -> -> 31 `i `l `ul ]
-[; ;RTC.c: 128: case 7:
-"128
-[e :U 575 ]
-[; ;RTC.c: 129: tmp += 30;
-"129
+[; ;RTC.c: 222: case 7:
+"222
+[e :U 602 ]
+[; ;RTC.c: 223: tmp += 30;
+"223
 [e =+ _tmp -> -> -> 30 `i `l `ul ]
-[; ;RTC.c: 131: case 6:
-"131
-[e :U 576 ]
-[; ;RTC.c: 132: tmp += 31;
-"132
+[; ;RTC.c: 225: case 6:
+"225
+[e :U 603 ]
+[; ;RTC.c: 226: tmp += 31;
+"226
 [e =+ _tmp -> -> -> 31 `i `l `ul ]
-[; ;RTC.c: 134: case 5:
-"134
-[e :U 577 ]
-[; ;RTC.c: 135: tmp += 30;
-"135
+[; ;RTC.c: 228: case 5:
+"228
+[e :U 604 ]
+[; ;RTC.c: 229: tmp += 30;
+"229
 [e =+ _tmp -> -> -> 30 `i `l `ul ]
-[; ;RTC.c: 137: case 4:
-"137
-[e :U 578 ]
-[; ;RTC.c: 138: tmp += 31;
-"138
+[; ;RTC.c: 231: case 4:
+"231
+[e :U 605 ]
+[; ;RTC.c: 232: tmp += 31;
+"232
 [e =+ _tmp -> -> -> 31 `i `l `ul ]
-[; ;RTC.c: 140: case 3:
-"140
-[e :U 579 ]
-[; ;RTC.c: 141: tmp += 28;
-"141
+[; ;RTC.c: 234: case 3:
+"234
+[e :U 606 ]
+[; ;RTC.c: 235: tmp += 28;
+"235
 [e =+ _tmp -> -> -> 28 `i `l `ul ]
-[; ;RTC.c: 143: if ((year % 4) == 0) {
-"143
-[e $ ! == % -> _year `i -> 4 `i -> 0 `i 580  ]
+[; ;RTC.c: 237: if ((year % 4) == 0)
+"237
+[e $ ! == % -> _year `i -> 4 `i -> 0 `i 607  ]
+[; ;RTC.c: 238: {
+"238
 {
-[; ;RTC.c: 144: tmp++;
-"144
+[; ;RTC.c: 239: tmp++;
+"239
 [e ++ _tmp -> -> -> 1 `i `l `ul ]
-"145
+"240
 }
-[e :U 580 ]
-[; ;RTC.c: 145: }
-[; ;RTC.c: 147: case 2:
-"147
-[e :U 581 ]
-[; ;RTC.c: 148: tmp += 31;
-"148
+[e :U 607 ]
+[; ;RTC.c: 240: }
+[; ;RTC.c: 242: case 2:
+"242
+[e :U 608 ]
+[; ;RTC.c: 243: tmp += 31;
+"243
 [e =+ _tmp -> -> -> 31 `i `l `ul ]
-[; ;RTC.c: 150: case 1:
-"150
-[e :U 582 ]
-[; ;RTC.c: 151: default:
-"151
-[e :U 583 ]
-[; ;RTC.c: 153: break;
-"153
-[e $U 568  ]
-"154
+[; ;RTC.c: 245: case 1:
+"245
+[e :U 609 ]
+[; ;RTC.c: 246: default:
+"246
+[e :U 610 ]
+[; ;RTC.c: 248: break;
+"248
+[e $U 595  ]
+"249
 }
-[; ;RTC.c: 154: }
-[e $U 568  ]
-"112
-[e :U 569 ]
-[e [\ _month , $ -> -> 12 `i `uc 570
- , $ -> -> 11 `i `uc 571
- , $ -> -> 10 `i `uc 572
- , $ -> -> 9 `i `uc 573
- , $ -> -> 8 `i `uc 574
- , $ -> -> 7 `i `uc 575
- , $ -> -> 6 `i `uc 576
- , $ -> -> 5 `i `uc 577
- , $ -> -> 4 `i `uc 578
- , $ -> -> 3 `i `uc 579
- , $ -> -> 2 `i `uc 581
- , $ -> -> 1 `i `uc 582
- 583 ]
-"154
-[e :U 568 ]
-[; ;RTC.c: 156: tmp += day;
-"156
+[; ;RTC.c: 249: }
+[e $U 595  ]
+"205
+[e :U 596 ]
+[e [\ _month , $ -> -> 12 `i `uc 597
+ , $ -> -> 11 `i `uc 598
+ , $ -> -> 10 `i `uc 599
+ , $ -> -> 9 `i `uc 600
+ , $ -> -> 8 `i `uc 601
+ , $ -> -> 7 `i `uc 602
+ , $ -> -> 6 `i `uc 603
+ , $ -> -> 5 `i `uc 604
+ , $ -> -> 4 `i `uc 605
+ , $ -> -> 3 `i `uc 606
+ , $ -> -> 2 `i `uc 608
+ , $ -> -> 1 `i `uc 609
+ 610 ]
+"249
+[e :U 595 ]
+[; ;RTC.c: 251: tmp += day;
+"251
 [e =+ _tmp -> _day `ul ]
-[; ;RTC.c: 157: tmp--;
-"157
+[; ;RTC.c: 252: tmp--;
+"252
 [e -- _tmp -> -> -> 1 `i `l `ul ]
-[; ;RTC.c: 160: return (uint8_t) ((tmp + 6) % 7);
-"160
+[; ;RTC.c: 255: return (uint8_t) ((tmp + 6) % 7);
+"255
 [e ) -> % + _tmp -> -> -> 6 `i `l `ul -> -> -> 7 `i `l `ul `uc ]
-[e $UE 567  ]
-[; ;RTC.c: 161: }
-"161
-[e :UE 567 ]
+[e $UE 594  ]
+[; ;RTC.c: 256: }
+"256
+[e :UE 594 ]
 }
-"164
-[v _printRTC `(v ~T0 @X0 1 ef1`uc ]
+"259
+[v _printRTC `(*v ~T0 @X0 1 ef1`uc ]
 {
-[; ;RTC.c: 163: void printRTC(uint8_t digits)
-[; ;RTC.c: 164: {
+[; ;RTC.c: 258: void* printRTC(uint8_t digits)
+[; ;RTC.c: 259: {
 [e :U _printRTC ]
 [v _digits `uc ~T0 @X0 1 r1 ]
 [f ]
-"165
-[v F5061 `uc ~T0 @X0 -> 9 `i s ]
-[i F5061
+"260
+[v F5073 `uc ~T0 @X0 -> 12 `i s ]
+[i F5073
 :U ..
 -> 0 `c
 ..
 ]
-[v _str `uc ~T0 @X0 -> 9 `i a ]
-[; ;RTC.c: 165: char str[9] = "";
-[e = _str F5061 ]
-[; ;RTC.c: 166: switch (countBits(digits)) {
-"166
-[e $U 586  ]
+[v _str `uc ~T0 @X0 -> 12 `i a ]
+[; ;RTC.c: 260: char str[12] = "";
+[e = _str F5073 ]
+"261
+[v _cnt `uc ~T0 @X0 1 a ]
+"262
+[v _first `uc ~T0 @X0 1 a ]
+[; ;RTC.c: 261: uint8_t cnt;
+[; ;RTC.c: 262: bool first = 1;
+[e = _first -> -> 1 `i `uc ]
+[; ;RTC.c: 263: for (cnt = rtcMenu.state; cnt != rtcMenu.state && !first; cnt++)
+"263
 {
-[; ;RTC.c: 167: case 0 ... 3:
-"167
-[e :U 587 ]
-[; ;RTC.c: 168: return;
-"168
-[e $UE 584  ]
-[; ;RTC.c: 169: case 4 ... 5:
-"169
-[e :U 588 ]
-[; ;RTC.c: 170: switch (date.view) {
-"170
-[e $U 590  ]
+[e = _cnt . _rtcMenu 0 ]
+[e $U 615  ]
+"264
+[e :U 612 ]
+[; ;RTC.c: 264: {
 {
-[; ;RTC.c: 171: case hhmm:
-"171
-[e :U 591 ]
-[; ;RTC.c: 172: sprintf(&str, "%02d.%02d", date.hour, date.minute);
-"172
-[e ( _sprintf (1 , , (. , &U _str :s 8C -> . _date 2 `i -> . _date 1 `i ]
-[; ;RTC.c: 173: break;
-"173
-[e $U 589  ]
-"174
+[; ;RTC.c: 265: if (cnt == 0)
+"265
+[e $ ! == -> _cnt `i -> 0 `i 616  ]
+[; ;RTC.c: 266: {
+"266
+{
+[; ;RTC.c: 267: first = 0;
+"267
+[e = _first -> -> 0 `i `uc ]
+"268
 }
-[; ;RTC.c: 174: }
-[e $U 589  ]
-"170
-[e :U 590 ]
-[e [\ . _date 8 , $ -> . `E4971 0 `uc 591
- 589 ]
-"174
-[e :U 589 ]
-[; ;RTC.c: 175: writeString(digits, &str);
-"175
+[e :U 616 ]
+[; ;RTC.c: 268: }
+[; ;RTC.c: 269: switch (countBits(digits))
+"269
+[e $U 618  ]
+[; ;RTC.c: 270: {
+"270
+{
+[; ;RTC.c: 271: case 8:
+"271
+[e :U 619 ]
+[; ;RTC.c: 272: switch (cnt)
+"272
+[e $U 621  ]
+[; ;RTC.c: 273: {
+"273
+{
+[; ;RTC.c: 274: case ddd_hhmm:
+"274
+[e :U 622 ]
+[; ;RTC.c: 275: sprintf(&str, "%s %02d.%02d", (dow[date.dow]), date.hour, date.minute);
+"275
+[e ( _sprintf (1 , , , (. , &U _str :s 1C &U *U + &U _dow * -> . _date 4 `ux -> * -> # *U &U *U &U _dow `ui -> -> 4 `i `ui `ux -> . _date 2 `i -> . _date 1 `i ]
+[; ;RTC.c: 276: break;
+"276
+[e $U 620  ]
+[; ;RTC.c: 277: case DD_MM_YY:
+"277
+[e :U 623 ]
+[; ;RTC.c: 278: sprintf(&str, "%02d %02d %02d", date.day, date.month, date.year % 100);
+"278
+[e ( _sprintf (1 , , , (. , &U _str :s 2C -> . _date 3 `i -> . _date 5 `i % . _date 6 -> -> 100 `i `ui ]
+[; ;RTC.c: 279: break;
+"279
+[e $U 620  ]
+[; ;RTC.c: 280: case hhmmss:
+"280
+[e :U 624 ]
+[; ;RTC.c: 281: sprintf(&str, "  %02d.%02d.%02d", date.hour, date.minute, date.second);
+"281
+[e ( _sprintf (1 , , , (. , &U _str :s 3C -> . _date 2 `i -> . _date 1 `i -> . _date 0 `i ]
+[; ;RTC.c: 282: break;
+"282
+[e $U 620  ]
+[; ;RTC.c: 283: case dd_hhmm:
+"283
+[e :U 625 ]
+[; ;RTC.c: 284: sprintf(&str, " %c%c %02d.%02d", (dow[date.dow])[0], (dow[date.dow])[1], date.minute, date.second);
+"284
+[e ( _sprintf (1 , , , , (. , &U _str :s 4C -> *U + &U *U + &U _dow * -> . _date 4 `ux -> * -> # *U &U *U &U _dow `ui -> -> 4 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _dow * -> . _date 4 `ux -> * -> # *U &U *U &U _dow `ui -> -> 4 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _dow * -> . _date 4 `ux -> * -> # *U &U *U &U _dow `ui -> -> 4 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _dow * -> . _date 4 `ux -> * -> # *U &U *U &U _dow `ui -> -> 4 `i `ui `ux `ui `ux `i -> . _date 1 `i -> . _date 0 `i ]
+[; ;RTC.c: 285: break;
+"285
+[e $U 620  ]
+[; ;RTC.c: 286: case DDMMYY:
+"286
+[e :U 626 ]
+[; ;RTC.c: 287: sprintf(&str, "  %02d.%02d.%02d", date.day, date.month, date.year % 100);
+"287
+[e ( _sprintf (1 , , , (. , &U _str :s 5C -> . _date 3 `i -> . _date 5 `i % . _date 6 -> -> 100 `i `ui ]
+[; ;RTC.c: 288: break;
+"288
+[e $U 620  ]
+[; ;RTC.c: 289: case hhmm:
+"289
+[e :U 627 ]
+[; ;RTC.c: 290: sprintf(&str, "    %02d.%02d", date.hour, date.minute);
+"290
+[e ( _sprintf (1 , , (. , &U _str :s 6C -> . _date 2 `i -> . _date 1 `i ]
+[; ;RTC.c: 291: break;
+"291
+[e $U 620  ]
+[; ;RTC.c: 292: case DDMM:
+"292
+[e :U 628 ]
+[; ;RTC.c: 293: sprintf(&str, "    %02d.%02d", date.day, date.month);
+"293
+[e ( _sprintf (1 , , (. , &U _str :s 7C -> . _date 3 `i -> . _date 5 `i ]
+[; ;RTC.c: 294: break;
+"294
+[e $U 620  ]
+"295
+}
+[; ;RTC.c: 295: }
+[e $U 620  ]
+"272
+[e :U 621 ]
+[e [\ _cnt , $ -> . `E5016 2 `uc 622
+ , $ -> . `E5016 9 `uc 623
+ , $ -> . `E5016 1 `uc 624
+ , $ -> . `E5016 3 `uc 625
+ , $ -> . `E5016 8 `uc 626
+ , $ -> . `E5016 0 `uc 627
+ , $ -> . `E5016 6 `uc 628
+ 620 ]
+"295
+[e :U 620 ]
+[; ;RTC.c: 296: case 6 ... 7:
+"296
+[e :U 629 ]
+[; ;RTC.c: 297: switch (cnt)
+"297
+[e $U 631  ]
+[; ;RTC.c: 298: {
+"298
+{
+[; ;RTC.c: 299: case hhmmss:
+"299
+[e :U 632 ]
+[; ;RTC.c: 300: sprintf(&str, "%02d.%02d.%02d", date.hour, date.minute, date.second);
+"300
+[e ( _sprintf (1 , , , (. , &U _str :s 8C -> . _date 2 `i -> . _date 1 `i -> . _date 0 `i ]
+[; ;RTC.c: 301: break;
+"301
+[e $U 630  ]
+[; ;RTC.c: 302: case dd_hhmm:
+"302
+[e :U 633 ]
+[; ;RTC.c: 303: sprintf(&str, "%c%c %02d.%02d", (dow[date.dow])[0], (dow[date.dow])[1], date.minute, date.second);
+"303
+[e ( _sprintf (1 , , , , (. , &U _str :s 9C -> *U + &U *U + &U _dow * -> . _date 4 `ux -> * -> # *U &U *U &U _dow `ui -> -> 4 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _dow * -> . _date 4 `ux -> * -> # *U &U *U &U _dow `ui -> -> 4 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _dow * -> . _date 4 `ux -> * -> # *U &U *U &U _dow `ui -> -> 4 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _dow * -> . _date 4 `ux -> * -> # *U &U *U &U _dow `ui -> -> 4 `i `ui `ux `ui `ux `i -> . _date 1 `i -> . _date 0 `i ]
+[; ;RTC.c: 304: break;
+"304
+[e $U 630  ]
+[; ;RTC.c: 305: case DDMMYY:
+"305
+[e :U 634 ]
+[; ;RTC.c: 306: sprintf(&str, "%02d.%02d.%02d", date.day, date.month, date.year % 100);
+"306
+[e ( _sprintf (1 , , , (. , &U _str :s 10C -> . _date 3 `i -> . _date 5 `i % . _date 6 -> -> 100 `i `ui ]
+[; ;RTC.c: 307: break;
+"307
+[e $U 630  ]
+[; ;RTC.c: 308: case hhmm:
+"308
+[e :U 635 ]
+[; ;RTC.c: 309: sprintf(&str, "  %02d.%02d", date.hour, date.minute);
+"309
+[e ( _sprintf (1 , , (. , &U _str :s 11C -> . _date 2 `i -> . _date 1 `i ]
+[; ;RTC.c: 310: break;
+"310
+[e $U 630  ]
+[; ;RTC.c: 311: case DDMM:
+"311
+[e :U 636 ]
+[; ;RTC.c: 312: sprintf(&str, "  %02d.%02d", date.day, date.month);
+"312
+[e ( _sprintf (1 , , (. , &U _str :s 12C -> . _date 3 `i -> . _date 5 `i ]
+[; ;RTC.c: 313: break;
+"313
+[e $U 630  ]
+[; ;RTC.c: 314: default:
+"314
+[e :U 637 ]
+[; ;RTC.c: 315: continue;
+"315
+[e $U 614  ]
+"316
+}
+[; ;RTC.c: 316: }
+[e $U 630  ]
+"297
+[e :U 631 ]
+[e [\ _cnt , $ -> . `E5016 1 `uc 632
+ , $ -> . `E5016 3 `uc 633
+ , $ -> . `E5016 8 `uc 634
+ , $ -> . `E5016 0 `uc 635
+ , $ -> . `E5016 6 `uc 636
+ 637 ]
+"316
+[e :U 630 ]
+[; ;RTC.c: 317: case 4 ... 5:
+"317
+[e :U 638 ]
+[; ;RTC.c: 318: switch (cnt)
+"318
+[e $U 640  ]
+[; ;RTC.c: 319: {
+"319
+{
+[; ;RTC.c: 320: case hhmm:
+"320
+[e :U 641 ]
+[; ;RTC.c: 321: sprintf(&str, "%02d.%02d", date.hour, date.minute);
+"321
+[e ( _sprintf (1 , , (. , &U _str :s 13C -> . _date 2 `i -> . _date 1 `i ]
+[; ;RTC.c: 322: break;
+"322
+[e $U 639  ]
+[; ;RTC.c: 323: case DDMM:
+"323
+[e :U 642 ]
+[; ;RTC.c: 324: sprintf(&str, "%02d.%02d", date.day, date.month);
+"324
+[e ( _sprintf (1 , , (. , &U _str :s 14C -> . _date 3 `i -> . _date 5 `i ]
+[; ;RTC.c: 325: break;
+"325
+[e $U 639  ]
+[; ;RTC.c: 326: default:
+"326
+[e :U 643 ]
+[; ;RTC.c: 327: continue;
+"327
+[e $U 614  ]
+"328
+}
+[; ;RTC.c: 328: }
+[e $U 639  ]
+"318
+[e :U 640 ]
+[e [\ _cnt , $ -> . `E5016 0 `uc 641
+ , $ -> . `E5016 6 `uc 642
+ 643 ]
+"328
+[e :U 639 ]
+[; ;RTC.c: 329: case 0 ... 3:
+"329
+[e :U 644 ]
+[; ;RTC.c: 330: sprintf(&str, "    ");
+"330
+[e ( _sprintf (1 , &U _str :s 15C ]
+[; ;RTC.c: 331: break;
+"331
+[e $U 617  ]
+"332
+}
+[; ;RTC.c: 332: }
+[e $U 617  ]
+"269
+[e :U 618 ]
+[e [\ ( _countBits (1 -> _digits `ul , $ -> -> 8 `i `uc 619
+ , $ -> -> 6 `i `uc 629
+ , $ -> + -> 6 `i -> 1 `i `uc 629
+ , $ -> -> 4 `i `uc 638
+ , $ -> + -> 4 `i -> 1 `i `uc 638
+ , $ -> -> 0 `i `uc 644
+ , $ -> + -> 0 `i -> 1 `i `uc 644
+ , $ -> + -> 0 `i -> 2 `i `uc 644
+ , $ -> + -> 0 `i -> 3 `i `uc 644
+ 617 ]
+"332
+[e :U 617 ]
+"333
+}
+"263
+[e :U 614 ]
+[e ++ _cnt -> -> 1 `i `uc ]
+[e :U 615 ]
+[e $ && != -> _cnt `i -> . _rtcMenu 0 `i ! != -> _first `i -> -> -> 0 `i `uc `i 612  ]
+[e :U 613 ]
+"333
+}
+[; ;RTC.c: 333: }
+[; ;RTC.c: 334: rtcMenu.state = cnt;
+"334
+[e = . _rtcMenu 0 _cnt ]
+[; ;RTC.c: 335: writeString(digits, &str);
+"335
 [e ( _writeString (2 , _digits &U _str ]
-[; ;RTC.c: 176: break;
-"176
-[e $U 585  ]
-[; ;RTC.c: 177: case 6 ... 7:
-"177
-[e :U 592 ]
-[; ;RTC.c: 178: switch (date.view) {
-"178
-[e $U 594  ]
-{
-[; ;RTC.c: 179: case hhmmss:
-"179
-[e :U 595 ]
-[; ;RTC.c: 180: sprintf(&str, "%02d.%02d.%02d", date.hour, date.minute, date.second);
-"180
-[e ( _sprintf (1 , , , (. , &U _str :s 9C -> . _date 2 `i -> . _date 1 `i -> . _date 0 `i ]
-[; ;RTC.c: 181: break;
-"181
-[e $U 593  ]
-[; ;RTC.c: 182: case dd_hhmm:
-"182
-[e :U 596 ]
-[; ;RTC.c: 183: sprintf(&str, "%c%c %02d.%02d", (dow[date.dow])[0], (dow[date.dow])[1], date.minute, date.second);
-"183
-[e ( _sprintf (1 , , , , (. , &U _str :s 10C -> *U + *U + &U _dow * -> . _date 4 `ux -> -> # *U &U _dow `ui `ux * -> -> 0 `i `x -> -> # *U *U + &U _dow * -> . _date 4 `ux -> -> # *U &U _dow `ui `ux `i `x `i -> *U + *U + &U _dow * -> . _date 4 `ux -> -> # *U &U _dow `ui `ux * -> -> 1 `i `x -> -> # *U *U + &U _dow * -> . _date 4 `ux -> -> # *U &U _dow `ui `ux `i `x `i -> . _date 1 `i -> . _date 0 `i ]
-[; ;RTC.c: 184: break;
-"184
-[e $U 593  ]
-[; ;RTC.c: 185: case DDMMYY:
-"185
-[e :U 597 ]
-[; ;RTC.c: 186: sprintf(&str, "%02d.%02d.%02d", date.day, date.month, date.year % 100);
-"186
-[e ( _sprintf (1 , , , (. , &U _str :s 11C -> . _date 3 `i -> . _date 5 `i % . _date 6 -> -> 100 `i `ui ]
-[; ;RTC.c: 187: break;
-"187
-[e $U 593  ]
-"189
-}
-[; ;RTC.c: 189: }
-[e $U 593  ]
-"178
-[e :U 594 ]
-[e [\ . _date 8 , $ -> . `E4971 1 `uc 595
- , $ -> . `E4971 3 `uc 596
- , $ -> . `E4971 8 `uc 597
- 593 ]
-"189
-[e :U 593 ]
-[; ;RTC.c: 190: writeString(digits, &str);
-"190
-[e ( _writeString (2 , _digits &U _str ]
-[; ;RTC.c: 191: break;
-"191
-[e $U 585  ]
-[; ;RTC.c: 192: case 8:
-"192
-[e :U 598 ]
-[; ;RTC.c: 193: switch (date.view) {
-"193
-[e $U 600  ]
-{
-[; ;RTC.c: 194: case ddd_hhmm:
-"194
-[e :U 601 ]
-[; ;RTC.c: 195: sprintf(&str, "%s %02d.%02d", (dow[date.dow]), date.hour, date.minute);
-"195
-[e ( _sprintf (1 , , , (. , &U _str :s 12C *U + &U _dow * -> . _date 4 `ux -> -> # *U &U _dow `ui `ux -> . _date 2 `i -> . _date 1 `i ]
-[; ;RTC.c: 196: break;
-"196
-[e $U 599  ]
-[; ;RTC.c: 197: case DD_MM_YY:
-"197
-[e :U 602 ]
-[; ;RTC.c: 198: sprintf(&str, "%02d %02d %02d", date.day, date.month, date.year % 100);
-"198
-[e ( _sprintf (1 , , , (. , &U _str :s 13C -> . _date 3 `i -> . _date 5 `i % . _date 6 -> -> 100 `i `ui ]
-[; ;RTC.c: 199: break;
-"199
-[e $U 599  ]
-"201
-}
-[; ;RTC.c: 201: }
-[e $U 599  ]
-"193
-[e :U 600 ]
-[e [\ . _date 8 , $ -> . `E4971 2 `uc 601
- , $ -> . `E4971 9 `uc 602
- 599 ]
-"201
-[e :U 599 ]
-[; ;RTC.c: 202: writeString(digits, &str);
-"202
-[e ( _writeString (2 , _digits &U _str ]
-[; ;RTC.c: 203: break;
-"203
-[e $U 585  ]
-"204
-}
-[; ;RTC.c: 204: }
-[e $U 585  ]
-"166
-[e :U 586 ]
-[e [\ ( _countBits (1 -> _digits `ul , $ -> -> 0 `i `uc 587
- , $ -> + -> 0 `i -> 1 `i `uc 587
- , $ -> + -> 0 `i -> 2 `i `uc 587
- , $ -> + -> 0 `i -> 3 `i `uc 587
- , $ -> -> 4 `i `uc 588
- , $ -> + -> 4 `i -> 1 `i `uc 588
- , $ -> -> 6 `i `uc 592
- , $ -> + -> 6 `i -> 1 `i `uc 592
- , $ -> -> 8 `i `uc 598
- 585 ]
-"204
-[e :U 585 ]
-[; ;RTC.c: 205: }
-"205
-[e :UE 584 ]
+[; ;RTC.c: 336: screen.changed |= digits;
+"336
+[e =| . _screen 6 -> _digits `ui ]
+[; ;RTC.c: 337: LATC1 = ~LATC1;
+"337
+[e = _LATC1 ! _LATC1 ]
+[; ;RTC.c: 338: return (0);
+"338
+[e ) -> -> 0 `i `*v ]
+[e $UE 611  ]
+[; ;RTC.c: 339: }
+"339
+[e :UE 611 ]
 }
 [p f _sprintf 9207940 ]
-[a 4C 77 105 116 0 ]
-[a 1C 83 111 110 0 ]
-[a 2C 77 111 110 0 ]
-[a 5C 68 111 110 0 ]
-[a 7C 83 97 109 0 ]
-[a 6C 70 114 105 0 ]
-[a 3C 68 101 105 0 ]
-[a 9C 37 48 50 100 46 37 48 50 100 46 37 48 50 100 0 ]
-[a 11C 37 48 50 100 46 37 48 50 100 46 37 48 50 100 0 ]
-[a 12C 37 115 32 37 48 50 100 46 37 48 50 100 0 ]
-[a 10C 37 99 37 99 32 37 48 50 100 46 37 48 50 100 0 ]
-[a 8C 37 48 50 100 46 37 48 50 100 0 ]
-[a 13C 37 48 50 100 32 37 48 50 100 32 37 48 50 100 0 ]
+[a 3C 32 32 37 48 50 100 46 37 48 50 100 46 37 48 50 100 0 ]
+[a 5C 32 32 37 48 50 100 46 37 48 50 100 46 37 48 50 100 0 ]
+[a 8C 37 48 50 100 46 37 48 50 100 46 37 48 50 100 0 ]
+[a 10C 37 48 50 100 46 37 48 50 100 46 37 48 50 100 0 ]
+[a 1C 37 115 32 37 48 50 100 46 37 48 50 100 0 ]
+[a 4C 32 37 99 37 99 32 37 48 50 100 46 37 48 50 100 0 ]
+[a 9C 37 99 37 99 32 37 48 50 100 46 37 48 50 100 0 ]
+[a 6C 32 32 32 32 37 48 50 100 46 37 48 50 100 0 ]
+[a 7C 32 32 32 32 37 48 50 100 46 37 48 50 100 0 ]
+[a 11C 32 32 37 48 50 100 46 37 48 50 100 0 ]
+[a 12C 32 32 37 48 50 100 46 37 48 50 100 0 ]
+[a 13C 37 48 50 100 46 37 48 50 100 0 ]
+[a 14C 37 48 50 100 46 37 48 50 100 0 ]
+[a 2C 37 48 50 100 32 37 48 50 100 32 37 48 50 100 0 ]
+[a 15C 32 32 32 32 0 ]

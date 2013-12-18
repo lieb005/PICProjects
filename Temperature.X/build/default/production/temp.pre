@@ -5886,7 +5886,7 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 40 "defs.h"
+# 55 "defs.h"
 const uint32_t pow10[] = {
 1,
 10,
@@ -5900,7 +5900,7 @@ const uint32_t pow10[] = {
 1000000000
 };
 
-# 61
+# 72
 extern void wait(uint32_t count);
 
 uint8_t countBits(uint32_t num);
@@ -5911,14 +5911,30 @@ uint32_t lowbit(uint32_t x);
 uint32_t log2(uint32_t num);
 int32_t maxSize(uint8_t digits);
 
-# 27 "temp.h"
-void printTemp(uint8_t digits);
+# 21 "menu.h"
+struct sMenu
+{
+uint8_t state;
+uint8_t digits;
+uint8_t num_states;
+void* (*printFn)(uint8_t digits);
+};
+
+struct sMenu* menu;
+
+uint8_t advState();
+void advMenu();
+
+# 29 "temp.h"
+void* printTemp(uint8_t digits);
 double getTemp();
 void initTemp();
 
 double oldTemps[4];
 
-# 90 "disp.h"
+struct sMenu tempMenu;
+
+# 91 "disp.h"
 void startDisp();
 
 void update();
@@ -5937,10 +5953,12 @@ void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);
 
-# 114
-union uDigit {
+# 115
+union uDigit
+{
 
-struct digit_segs {
+struct digit_segs
+{
 uint8_t seg_a : 1;
 uint8_t seg_b : 1;
 uint8_t seg_c : 1;
@@ -5953,9 +5971,11 @@ uint8_t seg_dp : 1;
 uint8_t bits;
 };
 
-struct sScreen {
+struct sScreen
+{
 
-union uScreen_data {
+union uScreen_data
+{
 union uDigit screen[8];
 
 uint32_t bits[2];
@@ -5971,109 +5991,76 @@ uint8_t shutdown : 1;
 uint16_t changed;
 } screen;
 
-# 72 "RTC.h"
-enum inc {
-second = 0,
-minute,
-hour,
-day,
-month,
-year
-};
+# 8 "temp.c"
+double temp = 0;
 
-void initRTC();
-uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
-uint8_t daysOfMonth(uint8_t month, uint16_t year);
-uint8_t tick(uint8_t val);
-void checkDST();
-void printRTC(uint8_t digits);
-struct sDate loadTime();
-
-enum views {
-
-hhmm = 0,
-hhmmss,
-ddd_hhmm,
-dd_hhmm,
-
-dd,
-ddd,
-DDMM,
-DD_MM,
-DDMMYY,
-DD_MM_YY
-};
-
-
-
-struct sDate {
-uint8_t second;
-uint8_t minute;
-uint8_t hour;
-
-uint8_t day;
-
-uint8_t dow;
-
-uint8_t month;
-uint16_t year;
-
-uint8_t dst;
-
-uint8_t view;
-} date;
-
-uint16_t rtc_big_ticks;
-uint16_t rtc_small_ticks;
-
-const char* dow[] = {
-"Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
-};
-
-# 6 "temp.c"
 void initTemp()
 {
 
-# 15
+# 19
 ADCON0 = 0b00000001;
 
-# 22
+# 26
 ADCON1 = 0b00001110;
 
-# 31
+# 35
 ADCON2 = 0b10001101;
+
+tempMenu.digits = 0b00011111;
+tempMenu.state = 0;
+tempMenu.num_states = 2;
+tempMenu.printFn = &printTemp;
 }
 
 double getTemp()
 {
 double oldTempsTemp[3];
 uint8_t cnt;
-for (cnt = 3;cnt > 0;cnt--)
+for (cnt = 3; cnt > 0; cnt--)
 {
-oldTempsTemp[cnt-1] = oldTemps[cnt];
+oldTempsTemp[cnt - 1] = oldTemps[cnt];
 }
 GO = 1;
 while (GO);
-double temp = (((double)ADRES) * ((0.0048828125)/0.0195/(4.03030303030303030303030303)) - (20.5128205128));
+double temp;
+
+if (tempMenu.state == 0)
+{
+temp = (((double) ADRES) * ((0.0048828125)/0.0195/(4.03030303030303030303030303)) - (20.5128205128));
+}
+else
+{
+temp = (((double) ADRES) * ((0.0048828125)/0.0195/(4.03030303030303030303030303)) - (20.5128205128) * 5 / 9 + 32);
+}
 double total = temp;
-for (cnt = 0;cnt < 3;cnt++)
+for (cnt = 0; cnt < 3; cnt++)
 {
 oldTemps[cnt] = oldTempsTemp[cnt];
 total += oldTemps[cnt];
 }
 oldTemps[3] = temp;
 
-return total/4;
+temp = total / 4;
+return total / 4;
 }
 
-void printTemp(uint8_t digits)
+void* printTemp(uint8_t digits)
 {
 uint8_t units = 0;
 units |= lowbit(digits);
 units |= lowbit(digits &= (~lowbit(digits)));
 digits &= ~units;
-
+if (tempMenu.state == 0)
+{
 writeString(units, (char*) "*C");
-
-writeFloat(digits, getTemp());
 }
+else
+{
+writeString(units, (char*) "*F");
+}
+char* str = (char*)"    ";
+sprintf(str, "%*g", countBits(digits), temp);
+writeString(digits, str);
+return (0);
+}
+

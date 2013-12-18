@@ -1,25 +1,29 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"17 menu.h
-[s S523 :1 `uc 1 ]
-[n S523 sMenu state ]
-"19
-[v F4956 `(v ~T0 @X0 0 tf1`uc ]
-"125 disp.h
+"26 menu.h
+[v F4957 `(*v ~T0 @X0 0 tf1`uc ]
+"27
+[s S523 `uc 1 `uc 1 `uc 1 `*F4957 1 ]
+[n S523 sMenu state digits num_states printFn ]
+"128 disp.h
 [s S525 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S525 digit_segs seg_a seg_b seg_c seg_d seg_e seg_f seg_g seg_dp ]
-"127
+"130
 [u S524 `S525 1 `uc 1 ]
 [n S524 uDigit segs bits ]
-"136
+"141
 [u S527 `S524 -> 8 `i `ul -> 2 `i ]
 [n S527 uScreen_data screen bits ]
-"145
+"150
 [s S526 `S527 1 :8 `uc 1 :4 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 `ui 1 ]
 [n S526 sScreen digits decode brightness scan test shutdown changed ]
-"121 RTC.h
-[s S528 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ui 1 `uc 1 `uc 1 ]
-[n S528 sDate second minute hour day dow month year dst view ]
-"3603 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
+"135 RTC.h
+[s S528 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ui 1 `uc 1 ]
+[n S528 sDate second minute hour day dow month year dst ]
+"3291 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
+[v _LATC `Vuc ~T0 @X0 0 e@3979 ]
+"3159
+[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
+"3603
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
 "9504
 [v _nRBPU `Vb ~T0 @X0 0 e@32655 ]
@@ -31,19 +35,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0IE `Vb ~T0 @X0 0 e@32661 ]
 "9296
 [v _TMR0IF `Vb ~T0 @X0 0 e@32658 ]
-"25 buttons.c
+"26 buttons.c
 [c E4302 0 1 .. ]
 [n E4302 _BIT CLEAR SET  ]
-"9300 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
+"9308 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
+[v _TMR1IP `Vb ~T0 @X0 0 e@31992 ]
+"9300
 [v _TMR0ON `Vb ~T0 @X0 0 e@32431 ]
-"8818
-[v _LATA5 `Vb ~T0 @X0 0 e@31821 ]
-"27 temp.h
-[v _printTemp `(v ~T0 @X0 0 ef1`uc ]
-"86 RTC.h
-[v _printRTC `(v ~T0 @X0 0 ef1`uc ]
-"3159 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
-[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
+"8844
+[v _LATC2 `Vb ~T0 @X0 0 e@31834 ]
+"2529
+[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
+"31 menu.h
+[v _advState `(uc ~T0 @X0 0 ef ]
+"32
+[v _advMenu `(v ~T0 @X0 0 ef ]
+"8840 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
+[v _LATC0 `Vb ~T0 @X0 0 e@31832 ]
+"93 disp.h
+[v _update `(v ~T0 @X0 0 ef ]
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -4466,375 +4476,485 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 144: extern void _delay(unsigned long);
 [; ;pic18.h: 146: extern void _delaywdt(unsigned long);
 [; ;pic18.h: 148: extern void _delay3(unsigned char);
-"40 defs.h
+"55 defs.h
 [v _pow10 `Cul ~T0 @X0 -> 0 `x e ]
 [i _pow10
 :U ..
-"41
+"56
 -> -> -> 1 `i `l `ul
-"42
+"57
 -> -> -> 10 `i `l `ul
-"43
+"58
 -> -> -> 100 `i `l `ul
-"44
+"59
 -> -> -> 1000 `i `l `ul
-"45
+"60
 -> -> -> 10000 `i `l `ul
-"46
+"61
 -> -> 100000 `l `ul
-"47
+"62
 -> -> 1000000 `l `ul
-"48
+"63
 -> -> 10000000 `l `ul
-"49
+"64
 -> -> 100000000 `l `ul
-"51
+"66
 -> -> 1000000000 `l `ul
 ..
 ]
-[; ;defs.h: 40: const uint32_t pow10[] = {
-[; ;defs.h: 41: 1,
-[; ;defs.h: 42: 10,
-[; ;defs.h: 43: 100,
-[; ;defs.h: 44: 1000,
-[; ;defs.h: 45: 10000,
-[; ;defs.h: 46: 100000,
-[; ;defs.h: 47: 1000000,
-[; ;defs.h: 48: 10000000,
-[; ;defs.h: 49: 100000000,
-[; ;defs.h: 50: 1000000000
-[; ;defs.h: 51: };
-[; ;defs.h: 61: extern void wait(uint32_t count);
-[; ;defs.h: 63: uint8_t countBits(uint32_t num);
-[; ;defs.h: 64: uint32_t hibit(uint32_t x);
-[; ;defs.h: 65: uint32_t lowbit(uint32_t x);
-[; ;defs.h: 68: uint32_t log2(uint32_t num);
-[; ;defs.h: 69: int32_t maxSize(uint8_t digits);
-[; ;buttons.h: 17: void setupButtons();
-[; ;buttons.h: 18: void buttons();
-"20 buttons.h
+[; ;defs.h: 55: const uint32_t pow10[] = {
+[; ;defs.h: 56: 1,
+[; ;defs.h: 57: 10,
+[; ;defs.h: 58: 100,
+[; ;defs.h: 59: 1000,
+[; ;defs.h: 60: 10000,
+[; ;defs.h: 61: 100000,
+[; ;defs.h: 62: 1000000,
+[; ;defs.h: 63: 10000000,
+[; ;defs.h: 64: 100000000,
+[; ;defs.h: 65: 1000000000
+[; ;defs.h: 66: };
+[; ;defs.h: 72: extern void wait(uint32_t count);
+[; ;defs.h: 74: uint8_t countBits(uint32_t num);
+[; ;defs.h: 75: uint32_t hibit(uint32_t x);
+[; ;defs.h: 76: uint32_t lowbit(uint32_t x);
+[; ;defs.h: 79: uint32_t log2(uint32_t num);
+[; ;defs.h: 80: int32_t maxSize(uint8_t digits);
+[; ;buttons.h: 35: void setupButtons();
+[; ;buttons.h: 36: void buttons();
+"38 buttons.h
 [v _tmr0BigCounts `ul ~T0 @X0 1 e ]
-[; ;buttons.h: 20: uint32_t tmr0BigCounts;
-"17 menu.h
-[v _menu `S523 ~T0 @X0 1 e ]
-[; ;menu.h: 15: struct sMenu {
-[; ;menu.h: 16: uint8_t state : 1;
-[; ;menu.h: 17: } menu;
-"19
-[v _printFn `*F4956 ~T0 @X0 1 e ]
-[; ;menu.h: 19: void (*printFn)(uint8_t digits);
-[; ;disp.h: 90: void startDisp();
-[; ;disp.h: 92: void update();
-[; ;disp.h: 94: void spi(uint8_t addr, uint8_t data);
-[; ;disp.h: 96: void setBrightness(uint8_t bright);
-[; ;disp.h: 97: void setTest(bool state);
-[; ;disp.h: 99: void writeDigit(uint8_t digit, uint8_t segs);
-[; ;disp.h: 100: void writeChar(uint8_t digit, char num);
-[; ;disp.h: 102: void writeLong(uint8_t digits, int32_t num);
-[; ;disp.h: 103: void writeFloat(uint8_t digits, double num);
-[; ;disp.h: 104: void writeString(uint8_t digits, char* num);
-[; ;disp.h: 106: uint8_t rotate(uint8_t seg);
-[; ;disp.h: 114: union uDigit {
-[; ;disp.h: 116: struct digit_segs {
-[; ;disp.h: 117: uint8_t seg_a : 1;
-[; ;disp.h: 118: uint8_t seg_b : 1;
-[; ;disp.h: 119: uint8_t seg_c : 1;
-[; ;disp.h: 120: uint8_t seg_d : 1;
-[; ;disp.h: 121: uint8_t seg_e : 1;
-[; ;disp.h: 122: uint8_t seg_f : 1;
-[; ;disp.h: 123: uint8_t seg_g : 1;
-[; ;disp.h: 124: uint8_t seg_dp : 1;
-[; ;disp.h: 125: } segs;
-[; ;disp.h: 126: uint8_t bits;
-[; ;disp.h: 127: };
-"145 disp.h
+[; ;buttons.h: 38: uint32_t tmr0BigCounts;
+[; ;menu.h: 21: struct sMenu
+[; ;menu.h: 22: {
+[; ;menu.h: 23: uint8_t state;
+[; ;menu.h: 24: uint8_t digits;
+[; ;menu.h: 25: uint8_t num_states;
+[; ;menu.h: 26: void* (*printFn)(uint8_t digits);
+[; ;menu.h: 27: };
+"29 menu.h
+[v _menu `*S523 ~T0 @X0 1 e ]
+[; ;menu.h: 29: struct sMenu* menu;
+[; ;menu.h: 31: uint8_t advState();
+[; ;menu.h: 32: void advMenu();
+[; ;disp.h: 91: void startDisp();
+[; ;disp.h: 93: void update();
+[; ;disp.h: 95: void spi(uint8_t addr, uint8_t data);
+[; ;disp.h: 97: void setBrightness(uint8_t bright);
+[; ;disp.h: 98: void setTest(bool state);
+[; ;disp.h: 100: void writeDigit(uint8_t digit, uint8_t segs);
+[; ;disp.h: 101: void writeChar(uint8_t digit, char num);
+[; ;disp.h: 103: void writeLong(uint8_t digits, int32_t num);
+[; ;disp.h: 104: void writeFloat(uint8_t digits, double num);
+[; ;disp.h: 105: void writeString(uint8_t digits, char* num);
+[; ;disp.h: 107: uint8_t rotate(uint8_t seg);
+[; ;disp.h: 115: union uDigit
+[; ;disp.h: 116: {
+[; ;disp.h: 118: struct digit_segs
+[; ;disp.h: 119: {
+[; ;disp.h: 120: uint8_t seg_a : 1;
+[; ;disp.h: 121: uint8_t seg_b : 1;
+[; ;disp.h: 122: uint8_t seg_c : 1;
+[; ;disp.h: 123: uint8_t seg_d : 1;
+[; ;disp.h: 124: uint8_t seg_e : 1;
+[; ;disp.h: 125: uint8_t seg_f : 1;
+[; ;disp.h: 126: uint8_t seg_g : 1;
+[; ;disp.h: 127: uint8_t seg_dp : 1;
+[; ;disp.h: 128: } segs;
+[; ;disp.h: 129: uint8_t bits;
+[; ;disp.h: 130: };
+"150 disp.h
 [v _screen `S526 ~T0 @X0 1 e ]
-[; ;disp.h: 129: struct sScreen {
-[; ;disp.h: 131: union uScreen_data {
-[; ;disp.h: 132: union uDigit screen[8];
-[; ;disp.h: 134: uint32_t bits[2];
-[; ;disp.h: 136: } digits;
-[; ;disp.h: 137: uint8_t decode : 8;
-[; ;disp.h: 138: uint8_t brightness : 4;
-[; ;disp.h: 139: uint8_t scan : 3;
-[; ;disp.h: 140: uint8_t test : 1;
-[; ;disp.h: 141: uint8_t shutdown : 1;
-[; ;disp.h: 144: uint16_t changed;
-[; ;disp.h: 145: } screen;
-[; ;RTC.h: 72: enum inc {
-[; ;RTC.h: 73: second = 0,
-[; ;RTC.h: 74: minute,
-[; ;RTC.h: 75: hour,
-[; ;RTC.h: 76: day,
-[; ;RTC.h: 77: month,
-[; ;RTC.h: 78: year
-[; ;RTC.h: 79: };
-[; ;RTC.h: 81: void initRTC();
-[; ;RTC.h: 82: uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
-[; ;RTC.h: 83: uint8_t daysOfMonth(uint8_t month, uint16_t year);
-[; ;RTC.h: 84: uint8_t tick(uint8_t val);
-[; ;RTC.h: 85: void checkDST();
-[; ;RTC.h: 86: void printRTC(uint8_t digits);
-[; ;RTC.h: 87: struct sDate loadTime();
-[; ;RTC.h: 89: enum views {
-[; ;RTC.h: 91: hhmm = 0,
-[; ;RTC.h: 92: hhmmss,
-[; ;RTC.h: 93: ddd_hhmm,
-[; ;RTC.h: 94: dd_hhmm,
-[; ;RTC.h: 96: dd,
-[; ;RTC.h: 97: ddd,
-[; ;RTC.h: 98: DDMM,
-[; ;RTC.h: 99: DD_MM,
-[; ;RTC.h: 100: DDMMYY,
-[; ;RTC.h: 101: DD_MM_YY
-[; ;RTC.h: 102: };
-"121 RTC.h
+[; ;disp.h: 132: struct sScreen
+[; ;disp.h: 133: {
+[; ;disp.h: 135: union uScreen_data
+[; ;disp.h: 136: {
+[; ;disp.h: 137: union uDigit screen[8];
+[; ;disp.h: 139: uint32_t bits[2];
+[; ;disp.h: 141: } digits;
+[; ;disp.h: 142: uint8_t decode : 8;
+[; ;disp.h: 143: uint8_t brightness : 4;
+[; ;disp.h: 144: uint8_t scan : 3;
+[; ;disp.h: 145: uint8_t test : 1;
+[; ;disp.h: 146: uint8_t shutdown : 1;
+[; ;disp.h: 149: uint16_t changed;
+[; ;disp.h: 150: } screen;
+[; ;RTC.h: 92: enum inc
+[; ;RTC.h: 93: {
+[; ;RTC.h: 94: second = 0,
+[; ;RTC.h: 95: minute,
+[; ;RTC.h: 96: hour,
+[; ;RTC.h: 97: day,
+[; ;RTC.h: 98: month,
+[; ;RTC.h: 99: year
+[; ;RTC.h: 100: };
+[; ;RTC.h: 103: enum views
+[; ;RTC.h: 104: {
+[; ;RTC.h: 106: hhmm = 0,
+[; ;RTC.h: 107: hhmmss,
+[; ;RTC.h: 108: ddd_hhmm,
+[; ;RTC.h: 109: dd_hhmm,
+[; ;RTC.h: 111: dd,
+[; ;RTC.h: 112: ddd,
+[; ;RTC.h: 113: DDMM,
+[; ;RTC.h: 114: DD_MM,
+[; ;RTC.h: 115: DDMMYY,
+[; ;RTC.h: 116: DD_MM_YY
+[; ;RTC.h: 117: };
+"135 RTC.h
 [v _date `S528 ~T0 @X0 1 e ]
-[; ;RTC.h: 106: struct sDate {
-[; ;RTC.h: 107: uint8_t second;
-[; ;RTC.h: 108: uint8_t minute;
-[; ;RTC.h: 109: uint8_t hour;
-[; ;RTC.h: 111: uint8_t day;
-[; ;RTC.h: 113: uint8_t dow;
-[; ;RTC.h: 115: uint8_t month;
-[; ;RTC.h: 116: uint16_t year;
-[; ;RTC.h: 118: uint8_t dst;
-[; ;RTC.h: 120: uint8_t view;
-[; ;RTC.h: 121: } date;
-"123
+[; ;RTC.h: 121: struct sDate
+[; ;RTC.h: 122: {
+[; ;RTC.h: 123: uint8_t second;
+[; ;RTC.h: 124: uint8_t minute;
+[; ;RTC.h: 125: uint8_t hour;
+[; ;RTC.h: 127: uint8_t day;
+[; ;RTC.h: 129: uint8_t dow;
+[; ;RTC.h: 131: uint8_t month;
+[; ;RTC.h: 132: uint16_t year;
+[; ;RTC.h: 134: uint8_t dst;
+[; ;RTC.h: 135: } date;
+"137
 [v _rtc_big_ticks `ui ~T0 @X0 1 e ]
-[; ;RTC.h: 123: uint16_t rtc_big_ticks;
-"124
+[; ;RTC.h: 137: uint16_t rtc_big_ticks;
+"138
 [v _rtc_small_ticks `ui ~T0 @X0 1 e ]
-[; ;RTC.h: 124: uint16_t rtc_small_ticks;
-"126
-[v _dow `*Cuc ~T0 @X0 -> 0 `x e ]
+[; ;RTC.h: 138: uint16_t rtc_small_ticks;
+"140
+[v F5043 `Cuc ~T0 @X0 -> 4 `i t ]
+[v _dow `F5043 ~T0 @X0 -> 7 `i e ]
 [i _dow
 :U ..
-"127
-:s 1C
-:s 2C
-:s 3C
-:s 4C
-:s 5C
-:s 6C
-"128
-:s 7C
+:U ..
+-> 83 `c
+-> 111 `c
+-> 110 `c
+-> 0 `c
+..
+:U ..
+-> 77 `c
+-> 111 `c
+-> 110 `c
+-> 0 `c
+..
+:U ..
+-> 68 `c
+-> 101 `c
+-> 105 `c
+-> 0 `c
+..
+:U ..
+-> 77 `c
+-> 105 `c
+-> 116 `c
+-> 0 `c
+..
+:U ..
+-> 68 `c
+-> 111 `c
+-> 110 `c
+-> 0 `c
+..
+:U ..
+-> 70 `c
+-> 114 `c
+-> 105 `c
+-> 0 `c
+..
+:U ..
+-> 83 `c
+-> 97 `c
+-> 109 `c
+-> 0 `c
+..
 ..
 ]
-[; ;RTC.h: 126: const char* dow[] = {
-[; ;RTC.h: 127: "Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
-[; ;RTC.h: 128: };
-[; ;temp.h: 27: void printTemp(uint8_t digits);
-[; ;temp.h: 28: double getTemp();
-[; ;temp.h: 29: void initTemp();
-"31 temp.h
+[; ;RTC.h: 140: const char dow[7][4] = {
+[; ;RTC.h: 141: "Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
+[; ;RTC.h: 142: };
+"144
+[v _rtcMenu `S523 ~T0 @X0 1 e ]
+[; ;RTC.h: 144: struct sMenu rtcMenu;
+[; ;RTC.h: 146: void initRTC();
+[; ;RTC.h: 147: uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
+[; ;RTC.h: 148: uint8_t daysOfMonth(uint8_t month, uint16_t year);
+[; ;RTC.h: 149: uint8_t tick(uint8_t val);
+[; ;RTC.h: 150: void checkDST();
+[; ;RTC.h: 151: void* printRTC(uint8_t digits);
+[; ;RTC.h: 152: struct sDate loadTime();
+[; ;RTC.h: 153: void saveTime(struct sDate date);
+[; ;temp.h: 29: void* printTemp(uint8_t digits);
+[; ;temp.h: 30: double getTemp();
+[; ;temp.h: 31: void initTemp();
+"33 temp.h
 [v _oldTemps `d ~T0 @X0 -> 4 `i e ]
-[; ;temp.h: 31: double oldTemps[4];
-"9 buttons.c
+[; ;temp.h: 33: double oldTemps[4];
+"35
+[v _tempMenu `S523 ~T0 @X0 1 e ]
+[; ;temp.h: 35: struct sMenu tempMenu;
+"8 buttons.c
+[v _oldLATB `uc ~T0 @X0 1 e ]
+[i _oldLATB
+-> -> 0 `i `uc
+]
+[; ;buttons.c: 8: uint8_t oldLATB = 0;
+"9
+[v _waitCnt `ul ~T0 @X0 -> 8 `i e ]
+[i _waitCnt
+:U ..
+-> -> -> 0 `i `l `ul
+-> -> -> 0 `i `l `ul
+-> -> -> 0 `i `l `ul
+-> -> -> 0 `i `l `ul
+-> -> -> 0 `i `l `ul
+-> -> -> 0 `i `l `ul
+-> -> -> 0 `i `l `ul
+-> -> -> 0 `i `l `ul
+..
+]
+[; ;buttons.c: 9: uint32_t waitCnt[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+"10
+[v _waitcnt `ul ~T0 @X0 1 e ]
+[i _waitcnt
+-> -> -> 0 `i `l `ul
+]
+[; ;buttons.c: 10: uint32_t waitcnt = 0;
+"13
 [v _setupButtons `(v ~T0 @X0 1 ef ]
 {
-[; ;buttons.c: 8: void setupButtons()
-[; ;buttons.c: 9: {
+[; ;buttons.c: 12: void setupButtons()
+[; ;buttons.c: 13: {
 [e :U _setupButtons ]
 [f ]
-[; ;buttons.c: 11: TRISB = 0xFF;
-"11
+[; ;buttons.c: 14: LATC = 0;
+"14
+[e = _LATC -> -> 0 `i `uc ]
+[; ;buttons.c: 15: LATB = 0;
+"15
+[e = _LATB -> -> 0 `i `uc ]
+[; ;buttons.c: 18: TRISB = 0b11111111;
+"18
 [e = _TRISB -> -> 255 `i `uc ]
-[; ;buttons.c: 12: nRBPU = !0;
-"12
+[; ;buttons.c: 20: nRBPU = !0;
+"20
 [e = _nRBPU ! != -> 0 `i -> 0 `i ]
 [; ;buttons.c: 21: tmr0BigCounts = 0;
 "21
 [e = _tmr0BigCounts -> -> -> 0 `i `l `ul ]
-[; ;buttons.c: 22: T0CON = 0b00000111;
-"22
-[e = _T0CON -> -> 7 `i `uc ]
-[; ;buttons.c: 23: TMR0 = (65536-50356);
+[; ;buttons.c: 23: T0CON = (0b00001000);
 "23
-[e = _TMR0 -> - -> 65536 `l -> 50356 `l `us ]
-[; ;buttons.c: 24: TMR0IE = 1;
+[e = _T0CON -> -> 8 `i `uc ]
+[; ;buttons.c: 24: TMR0 = (65536-32767);
 "24
-[e = _TMR0IE -> -> 1 `i `b ]
-[; ;buttons.c: 25: TMR0IF = CLEAR;
+[e = _TMR0 -> - -> 65536 `l -> -> 32767 `i `l `us ]
+[; ;buttons.c: 25: TMR0IE = 1;
 "25
-[e = _TMR0IF -> . `E4302 0 `b ]
-[; ;buttons.c: 26: TMR0ON = 1;
+[e = _TMR0IE -> -> 1 `i `b ]
+[; ;buttons.c: 26: TMR0IF = CLEAR;
 "26
-[e = _TMR0ON -> -> 1 `i `b ]
-[; ;buttons.c: 27: }
+[e = _TMR0IF -> . `E4302 0 `b ]
+[; ;buttons.c: 27: TMR1IP = 1;
 "27
+[e = _TMR1IP -> -> 1 `i `b ]
+[; ;buttons.c: 28: TMR0ON = 1;
+"28
+[e = _TMR0ON -> -> 1 `i `b ]
+[; ;buttons.c: 29: }
+"29
 [e :UE 529 ]
 }
-"30
+"32
 [v _buttons `(v ~T0 @X0 1 ef ]
 {
-[; ;buttons.c: 29: void buttons()
-[; ;buttons.c: 30: {
+[; ;buttons.c: 31: void buttons()
+[; ;buttons.c: 32: {
 [e :U _buttons ]
 [f ]
-"31
-[v _cnt `uc ~T0 @X0 1 a ]
-[; ;buttons.c: 31: uint8_t cnt;
-[; ;buttons.c: 32: LATA5 = 0;
-"32
-[e = _LATA5 -> -> 0 `i `b ]
-[; ;buttons.c: 33: for (cnt = 0; cnt < 8; cnt++) {
+[; ;buttons.c: 33: waitcnt++;
 "33
-{
-[e = _cnt -> -> 0 `i `uc ]
-[e $ < -> _cnt `i -> 8 `i 531  ]
-[e $U 532  ]
-[e :U 531 ]
-{
-[; ;buttons.c: 34: switch (LATB & (1 << cnt)) {
-"34
-[e $U 535  ]
-{
-[; ;buttons.c: 35: case 1 << 0:
+[e ++ _waitcnt -> -> -> 1 `i `l `ul ]
+[; ;buttons.c: 35: LATC2 = 0;
 "35
-[e :U 536 ]
-[; ;buttons.c: 36: menu.state += 1;
+[e = _LATC2 -> -> 0 `i `b ]
+[; ;buttons.c: 36: if ((( PORTB) & 0b1) && ((int32_t) (waitCnt[0] - waitcnt) <= 0))
 "36
-[e =+ . _menu 0 -> -> 1 `i `uc ]
-[; ;buttons.c: 37: screen.changed |= 0b11111111;
+[e $ ! && != & -> _PORTB `i -> 1 `i -> 0 `i <= -> - *U + &U _waitCnt * -> -> -> 0 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux _waitcnt `l -> -> 0 `i `l 531  ]
+[; ;buttons.c: 37: {
 "37
-[e =| . _screen 6 -> -> 255 `i `ui ]
-[; ;buttons.c: 38: break;
+{
+[; ;buttons.c: 38: waitCnt[0] = waitcnt + 15;
 "38
-[e $U 534  ]
-[; ;buttons.c: 39: case 1 << 1:
+[e = *U + &U _waitCnt * -> -> -> 0 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux + _waitcnt -> -> -> 15 `i `l `ul ]
+[; ;buttons.c: 39: LATC2 = advState();
 "39
-[e :U 537 ]
-[; ;buttons.c: 40: screen.brightness = 0xF;
+[e = _LATC2 -> ( _advState ..  `b ]
 "40
-[e = . _screen 2 -> -> 15 `i `uc ]
-[; ;buttons.c: 41: screen.changed |= (1 << 10);
+}
+[e :U 531 ]
+[; ;buttons.c: 40: }
+[; ;buttons.c: 41: if ((( PORTB) & 0b10) && ((int32_t) (waitCnt[1] - waitcnt) <= 0))
 "41
-[e =| . _screen 6 -> << -> 1 `i -> 10 `i `ui ]
-[; ;buttons.c: 42: break;
+[e $ ! && != & -> _PORTB `i -> 2 `i -> 0 `i <= -> - *U + &U _waitCnt * -> -> -> 1 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux _waitcnt `l -> -> 0 `i `l 532  ]
+[; ;buttons.c: 42: {
 "42
-[e $U 534  ]
-[; ;buttons.c: 43: case 1 << 2:
+{
+[; ;buttons.c: 43: waitCnt[1] = waitcnt + 15;
 "43
-[e :U 538 ]
-[; ;buttons.c: 44: menu.state -= 1;
+[e = *U + &U _waitCnt * -> -> -> 1 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux + _waitcnt -> -> -> 15 `i `l `ul ]
+[; ;buttons.c: 44: screen.brightness++;
 "44
-[e =- . _menu 0 -> -> 1 `i `uc ]
-[; ;buttons.c: 45: screen.changed |= 0b11111111;
+[e ++ . _screen 2 -> -> 1 `i `uc ]
+[; ;buttons.c: 45: screen.changed |= (1 << 10);
 "45
-[e =| . _screen 6 -> -> 255 `i `ui ]
-[; ;buttons.c: 46: break;
-"46
-[e $U 534  ]
-[; ;buttons.c: 47: case 1 << 3:
-"47
-[e :U 539 ]
-[; ;buttons.c: 48: screen.brightness = 0;
-"48
-[e = . _screen 2 -> -> 0 `i `uc ]
-[; ;buttons.c: 49: screen.changed |= (1 << 10);
-"49
 [e =| . _screen 6 -> << -> 1 `i -> 10 `i `ui ]
-[; ;buttons.c: 50: break;
-"50
-[e $U 534  ]
-[; ;buttons.c: 51: case 1 << 4:
-"51
-[e :U 540 ]
-[; ;buttons.c: 52: LATA5 = 1;
-"52
-[e = _LATA5 -> -> 1 `i `b ]
-[; ;buttons.c: 53: break;
-"53
-[e $U 534  ]
-[; ;buttons.c: 54: case 1 << 5:
-"54
-[e :U 541 ]
-[; ;buttons.c: 55: LATA5 = 1;
-"55
-[e = _LATA5 -> -> 1 `i `b ]
-[; ;buttons.c: 56: break;
-"56
-[e $U 534  ]
-[; ;buttons.c: 57: case 1 << 6:
-"57
-[e :U 542 ]
-[; ;buttons.c: 58: date.view = 10 % (date.view + 1);
-"58
-[e = . _date 8 -> % -> 10 `i + -> . _date 8 `i -> 1 `i `uc ]
-[; ;buttons.c: 59: screen.changed |= 0b11111111;
-"59
-[e =| . _screen 6 -> -> 255 `i `ui ]
-[; ;buttons.c: 60: break;
-"60
-[e $U 534  ]
-[; ;buttons.c: 61: case 1 << 7:
-"61
-[e :U 543 ]
-[; ;buttons.c: 62: if (menu.state) {
-"62
-[e $ ! != -> . _menu 0 `i -> -> -> 0 `i `uc `i 544  ]
-{
-[; ;buttons.c: 63: printFn = &printTemp;
-"63
-[e = _printFn &U _printTemp ]
-"64
+"46
 }
-[; ;buttons.c: 64: } else {
-[e $U 545  ]
-[e :U 544 ]
-{
-[; ;buttons.c: 65: printFn = &printRTC;
-"65
-[e = _printFn &U _printRTC ]
-"66
-}
-[e :U 545 ]
-[; ;buttons.c: 66: }
-[; ;buttons.c: 67: break;
-"67
-[e $U 534  ]
-[; ;buttons.c: 68: default:
-"68
-[e :U 546 ]
-[; ;buttons.c: 69: break;
-"69
-[e $U 534  ]
-"70
-}
-[; ;buttons.c: 70: }
-[e $U 534  ]
-"34
-[e :U 535 ]
-[e [\ & -> _LATB `i << -> 1 `i _cnt , $ << -> 1 `i -> 0 `i 536
- , $ << -> 1 `i -> 1 `i 537
- , $ << -> 1 `i -> 2 `i 538
- , $ << -> 1 `i -> 3 `i 539
- , $ << -> 1 `i -> 4 `i 540
- , $ << -> 1 `i -> 5 `i 541
- , $ << -> 1 `i -> 6 `i 542
- , $ << -> 1 `i -> 7 `i 543
- 546 ]
-"70
-[e :U 534 ]
-"71
-}
-"33
-[e ++ _cnt -> -> 1 `i `uc ]
-[e $ < -> _cnt `i -> 8 `i 531  ]
 [e :U 532 ]
+[; ;buttons.c: 46: }
+[; ;buttons.c: 47: if ((( PORTB) & 0b100) && ((int32_t) (waitCnt[2] - waitcnt) <= 0))
+"47
+[e $ ! && != & -> _PORTB `i -> 4 `i -> 0 `i <= -> - *U + &U _waitCnt * -> -> -> 2 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux _waitcnt `l -> -> 0 `i `l 533  ]
+[; ;buttons.c: 48: {
+"48
+{
+[; ;buttons.c: 49: waitCnt[2] = waitcnt + 15;
+"49
+[e = *U + &U _waitCnt * -> -> -> 2 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux + _waitcnt -> -> -> 15 `i `l `ul ]
+[; ;buttons.c: 50: advMenu();
+"50
+[e ( _advMenu ..  ]
+"51
+}
+[e :U 533 ]
+[; ;buttons.c: 51: }
+[; ;buttons.c: 52: if ((( PORTB) & 0b1000) && ((int32_t) (waitCnt[3] - waitcnt) <= 0))
+"52
+[e $ ! && != & -> _PORTB `i -> 8 `i -> 0 `i <= -> - *U + &U _waitCnt * -> -> -> 3 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux _waitcnt `l -> -> 0 `i `l 534  ]
+[; ;buttons.c: 53: {
+"53
+{
+[; ;buttons.c: 54: waitCnt[3] = waitcnt + 15;
+"54
+[e = *U + &U _waitCnt * -> -> -> 3 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux + _waitcnt -> -> -> 15 `i `l `ul ]
+[; ;buttons.c: 55: screen.brightness--;
+"55
+[e -- . _screen 2 -> -> 1 `i `uc ]
+[; ;buttons.c: 56: screen.changed |= (1 << 10);
+"56
+[e =| . _screen 6 -> << -> 1 `i -> 10 `i `ui ]
+"57
+}
+[e :U 534 ]
+[; ;buttons.c: 57: }
+[; ;buttons.c: 58: LATC0 = 0;
+"58
+[e = _LATC0 -> -> 0 `i `b ]
+[; ;buttons.c: 59: if ((( PORTB) & 0b10000) && ((int32_t) (waitCnt[4] - waitcnt) <= 0))
+"59
+[e $ ! && != & -> _PORTB `i -> 16 `i -> 0 `i <= -> - *U + &U _waitCnt * -> -> -> 4 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux _waitcnt `l -> -> 0 `i `l 535  ]
+[; ;buttons.c: 60: {
+"60
+{
+[; ;buttons.c: 61: waitCnt[4] = waitcnt + 15;
+"61
+[e = *U + &U _waitCnt * -> -> -> 4 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux + _waitcnt -> -> -> 15 `i `l `ul ]
+[; ;buttons.c: 62: LATC0 = 1;
+"62
+[e = _LATC0 -> -> 1 `i `b ]
+"63
+}
+[e :U 535 ]
+[; ;buttons.c: 63: }
+[; ;buttons.c: 64: if ((( PORTB) & 0b100000) && ((int32_t) (waitCnt[5] - waitcnt) <= 0))
+"64
+[e $ ! && != & -> _PORTB `i -> 32 `i -> 0 `i <= -> - *U + &U _waitCnt * -> -> -> 5 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux _waitcnt `l -> -> 0 `i `l 536  ]
+[; ;buttons.c: 65: {
+"65
+{
+[; ;buttons.c: 66: waitCnt[5] = waitcnt + 15;
+"66
+[e = *U + &U _waitCnt * -> -> -> 5 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux + _waitcnt -> -> -> 15 `i `l `ul ]
+"67
+}
+[e :U 536 ]
+[; ;buttons.c: 67: }
+[; ;buttons.c: 68: if ((( PORTB) & 0b1000000) && ((int32_t) (waitCnt[6] - waitcnt) <= 0))
+"68
+[e $ ! && != & -> _PORTB `i -> 64 `i -> 0 `i <= -> - *U + &U _waitCnt * -> -> -> 6 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux _waitcnt `l -> -> 0 `i `l 537  ]
+[; ;buttons.c: 69: {
+"69
+{
+[; ;buttons.c: 70: waitCnt[6] = waitcnt + 15;
+"70
+[e = *U + &U _waitCnt * -> -> -> 6 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux + _waitcnt -> -> -> 15 `i `l `ul ]
 "71
 }
+[e :U 537 ]
 [; ;buttons.c: 71: }
-[; ;buttons.c: 72: }
+[; ;buttons.c: 72: if ((( PORTB) & 0b10000000) && ((int32_t) (waitCnt[7] - waitcnt) <= 0))
 "72
+[e $ ! && != & -> _PORTB `i -> 128 `i -> 0 `i <= -> - *U + &U _waitCnt * -> -> -> 7 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux _waitcnt `l -> -> 0 `i `l 538  ]
+[; ;buttons.c: 73: {
+"73
+{
+[; ;buttons.c: 74: waitCnt[7] = waitcnt + 15;
+"74
+[e = *U + &U _waitCnt * -> -> -> 7 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux + _waitcnt -> -> -> 15 `i `l `ul ]
+"75
+}
+[e :U 538 ]
+[; ;buttons.c: 75: }
+[; ;buttons.c: 76: LATC2 = 0;
+"76
+[e = _LATC2 -> -> 0 `i `b ]
+[; ;buttons.c: 77: if ( PORTB)
+"77
+[e $ ! != -> _PORTB `i -> -> -> 0 `i `Vuc `i 539  ]
+[; ;buttons.c: 78: {
+"78
+{
+[; ;buttons.c: 80: update();
+"80
+[e ( _update ..  ]
+"81
+}
+[e :U 539 ]
+[; ;buttons.c: 81: }
+[; ;buttons.c: 82: if (! PORTB)
+"82
+[e $ ! ! != -> _PORTB `i -> -> -> 0 `i `Vuc `i 540  ]
+[; ;buttons.c: 83: {
+"83
+{
+[; ;buttons.c: 84: waitCnt[0] = 0;
+"84
+[e = *U + &U _waitCnt * -> -> -> 0 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux -> -> -> 0 `i `l `ul ]
+[; ;buttons.c: 85: waitCnt[1] = 0;
+"85
+[e = *U + &U _waitCnt * -> -> -> 1 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux -> -> -> 0 `i `l `ul ]
+[; ;buttons.c: 86: waitCnt[2] = 0;
+"86
+[e = *U + &U _waitCnt * -> -> -> 2 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux -> -> -> 0 `i `l `ul ]
+[; ;buttons.c: 87: waitCnt[3] = 0;
+"87
+[e = *U + &U _waitCnt * -> -> -> 3 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux -> -> -> 0 `i `l `ul ]
+[; ;buttons.c: 88: waitCnt[4] = 0;
+"88
+[e = *U + &U _waitCnt * -> -> -> 4 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux -> -> -> 0 `i `l `ul ]
+[; ;buttons.c: 89: waitCnt[5] = 0;
+"89
+[e = *U + &U _waitCnt * -> -> -> 5 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux -> -> -> 0 `i `l `ul ]
+[; ;buttons.c: 90: waitCnt[6] = 0;
+"90
+[e = *U + &U _waitCnt * -> -> -> 6 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux -> -> -> 0 `i `l `ul ]
+[; ;buttons.c: 91: waitCnt[7] = 0;
+"91
+[e = *U + &U _waitCnt * -> -> -> 7 `i `ui `ux -> -> # *U &U _waitCnt `ui `ux -> -> -> 0 `i `l `ul ]
+"92
+}
+[e :U 540 ]
+[; ;buttons.c: 92: }
+[; ;buttons.c: 93: }
+"93
 [e :UE 530 ]
 }
-[a 4C 77 105 116 0 ]
-[a 1C 83 111 110 0 ]
-[a 2C 77 111 110 0 ]
-[a 5C 68 111 110 0 ]
-[a 7C 83 97 109 0 ]
-[a 6C 70 114 105 0 ]
-[a 3C 68 101 105 0 ]

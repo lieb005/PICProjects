@@ -5,68 +5,89 @@
 #include "RTC.h"
 #include "temp.h"
 
+uint8_t oldLATB = 0;
+uint32_t waitCnt[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+uint32_t waitcnt = 0;
+
 void setupButtons()
 {
+	LATC = 0;
+	LATB = 0;
+
 	// make them all inputs
-	TRI = 0xFF;
+	TRS = 0b11111111;
+
 	nRBPU = !OFF;
-	/*
-	 * 7	- enable
-	 * 6	- 8-bit
-	 * 5	- ext clock
-	 * 4	- tick on high to low edge
-	 * 3	- prescale bypass
-	 * 2-0	- prescale 1:2^(val+1)
-	 */
 	tmr0BigCounts = 0;
-	T0CON = 0b00000111;
+
+	T0CON = TMR0_CFG;
 	TMR0 = TMR0_RESET_VAL;
 	TMR0IE = ON;
 	TMR0IF = CLEAR;
+	TMR1IP = LOW;
 	TMR0ON = ON;
 }
 
 void buttons()
 {
-	uint8_t cnt;
-	LATA5 = 0;
-	for (cnt = 0; cnt < 8; cnt++) {
-		switch (PRT & (1 << cnt)) {
-		case 1 << 0:
-			menu.state += 1;
-			screen.changed |= DIG0_7;
-			break;
-		case 1 << 1:
-			screen.brightness = 0xF;
-			screen.changed |= BRIGHTNESS;
-			break;
-		case 1 << 2:
-			menu.state -= 1;
-			screen.changed |= DIG0_7;
-			break;
-		case 1 << 3:
-			screen.brightness = 0;
-			screen.changed |= BRIGHTNESS;
-			break;
-		case 1 << 4:
-			LATA5 = 1;
-			break;
-		case 1 << 5:
-			LATA5 = 1;
-			break;
-		case 1 << 6:
-			date.view = DATEVIEWS % (date.view + 1);
-			screen.changed |= DIG0_7;
-			break;
-		case 1 << 7:
-			if (menu.state) {
-				printFn = &printTemp;
-			} else {
-				printFn = &printRTC;
-			}
-			break;
-		default:
-			break;
-		}
+	waitcnt++;
+	//LATA5 = 0;
+	LATC2 = 0;
+	if (((INV PRT) & BIT0) && ((int32_t) (waitCnt[0] - waitcnt) <= 0))
+	{
+		waitCnt[0] = waitcnt + WAITCNT;
+		LATC2 = advState();
+	}
+	if (((INV PRT) & BIT1) && ((int32_t) (waitCnt[1] - waitcnt) <= 0))
+	{
+		waitCnt[1] = waitcnt + WAITCNT;
+		screen.brightness++;
+		screen.changed |= BRIGHTNESS;
+	}
+	if (((INV PRT) & BIT2) && ((int32_t) (waitCnt[2] - waitcnt) <= 0))
+	{
+		waitCnt[2] = waitcnt + WAITCNT;
+		advMenu();
+	}
+	if (((INV PRT) & BIT3) && ((int32_t) (waitCnt[3] - waitcnt) <= 0))
+	{
+		waitCnt[3] = waitcnt + WAITCNT;
+		screen.brightness--;
+		screen.changed |= BRIGHTNESS;
+	}
+	LATC0 = OFF;
+	if (((INV PRT) & BIT4) && ((int32_t) (waitCnt[4] - waitcnt) <= 0))
+	{
+		waitCnt[4] = waitcnt + WAITCNT;
+		LATC0 = ON;
+	}
+	if (((INV PRT) & BIT5) && ((int32_t) (waitCnt[5] - waitcnt) <= 0))
+	{
+		waitCnt[5] = waitcnt + WAITCNT;
+	}
+	if (((INV PRT) & BIT6) && ((int32_t) (waitCnt[6] - waitcnt) <= 0))
+	{
+		waitCnt[6] = waitcnt + WAITCNT;
+	}
+	if (((INV PRT) & BIT7) && ((int32_t) (waitCnt[7] - waitcnt) <= 0))
+	{
+		waitCnt[7] = waitcnt + WAITCNT;
+	}
+	LATC2 = 0;
+	if (INV PRT)
+	{
+		//LATC2 = 1;
+		update();
+	}
+	if (!INV PRT)
+	{
+		waitCnt[0] = 0;
+		waitCnt[1] = 0;
+		waitCnt[2] = 0;
+		waitCnt[3] = 0;
+		waitCnt[4] = 0;
+		waitCnt[5] = 0;
+		waitCnt[6] = 0;
+		waitCnt[7] = 0;
 	}
 }

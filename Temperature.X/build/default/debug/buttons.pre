@@ -5886,7 +5886,7 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 40 "defs.h"
+# 45 "defs.h"
 const uint32_t pow10[] = {
 1,
 10,
@@ -5900,7 +5900,7 @@ const uint32_t pow10[] = {
 1000000000
 };
 
-# 61
+# 62
 extern void wait(uint32_t count);
 
 uint8_t countBits(uint32_t num);
@@ -5911,20 +5911,27 @@ uint32_t lowbit(uint32_t x);
 uint32_t log2(uint32_t num);
 int32_t maxSize(uint8_t digits);
 
-# 17 "buttons.h"
+# 34 "buttons.h"
 void setupButtons();
 void buttons();
 
 uint32_t tmr0BigCounts;
 
-# 15 "menu.h"
-struct sMenu {
-uint8_t state : 1;
-} menu;
+# 20 "menu.h"
+struct sMenu
+{
+uint8_t state;
+uint8_t digits;
+uint8_t num_states;
+void* (*printFn)(uint8_t digits);
+};
 
-void (*printFn)(uint8_t digits);
+struct sMenu* menu;
 
-# 90 "disp.h"
+uint8_t advState();
+struct sMenu advMenu();
+
+# 91 "disp.h"
 void startDisp();
 
 void update();
@@ -5943,10 +5950,12 @@ void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);
 
-# 114
-union uDigit {
+# 115
+union uDigit
+{
 
-struct digit_segs {
+struct digit_segs
+{
 uint8_t seg_a : 1;
 uint8_t seg_b : 1;
 uint8_t seg_c : 1;
@@ -5959,9 +5968,11 @@ uint8_t seg_dp : 1;
 uint8_t bits;
 };
 
-struct sScreen {
+struct sScreen
+{
 
-union uScreen_data {
+union uScreen_data
+{
 union uDigit screen[8];
 
 uint32_t bits[2];
@@ -5977,8 +5988,9 @@ uint8_t shutdown : 1;
 uint16_t changed;
 } screen;
 
-# 72 "RTC.h"
-enum inc {
+# 75 "RTC.h"
+enum inc
+{
 second = 0,
 minute,
 hour,
@@ -5992,11 +6004,29 @@ uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
 uint8_t daysOfMonth(uint8_t month, uint16_t year);
 uint8_t tick(uint8_t val);
 void checkDST();
-void printRTC(uint8_t digits);
+void* printRTC(uint8_t digits);
 struct sDate loadTime();
 
-# 104
-struct sDate {
+enum views
+{
+
+hhmm = 0,
+hhmmss,
+ddd_hhmm,
+dd_hhmm,
+
+dd,
+ddd,
+DDMM,
+DD_MM,
+DDMMYY,
+DD_MM_YY
+};
+
+
+
+struct sDate
+{
 uint8_t second;
 uint8_t minute;
 uint8_t hour;
@@ -6009,8 +6039,6 @@ uint8_t month;
 uint16_t year;
 
 uint8_t dst;
-
-uint8_t view;
 } date;
 
 uint16_t rtc_big_ticks;
@@ -6020,65 +6048,75 @@ const char* dow[] = {
 "Son", "Mon", "Dei", "Mit", "Don", "Fri", "Sam"
 };
 
-# 27 "temp.h"
-void printTemp(uint8_t digits);
+struct sMenu rtcMenu;
+
+# 28 "temp.h"
+void* printTemp(uint8_t digits);
 double getTemp();
 void initTemp();
 
 double oldTemps[4];
 
+struct sMenu tempMenu;
+
 # 8 "buttons.c"
 void setupButtons()
 {
+LATC = 0;
+LATB = 0;
 
-TRISB = 0xFF;
-nRBPU = !1;
 
-# 21
+TRISB = 0b11111111;
+
+nRBPU = !0;
 tmr0BigCounts = 0;
-T0CON = 0b00000111;
-TMR0 = (65536-50356);
+
+T0CON = (0b00001000);
+TMR0 = (65536-32767);
+TMR0IE = 1;
+TMR0IF = CLEAR;
 TMR0ON = 1;
 }
 
 void buttons()
 {
-uint8_t cnt;
-for (cnt = 0; cnt < 8; cnt++) {
-switch (~LATB & (1 << cnt)) {
-case 1 << 0:
-menu.state = 0;
-break;
-case 1 << 1:
+
+if (( LATB) & (1 << 0))
+{
+
+}
+if (( LATB) & (1 << 1))
+{
 screen.brightness = 0xF;
 screen.changed |= (1 << 10);
-break;
-case 1 << 2:
-menu.state = 1;
-break;
-case 1 << 3:
+}
+if (( LATB) & (1 << 2))
+{
+
+}
+if (( LATB) & (1 << 3))
+{
 screen.brightness = 0;
 screen.changed |= (1 << 10);
-break;
-case 1 << 4:
-LATA5 = ~LATA5;
-break;
-case 1 << 5:
-break;
-case 1 << 6:
-date.view = 10 % (date.view + 1);
-break;
-case 1 << 7:
-if (menu.state) {
-printFn = &printTemp;
 }
-else
+
+if (( LATB) & (1 << 4))
 {
-printFn = &printRTC;
+LATC0 = 1;
 }
-break;
-default:
-break;
+
+if (( LATB) & (1 << 5))
+{
+LATC1 = 1;
 }
+if (( LATB) & (1 << 6))
+{
+}
+if (( LATB) & (1 << 7))
+{
+}
+if (( LATB) != 0)
+{
+update();
 }
 }

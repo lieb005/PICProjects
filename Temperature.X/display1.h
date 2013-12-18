@@ -134,6 +134,8 @@ uint8_t getFontChar(char ch)
 		return SEG_D;
 	case '*':
 		return SEG_A + SEG_B + SEG_F + SEG_G;
+	case ' ':
+		return 0;
 	default:
 		return 0;
 	}
