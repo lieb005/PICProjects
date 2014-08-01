@@ -20,15 +20,6 @@ void initRTC()
 	LATC1 = 1;
 	loadTime();
 	LATC1 = 0;
-
-	//RTC config
-	T1CON = T1C;
-	TMR1 = RTC_OFFSET;
-	TMR1IE = ON;
-	TMR1IF = CLEAR;
-	TMR1IP = HIGH;
-	TMR1ON = ON;
-
 }
 
 struct sDate loadTime()

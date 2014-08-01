@@ -4517,7 +4517,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;disp.h: 100: void writeDigit(uint8_t digit, uint8_t segs);
 [; ;disp.h: 101: void writeChar(uint8_t digit, char num);
 [; ;disp.h: 103: void writeLong(uint8_t digits, int32_t num);
-[; ;disp.h: 104: void writeFloat(uint8_t digits, double num);
+[; ;disp.h: 104: void writeFloat(uint8_t digits, float num);
 [; ;disp.h: 105: void writeString(uint8_t digits, char* num);
 [; ;disp.h: 107: uint8_t rotate(uint8_t seg);
 [; ;disp.h: 115: union uDigit
@@ -5184,9 +5184,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;disp.c: 71: screen.digits.bits[1] = 0;
 "71
 [e = *U + &U . . _screen 0 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . . _screen 0 1 `ui `ux -> -> -> 0 `i `l `ul ]
-[; ;disp.c: 73: setBrightness(0b1111);
+[; ;disp.c: 73: setBrightness(0b0111);
 "73
-[e ( _setBrightness (1 -> -> 15 `i `uc ]
+[e ( _setBrightness (1 -> -> 7 `i `uc ]
 [; ;disp.c: 75: screen.decode = 0;
 "75
 [e = . _screen 1 -> -> 0 `i `uc ]
@@ -5390,13 +5390,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 567 ]
 }
 "165
-[v _writeFloat `(v ~T0 @X0 1 ef2`uc`d ]
+[v _writeFloat `(v ~T0 @X0 1 ef2`uc`f ]
 {
-[; ;disp.c: 164: void writeFloat(uint8_t digits, double num)
+[; ;disp.c: 164: void writeFloat(uint8_t digits, float num)
 [; ;disp.c: 165: {
 [e :U _writeFloat ]
 [v _digits `uc ~T0 @X0 1 r1 ]
-[v _num `d ~T0 @X0 1 r2 ]
+[v _num `f ~T0 @X0 1 r2 ]
 [f ]
 "166
 [v F5025 `uc ~T0 @X0 -> 9 `i s ]
@@ -5414,7 +5414,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _bits ( _countBits (1 -> _digits `ul ]
 [; ;disp.c: 168: sprintf(&str, "%.*f", bits, num);
 "168
-[e ( _sprintf (1 , , (. , &U _str :s 2C -> _bits `i _num ]
+[e ( _sprintf (1 , , (. , &U _str :s 2C -> _bits `i -> _num `d ]
 [; ;disp.c: 170: writeString(digits, str);
 "170
 [e ( _writeString (2 , _digits &U _str ]

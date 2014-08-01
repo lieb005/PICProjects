@@ -39,13 +39,12 @@ extern "C"
 #define T1C 0b11111110
 #else
 //runs at 500kHz (16MHz/4/prescale)
-//500000Hz
+//500.000Hz
 //15; 16960
+#define RTC_OFFSET	(65536-16960)
+#define RTC_TICKS	(15+1)
 //#define RTC_OFFSET	(65536-63765)
 //#define RTC_TICKS	(1+1)
-#define RTC_OFFSET	(65536-63765)
-#define RTC_TICKS	(1+1)
-//#define T1C 0b10110000
 #define T1C 0b10110000
 
 #endif

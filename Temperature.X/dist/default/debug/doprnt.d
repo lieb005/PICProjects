@@ -1,1 +1,0 @@
- dist/default/debug/doprnt.d  dist/default/debug/doprnt.p1:  /usr/opt/microchip/xc8/v1.20/sources/common/doprnt.c

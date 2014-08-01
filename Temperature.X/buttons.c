@@ -18,14 +18,6 @@ void setupButtons()
 	TRS = 0b11111111;
 
 	nRBPU = !OFF;
-	tmr0BigCounts = 0;
-
-	T0CON = TMR0_CFG;
-	TMR0 = TMR0_RESET_VAL;
-	TMR0IE = ON;
-	TMR0IF = CLEAR;
-	TMR1IP = LOW;
-	TMR0ON = ON;
 }
 
 void buttons()

@@ -5945,7 +5945,7 @@ void writeDigit(uint8_t digit, uint8_t segs);
 void writeChar(uint8_t digit, char num);
 
 void writeLong(uint8_t digits, int32_t num);
-void writeFloat(uint8_t digits, double num);
+void writeFloat(uint8_t digits, float num);
 void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);
@@ -5988,7 +5988,7 @@ uint8_t shutdown : 1;
 uint16_t changed;
 } screen;
 
-# 92 "RTC.h"
+# 91 "RTC.h"
 enum inc
 {
 second = 0,
@@ -6054,10 +6054,10 @@ void saveTime(struct sDate date);
 
 # 29 "temp.h"
 void* printTemp(uint8_t digits);
-double getTemp();
+float getTemp();
 void initTemp();
 
-double oldTemps[4];
+float oldTemps[4];
 
 struct sMenu tempMenu;
 
@@ -6075,14 +6075,6 @@ LATB = 0;
 TRISB = 0b11111111;
 
 nRBPU = !0;
-tmr0BigCounts = 0;
-
-T0CON = (0b00001000);
-TMR0 = (65536-32767);
-TMR0IE = 1;
-TMR0IF = CLEAR;
-TMR1IP = 1;
-TMR0ON = 1;
 }
 
 void buttons()

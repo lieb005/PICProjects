@@ -15,12 +15,7 @@ DD_MM 7
 DDMMYY 8
 DD_MM_YY 9
 ]
-"28
-[e E4302 _BIT `uc
-CLEAR 0
-SET 1
-]
-"43
+"34
 [e E5009 inc `uc
 second 0
 minute 1
@@ -29,17 +24,12 @@ day 3
 month 4
 year 5
 ]
-"26 /home/mark/MPLABXProjects/Temperature.X/buttons.c
+"106 /home/mark/MPLABXProjects/Temperature.X/temp-clock_main.c
 [e E4302 _BIT `uc
 CLEAR 0
 SET 1
 ]
-"102 /home/mark/MPLABXProjects/Temperature.X/temp-clock_main.c
-[e E4302 _BIT `uc
-CLEAR 0
-SET 1
-]
-"111
+"132
 [e E5009 inc `uc
 second 0
 minute 1
@@ -76,8 +66,6 @@ year 5
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
 "10 /usr/opt/microchip/xc8/v1.20/sources/common/awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
-[v i2___awmod __awmod `(i  1 e 2 0 ]
-[v i2___awmod __awmod `(i  1 e 2 0 ]
 "32 /usr/opt/microchip/xc8/v1.20/sources/common/awtofl.c
 [v ___awtofl __awtofl `(d  1 e 3 0 ]
 "33 /usr/opt/microchip/xc8/v1.20/sources/common/awtoft.c
@@ -186,12 +174,12 @@ year 5
 [v ___aslmul __aslmul `(ul  1 e 4 0 ]
 "13 /home/mark/MPLABXProjects/Temperature.X/buttons.c
 [v _setupButtons setupButtons `(v  1 e 0 0 ]
-"32
+"24
 [v _buttons buttons `(v  1 e 0 0 ]
 "4 /home/mark/MPLABXProjects/Temperature.X/defs.c
 [v _wait wait `(v  1 e 0 0 ]
-[v i1_wait wait `(v  1 e 0 0 ]
-[v i1_wait wait `(v  1 e 0 0 ]
+[v i2_wait wait `(v  1 e 0 0 ]
+[v i2_wait wait `(v  1 e 0 0 ]
 "9
 [v _countBits countBits `(uc  1 e 1 0 ]
 "19
@@ -202,14 +190,12 @@ year 5
 [v _maxSize maxSize `(l  1 e 4 0 ]
 "48
 [v _log2 log2 `(ul  1 e 4 0 ]
-[v i1_log2 log2 `(ul  1 e 4 0 ]
-[v i1_log2 log2 `(ul  1 e 4 0 ]
 [v i2_log2 log2 `(ul  1 e 4 0 ]
 [v i2_log2 log2 `(ul  1 e 4 0 ]
 "13 /home/mark/MPLABXProjects/Temperature.X/disp.c
 [v _update update `(v  1 e 0 0 ]
-[v i1_update update `(v  1 e 0 0 ]
-[v i1_update update `(v  1 e 0 0 ]
+[v i2_update update `(v  1 e 0 0 ]
+[v i2_update update `(v  1 e 0 0 ]
 "49
 [v _setBrightness setBrightness `(v  1 e 0 0 ]
 "56
@@ -218,12 +204,12 @@ year 5
 [v _startDisp startDisp `(v  1 e 0 0 ]
 "87
 [v _spi spi `(v  1 e 0 0 ]
-[v i1_spi spi `(v  1 e 0 0 ]
-[v i1_spi spi `(v  1 e 0 0 ]
+[v i2_spi spi `(v  1 e 0 0 ]
+[v i2_spi spi `(v  1 e 0 0 ]
 "109
 [v _writeDigit writeDigit `(v  1 e 0 0 ]
-[v i1_writeDigit writeDigit `(v  1 e 0 0 ]
-[v i1_writeDigit writeDigit `(v  1 e 0 0 ]
+[v i2_writeDigit writeDigit `(v  1 e 0 0 ]
+[v i2_writeDigit writeDigit `(v  1 e 0 0 ]
 "123
 [v _writeChar writeChar `(v  1 e 0 0 ]
 "130
@@ -234,8 +220,8 @@ year 5
 [v _writeString writeString `(v  1 e 0 0 ]
 "208
 [v _rotate rotate `(uc  1 e 1 0 ]
-[v i1_rotate rotate `(uc  1 e 1 0 ]
-[v i1_rotate rotate `(uc  1 e 1 0 ]
+[v i2_rotate rotate `(uc  1 e 1 0 ]
+[v i2_rotate rotate `(uc  1 e 1 0 ]
 "117 /home/mark/MPLABXProjects/Temperature.X/display1.h
 [v _getFontChar getFontChar `(uc  1 e 1 0 ]
 "7 /home/mark/MPLABXProjects/Temperature.X/menu.c
@@ -244,36 +230,28 @@ year 5
 [v _advMenu advMenu `(v  1 e 0 0 ]
 "9 /home/mark/MPLABXProjects/Temperature.X/RTC.c
 [v _initRTC initRTC `(v  1 e 0 0 ]
-"135 /home/mark/MPLABXProjects/Temperature.X/RTC.h
+"134 /home/mark/MPLABXProjects/Temperature.X/RTC.h
 [s S191 sDate 9 `uc 1 second 1 0 `uc 1 minute 1 1 `uc 1 hour 1 2 `uc 1 day 1 3 `uc 1 dow 1 4 `uc 1 month 1 5 `ui 1 year 2 6 `uc 1 dst 1 8 ]
-"35 /home/mark/MPLABXProjects/Temperature.X/RTC.c
+"26 /home/mark/MPLABXProjects/Temperature.X/RTC.c
 [v _loadTime loadTime `(S191  1 e 9 0 ]
-"69
+"60
 [v _saveTime saveTime `(v  1 e 0 0 ]
-"109
+"100
 [v _daysOfMonth daysOfMonth `(uc  1 e 1 0 ]
-"138
+"129
 [v _checkDST checkDST `(v  1 e 0 0 ]
-"162
+"153
 [v _tick tick `(uc  1 e 1 0 ]
-"200
+"191
 [v _dayOfWeek dayOfWeek `(uc  1 e 1 0 ]
-"259
+"250
 [v _printRTC printRTC `(*.2v  1 e 2 0 ]
-"42 /home/mark/MPLABXProjects/Temperature.X/temp-clock_main.c
+"43 /home/mark/MPLABXProjects/Temperature.X/temp-clock_main.c
 [v _main main `(i  1 e 2 0 ]
-"62
+"63
 [v _setup setup `(v  1 e 0 0 ]
-"99
-[v _high_isr high_isr `IIH(v  1 e 0 0 ]
-"125
-[v _low_isr low_isr `IIL(v  1 e 0 0 ]
-"11 /home/mark/MPLABXProjects/Temperature.X/temp.c
-[v _initTemp initTemp `(v  1 e 0 0 ]
-"44
-[v _getTemp getTemp `(d  1 e 3 0 ]
-"76
-[v _printTemp printTemp `(*.2v  1 e 2 0 ]
+"120
+[v _isr isr `II(v  1 e 0 0 ]
 "2529 /usr/opt/microchip/xc8/v1.20/include/pic18f2550.h
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
 "3024
@@ -296,14 +274,6 @@ year 5
 [v _EEDATA EEDATA `VEuc  1 e 1 @4008 ]
 "4559
 [v _EEADR EEADR `VEuc  1 e 1 @4009 ]
-"5852
-[v _ADCON2 ADCON2 `VEuc  1 e 1 @4032 ]
-"5922
-[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
-"6012
-[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
-"6134
-[v _ADRES ADRES `VEus  1 e 2 @4035 ]
 "6674
 [v _T1CON T1CON `VEuc  1 e 1 @4045 ]
 "6778
@@ -314,12 +284,8 @@ year 5
 [v _T0CON T0CON `VEuc  1 e 1 @4053 ]
 "7391
 [v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
-"8684
-[v _GIEH GIEH `VEb  1 e 0 @32663 ]
-"8686
-[v _GIEL GIEL `VEb  1 e 0 @32662 ]
-"8690
-[v _GO GO `VEb  1 e 0 @32273 ]
+"8682
+[v _GIE GIE `VEb  1 e 0 @32663 ]
 "8780
 [v _IPEN IPEN `VEb  1 e 0 @32391 ]
 "8810
@@ -336,6 +302,8 @@ year 5
 [v _LATC1 LATC1 `VEb  1 e 0 @31833 ]
 "8844
 [v _LATC2 LATC2 `VEb  1 e 0 @31834 ]
+"8986
+[v _PEIE PEIE `VEb  1 e 0 @32662 ]
 "9096
 [v _RD RD `VEb  1 e 0 @32048 ]
 "9294
@@ -348,8 +316,6 @@ year 5
 [v _TMR1IE TMR1IE `VEb  1 e 0 @31976 ]
 "9306
 [v _TMR1IF TMR1IF `VEb  1 e 0 @31984 ]
-"9308
-[v _TMR1IP TMR1IP `VEb  1 e 0 @31992 ]
 "9310
 [v _TMR1ON TMR1ON `VEb  1 e 0 @32360 ]
 "9342
@@ -407,62 +373,55 @@ year 5
 "29 /home/mark/MPLABXProjects/Temperature.X/menu.h
 [v _menu menu `*.39S159  1 e 2 0 ]
 [s S191 sDate 9 `uc 1 second 1 0 `uc 1 minute 1 1 `uc 1 hour 1 2 `uc 1 day 1 3 `uc 1 dow 1 4 `uc 1 month 1 5 `ui 1 year 2 6 `uc 1 dst 1 8 ]
-"135 /home/mark/MPLABXProjects/Temperature.X/RTC.h
+"134 /home/mark/MPLABXProjects/Temperature.X/RTC.h
 [v _date date `S191  1 e 9 0 ]
-"137
+"136
 [v _rtc_big_ticks rtc_big_ticks `ui  1 e 2 0 ]
-"138
+"137
 [v _rtc_small_ticks rtc_small_ticks `ui  1 e 2 0 ]
-"140
+"139
 [v _dow dow `C[7][4]uc  1 e 28 0 ]
-"144
+"143
 [v _rtcMenu rtcMenu `S159  1 e 5 0 ]
-"8 /home/mark/MPLABXProjects/Temperature.X/temp.c
-[v _temp temp `d  1 e 3 0 ]
 "33 /home/mark/MPLABXProjects/Temperature.X/temp.h
-[v _oldTemps oldTemps `[4]d  1 e 12 0 ]
+[v _oldTemps oldTemps `[4]f  1 e 12 0 ]
 "35
 [v _tempMenu tempMenu `S159  1 e 5 0 ]
-"42 /home/mark/MPLABXProjects/Temperature.X/temp-clock_main.c
+"43 /home/mark/MPLABXProjects/Temperature.X/temp-clock_main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"44
-[v main@cnt cnt `ul  1 a 4 61 ]
-"42
-[v main@argc argc `i  1 p 2 56 ]
-[v main@argv argv `*.2*.2uc  1 p 3 58 ]
-"59
+"45
+[v main@cnt cnt `ul  1 a 4 30 ]
+"43
+[v main@argc argc `i  1 p 2 25 ]
+[v main@argv argv `*.2*.2uc  1 p 3 27 ]
+"60
 } 0
-"62
+"63
 [v _setup setup `(v  1 e 0 0 ]
 {
-"96
+"117
 } 0
 "13 /home/mark/MPLABXProjects/Temperature.X/buttons.c
 [v _setupButtons setupButtons `(v  1 e 0 0 ]
 {
-"29
-} 0
-"11 /home/mark/MPLABXProjects/Temperature.X/temp.c
-[v _initTemp initTemp `(v  1 e 0 0 ]
-{
-"41
+"21
 } 0
 "9 /home/mark/MPLABXProjects/Temperature.X/RTC.c
 [v _initRTC initRTC `(v  1 e 0 0 ]
 {
-"32
+"23
 } 0
-"135 /home/mark/MPLABXProjects/Temperature.X/RTC.h
+"134 /home/mark/MPLABXProjects/Temperature.X/RTC.h
 [s S191 sDate 9 `uc 1 second 1 0 `uc 1 minute 1 1 `uc 1 hour 1 2 `uc 1 day 1 3 `uc 1 dow 1 4 `uc 1 month 1 5 `ui 1 year 2 6 `uc 1 dst 1 8 ]
-"35 /home/mark/MPLABXProjects/Temperature.X/RTC.c
+"26 /home/mark/MPLABXProjects/Temperature.X/RTC.c
 [v _loadTime loadTime `(S191  1 e 9 0 ]
 {
-"36
-[v loadTime@newDate newDate `S191  1 a 9 34 ]
-"37
-[v loadTime@cnt cnt `uc  1 a 1 33 ]
-"66
+"27
+[v loadTime@newDate newDate `S191  1 a 9 3 ]
+"28
+[v loadTime@cnt cnt `uc  1 a 1 2 ]
+"57
 } 0
 "62 /home/mark/MPLABXProjects/Temperature.X/disp.c
 [v _startDisp startDisp `(v  1 e 0 0 ]
@@ -472,125 +431,118 @@ year 5
 "56
 [v _setTest setTest `(v  1 e 0 0 ]
 {
-[v setTest@state state `uc  1 p 1 31 ]
+[v setTest@state state `uc  1 p 1 0 ]
 "59
 } 0
 "49
 [v _setBrightness setBrightness `(v  1 e 0 0 ]
 {
-[v setBrightness@bright bright `uc  1 p 1 31 ]
+[v setBrightness@bright bright `uc  1 p 1 0 ]
 "53
 } 0
 "13
 [v _update update `(v  1 e 0 0 ]
 {
 "18
-[v update@cnt cnt `c  1 a 1 55 ]
+[v update@cnt cnt `c  1 a 1 24 ]
 "46
 } 0
 "109
 [v _writeDigit writeDigit `(v  1 e 0 0 ]
 {
 "114
-[v writeDigit@cnt cnt `c  1 a 1 49 ]
+[v writeDigit@cnt cnt `c  1 a 1 18 ]
 "110
-[v writeDigit@dig dig `uc  1 a 1 48 ]
+[v writeDigit@dig dig `uc  1 a 1 17 ]
 "109
-[v writeDigit@digit digit `uc  1 p 1 45 ]
-[v writeDigit@segs segs `uc  1 p 1 46 ]
+[v writeDigit@digit digit `uc  1 p 1 14 ]
+[v writeDigit@segs segs `uc  1 p 1 15 ]
 "120
 } 0
 "208
 [v _rotate rotate `(uc  1 e 1 0 ]
 {
 "210
-[v rotate@cnt cnt `c  1 a 1 36 ]
+[v rotate@cnt cnt `c  1 a 1 5 ]
 "209
-[v rotate@ret ret `uc  1 a 1 35 ]
+[v rotate@ret ret `uc  1 a 1 4 ]
 "208
-[v rotate@seg seg `uc  1 p 1 31 ]
+[v rotate@seg seg `uc  1 p 1 0 ]
 "216
 } 0
 "48 /home/mark/MPLABXProjects/Temperature.X/defs.c
 [v _log2 log2 `(ul  1 e 4 0 ]
 {
 "49
-[v log2@log2Val log2Val `ul  1 a 4 35 ]
+[v log2@log2Val log2Val `ul  1 a 4 4 ]
 "48
-[v log2@num num `ul  1 p 4 31 ]
+[v log2@num num `ul  1 p 4 0 ]
 "52
 } 0
 "87 /home/mark/MPLABXProjects/Temperature.X/disp.c
 [v _spi spi `(v  1 e 0 0 ]
 {
 "88
-[v spi@send send `ui  1 a 2 42 ]
+[v spi@send send `ui  1 a 2 11 ]
 "92
-[v spi@cnt cnt `c  1 a 1 44 ]
+[v spi@cnt cnt `c  1 a 1 13 ]
 "87
-[v spi@addr addr `uc  1 p 1 37 ]
-[v spi@data data `uc  1 p 1 38 ]
+[v spi@addr addr `uc  1 p 1 6 ]
+[v spi@data data `uc  1 p 1 7 ]
 "106
 } 0
 "4 /home/mark/MPLABXProjects/Temperature.X/defs.c
 [v _wait wait `(v  1 e 0 0 ]
 {
-[v wait@count count `ul  1 p 4 31 ]
+[v wait@count count `ul  1 p 4 0 ]
 "6
 } 0
-"125 /home/mark/MPLABXProjects/Temperature.X/temp-clock_main.c
-[v _low_isr low_isr `IIL(v  1 e 0 0 ]
+"120 /home/mark/MPLABXProjects/Temperature.X/temp-clock_main.c
+[v _isr isr `II(v  1 e 0 0 ]
 {
-"141
+"159
 } 0
-"32 /home/mark/MPLABXProjects/Temperature.X/buttons.c
+"24 /home/mark/MPLABXProjects/Temperature.X/buttons.c
 [v _buttons buttons `(v  1 e 0 0 ]
 {
-"93
+"85
 } 0
 "13 /home/mark/MPLABXProjects/Temperature.X/disp.c
-[v i1_update update `(v  1 e 0 0 ]
+[v i2_update update `(v  1 e 0 0 ]
 {
-[v i1update@cnt update `c  1 a 1 24 ]
+[v i2update@cnt update `c  1 a 1 29 ]
 "46
 } 0
 "109
-[v i1_writeDigit writeDigit `(v  1 e 0 0 ]
+[v i2_writeDigit writeDigit `(v  1 e 0 0 ]
 {
-[v i1writeDigit@cnt writeDigit `c  1 a 1 18 ]
-[v i1writeDigit@dig writeDigit `uc  1 a 1 17 ]
-[v i1writeDigit@digit writeDigit `uc  1 p 1 14 ]
-[v i1writeDigit@segs writeDigit `uc  1 p 1 15 ]
+[v i2writeDigit@cnt writeDigit `c  1 a 1 23 ]
+[v i2writeDigit@dig writeDigit `uc  1 a 1 22 ]
+[v i2writeDigit@digit writeDigit `uc  1 p 1 19 ]
+[v i2writeDigit@segs writeDigit `uc  1 p 1 20 ]
 "120
 } 0
-"48 /home/mark/MPLABXProjects/Temperature.X/defs.c
-[v i1_log2 log2 `(ul  1 e 4 0 ]
+"208
+[v i2_rotate rotate `(uc  1 e 1 0 ]
 {
-[v i1log2@log2Val log2 `ul  1 a 4 4 ]
-[v i1log2@num log2 `ul  1 p 4 0 ]
-"52
-} 0
-"208 /home/mark/MPLABXProjects/Temperature.X/disp.c
-[v i1_rotate rotate `(uc  1 e 1 0 ]
-{
-[v i1rotate@cnt rotate `c  1 a 1 5 ]
-[v i1rotate@ret rotate `uc  1 a 1 4 ]
-[v i1rotate@seg rotate `uc  1 p 1 0 ]
+[v i2rotate@cnt rotate `c  1 a 1 5 ]
+[v i2rotate@ret rotate `uc  1 a 1 4 ]
+[v i2rotate@seg rotate `uc  1 p 1 0 ]
 "216
 } 0
 "87
-[v i1_spi spi `(v  1 e 0 0 ]
+[v i2_spi spi `(v  1 e 0 0 ]
 {
-[v i1spi@send spi `ui  1 a 2 11 ]
-[v i1spi@cnt spi `c  1 a 1 13 ]
-[v i1spi@addr spi `uc  1 p 1 6 ]
-[v i1spi@data spi `uc  1 p 1 7 ]
+[v i2spi@send spi `ui  1 a 2 11 ]
+[v i2spi@cnt spi `c  1 a 1 13 ]
+[v i2spi@addr spi `uc  1 p 1 6 ]
+[v i2spi@data spi `uc  1 p 1 7 ]
 "106
 } 0
 "4 /home/mark/MPLABXProjects/Temperature.X/defs.c
-[v i1_wait wait `(v  1 e 0 0 ]
+[v i2_wait wait `(v  1 e 0 0 ]
 {
-[v i1wait@count wait `ul  1 p 4 0 ]
+[v i2wait@count wait `ul  1 p 4 0 ]
 "6
 } 0
 "14 /home/mark/MPLABXProjects/Temperature.X/menu.c
@@ -603,87 +555,32 @@ year 5
 {
 "11
 } 0
-"10 /usr/opt/microchip/xc8/v1.20/sources/common/awmod.c
-[v ___awmod __awmod `(i  1 e 2 0 ]
-{
-"11
-[v ___awmod@sign sign `uc  1 a 1 6 ]
-[v ___awmod@counter counter `uc  1 a 1 5 ]
-"10
-[v ___awmod@dividend dividend `i  1 p 2 0 ]
-[v ___awmod@divisor divisor `i  1 p 2 2 ]
-"35
-} 0
-"99 /home/mark/MPLABXProjects/Temperature.X/temp-clock_main.c
-[v _high_isr high_isr `IIH(v  1 e 0 0 ]
-{
-"122
-} 0
-"259 /home/mark/MPLABXProjects/Temperature.X/RTC.c
+"250 /home/mark/MPLABXProjects/Temperature.X/RTC.c
 [v _printRTC printRTC `(*.2v  1 e 2 0 ]
 {
-"260
-[v printRTC@str str `[12]uc  1 a 12 1 ]
-"261
-[v printRTC@cnt cnt `uc  1 a 1 15 ]
-"262
-[v printRTC@first first `uc  1 a 1 0 ]
-"259
-[v printRTC@digits digits `uc  1 p 1 144 ]
-"260
+"251
+[v printRTC@str str `[12]uc  1 a 12 40 ]
+"252
+[v printRTC@cnt cnt `uc  1 a 1 54 ]
+"253
+[v printRTC@first first `uc  1 a 1 39 ]
+"250
+[v printRTC@digits digits `uc  1 p 1 94 ]
+"251
 [v printRTC@F5073 F5073 `[12]uc  1 s 12 F5073 ]
-"339
-} 0
-"76 /home/mark/MPLABXProjects/Temperature.X/temp.c
-[v _printTemp printTemp `(*.2v  1 e 2 0 ]
-{
-"89
-[v printTemp@str str `*.25uc  1 a 2 150 ]
-"77
-[v printTemp@units units `uc  1 a 1 152 ]
-"76
-[v printTemp@digits digits `uc  1 p 1 144 ]
-"93
-} 0
-"26 /home/mark/MPLABXProjects/Temperature.X/defs.c
-[v _lowbit lowbit `(ul  1 e 4 0 ]
-{
-"27
-[v lowbit@log2Val log2Val `ul  1 a 4 7 ]
-"26
-[v lowbit@x x `ul  1 p 4 0 ]
-"33
-} 0
-"44 /home/mark/MPLABXProjects/Temperature.X/temp.c
-[v _getTemp getTemp `(d  1 e 3 0 ]
-{
-"45
-[v getTemp@oldTempsTemp oldTempsTemp `[3]d  1 a 9 86 ]
-"63
-[v getTemp@total total `d  1 a 3 98 ]
-"53
-[v getTemp@temp temp `d  1 a 3 95 ]
-"46
-[v getTemp@cnt cnt `uc  1 a 1 101 ]
-"73
-} 0
-"29 /usr/opt/microchip/xc8/v1.20/sources/common/lwtoft.c
-[v ___lwtoft __lwtoft `(f  1 e 3 0 ]
-{
-[v ___lwtoft@c c `ui  1 p 2 8 ]
-"31
+"330
 } 0
 "174 /home/mark/MPLABXProjects/Temperature.X/disp.c
 [v _writeString writeString `(v  1 e 0 0 ]
 {
 "179
-[v writeString@i i `c  1 a 1 45 ]
-[v writeString@cnt cnt `c  1 a 1 44 ]
+[v writeString@i i `c  1 a 1 44 ]
+[v writeString@cnt cnt `c  1 a 1 43 ]
 "180
-[v writeString@bits bits `uc  1 a 1 43 ]
+[v writeString@bits bits `uc  1 a 1 42 ]
 "174
 [v writeString@digits digits `uc  1 p 1 36 ]
-[v writeString@string string `*.35uc  1 p 2 37 ]
+[v writeString@string string `*.39uc  1 p 2 37 ]
 "205
 } 0
 "19 /home/mark/MPLABXProjects/Temperature.X/defs.c
@@ -731,42 +628,40 @@ year 5
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
 "1208
-[v sprintf@vd vd `ui  1 a 2 116 ]
-"1110
-[v sprintf@temp temp `d  1 a 3 120 ]
+[v sprintf@vd vd `ui  1 a 2 13 ]
 "1236
-[v sprintf@vd_743 vd `ui  1 a 2 118 ]
-[s S725 . 4 `*.35Cuc 1 _cp 2 0 `ui 1 _len 2 2 ]
+[v sprintf@vd_665 vd `ui  1 a 2 15 ]
+[s S648 . 4 `*.35Cuc 1 _cp 2 0 `ui 1 _len 2 2 ]
 "525
-[u S728 . 4 `ul 1 _val 4 0 `S725 1 _str 4 0 ]
-[v sprintf@_val _val `S728  1 a 4 139 ]
+[u S651 . 4 `ul 1 _val 4 0 `S648 1 _str 4 0 ]
+[v sprintf@_val _val `S651  1 a 4 34 ]
 "516
-[v sprintf@fval fval `d  1 a 3 134 ]
-[v sprintf@integ integ `d  1 a 3 123 ]
+[v sprintf@fval fval `d  1 a 3 26 ]
+[v sprintf@integ integ `d  1 a 3 17 ]
 "504
-[v sprintf@prec prec `i  1 a 2 137 ]
-"517
-[v sprintf@exp exp `i  1 a 2 132 ]
-"508
-[v sprintf@flag flag `us  1 a 2 130 ]
+[v sprintf@prec prec `i  1 a 2 31 ]
 "501
-[v sprintf@width width `i  1 a 2 128 ]
+[v sprintf@width width `i  1 a 2 29 ]
+"508
+[v sprintf@flag flag `us  1 a 2 24 ]
+"517
+[v sprintf@exp exp `i  1 a 2 22 ]
 "494
-[v sprintf@ap ap `[1]*.39v  1 a 2 126 ]
+[v sprintf@ap ap `[1]*.39v  1 a 2 20 ]
 "499
-[v sprintf@c c `c  1 a 1 143 ]
+[v sprintf@c c `c  1 a 1 33 ]
 "493
-[v sprintf@sp sp `*.35uc  1 p 2 91 ]
-[v sprintf@f f `*.25Cuc  1 p 2 93 ]
+[v sprintf@sp sp `*.39uc  1 p 2 82 ]
+[v sprintf@f f `*.25Cuc  1 p 2 84 ]
 "1548
 } 0
 "36 /usr/opt/microchip/xc8/v1.20/sources/common/lltoft.c
 [v ___lltoft __lltoft `(f  1 e 3 0 ]
 {
 "37
-[v ___lltoft@exp exp `uc  1 a 1 65 ]
+[v ___lltoft@exp exp `uc  1 a 1 16 ]
 "36
-[v ___lltoft@c c `ul  1 p 4 57 ]
+[v ___lltoft@c c `ul  1 p 4 8 ]
 "46
 } 0
 "10 /usr/opt/microchip/xc8/v1.20/sources/common/lldiv.c
@@ -796,64 +691,63 @@ year 5
 "16 /usr/opt/microchip/xc8/v1.20/sources/common/ftneg.c
 [v ___ftneg __ftneg `(f  1 e 3 0 ]
 {
-[v ___ftneg@f1 f1 `f  1 p 3 45 ]
+[v ___ftneg@f1 f1 `f  1 p 3 0 ]
 "20
 } 0
 "5 /usr/opt/microchip/xc8/v1.20/sources/common/ftge.c
 [v ___ftge __ftge `(b  1 e 0 0 ]
 {
-[v ___ftge@ff1 ff1 `f  1 p 3 48 ]
-[v ___ftge@ff2 ff2 `f  1 p 3 51 ]
+[v ___ftge@ff1 ff1 `f  1 p 3 0 ]
+[v ___ftge@ff2 ff2 `f  1 p 3 3 ]
 "13
 } 0
 "5 /usr/opt/microchip/xc8/v1.20/sources/pic18/asftsub.c
 [v ___asftsub __asftsub `(f  1 e 3 0 ]
 {
-[v ___asftsub@f1p f1p `*.39f  1 p 2 86 ]
-[v ___asftsub@f2 f2 `f  1 p 3 88 ]
+[v ___asftsub@f1p f1p `*.39f  1 p 2 28 ]
+[v ___asftsub@f2 f2 `f  1 p 3 30 ]
 "7
 } 0
 "22 /usr/opt/microchip/xc8/v1.20/sources/common/ftsub.c
 [v ___ftsub __ftsub `(f  1 e 3 0 ]
 {
-[v ___ftsub@f1 f1 `f  1 p 3 80 ]
-[v ___ftsub@f2 f2 `f  1 p 3 83 ]
+[v ___ftsub@f1 f1 `f  1 p 3 22 ]
+[v ___ftsub@f2 f2 `f  1 p 3 25 ]
 "25
 } 0
 "5 /usr/opt/microchip/xc8/v1.20/sources/pic18/asftmul.c
 [v ___asftmul __asftmul `(f  1 e 3 0 ]
 {
-[v ___asftmul@f1p f1p `*.39f  1 p 2 80 ]
-[v ___asftmul@f2 f2 `f  1 p 3 82 ]
+[v ___asftmul@f1p f1p `*.39f  1 p 2 62 ]
+[v ___asftmul@f2 f2 `f  1 p 3 64 ]
 "7
-} 0
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic18/asftdiv.c
-[v ___asftdiv __asftdiv `(f  1 e 3 0 ]
-{
-[v ___asftdiv@f1p f1p `*.39f  1 p 2 74 ]
-[v ___asftdiv@f2 f2 `f  1 p 3 76 ]
-"7
-} 0
-"50 /usr/opt/microchip/xc8/v1.20/sources/common/ftdiv.c
-[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-{
-"52
-[v ___ftdiv@f3 f3 `f  1 a 3 20 ]
-"51
-[v ___ftdiv@sign sign `uc  1 a 1 24 ]
-[v ___ftdiv@exp exp `uc  1 a 1 23 ]
-[v ___ftdiv@cntr cntr `uc  1 a 1 19 ]
-"50
-[v ___ftdiv@f1 f1 `f  1 p 3 8 ]
-[v ___ftdiv@f2 f2 `f  1 p 3 11 ]
-"78
 } 0
 "5 /usr/opt/microchip/xc8/v1.20/sources/pic18/asftadd.c
 [v ___asftadd __asftadd `(f  1 e 3 0 ]
 {
-[v ___asftadd@f1p f1p `*.39f  1 p 2 80 ]
-[v ___asftadd@f2 f2 `f  1 p 3 82 ]
+[v ___asftadd@f1p f1p `*.39f  1 p 2 77 ]
+[v ___asftadd@f2 f2 `f  1 p 3 79 ]
 "7
+} 0
+"87 /usr/opt/microchip/xc8/v1.20/sources/common/ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+{
+"88
+[v ___ftadd@exp1 exp1 `uc  1 a 1 21 ]
+[v ___ftadd@exp2 exp2 `uc  1 a 1 20 ]
+[v ___ftadd@sign sign `uc  1 a 1 19 ]
+"87
+[v ___ftadd@f1 f1 `f  1 p 3 8 ]
+[v ___ftadd@f2 f2 `f  1 p 3 11 ]
+"148
+} 0
+"63 /usr/opt/microchip/xc8/v1.20/sources/common/float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+{
+[v ___ftpack@arg arg `um  1 p 3 0 ]
+[v ___ftpack@exp exp `uc  1 p 1 3 ]
+[v ___ftpack@sign sign `uc  1 p 1 4 ]
+"86
 } 0
 "61 /usr/opt/microchip/xc8/v1.20/sources/common/fldivl.c
 [v __div_to_l_ _div_to_l_ `(ul  1 e 4 0 ]
@@ -900,12 +794,14 @@ year 5
 "418
 } 0
 "10 /usr/opt/microchip/xc8/v1.20/sources/common/awmod.c
-[v i2___awmod __awmod `(i  1 e 2 0 ]
+[v ___awmod __awmod `(i  1 e 2 0 ]
 {
-[v i2___awmod@sign __awmod `uc  1 a 1 8 ]
-[v i2___awmod@counter __awmod `uc  1 a 1 7 ]
-[v i2___awmod@dividend __awmod `i  1 p 2 0 ]
-[v i2___awmod@divisor __awmod `i  1 p 2 2 ]
+"11
+[v ___awmod@sign sign `uc  1 a 1 8 ]
+[v ___awmod@counter counter `uc  1 a 1 7 ]
+"10
+[v ___awmod@dividend dividend `i  1 p 2 0 ]
+[v ___awmod@divisor divisor `i  1 p 2 2 ]
 "35
 } 0
 "10 /usr/opt/microchip/xc8/v1.20/sources/common/awdiv.c
@@ -965,62 +861,42 @@ year 5
 [v ___llmod@divisor divisor `ul  1 p 4 23 ]
 "26
 } 0
-"87 /usr/opt/microchip/xc8/v1.20/sources/common/ftadd.c
-[v ___ftadd __ftadd `(f  1 e 3 0 ]
-{
-"88
-[v ___ftadd@exp1 exp1 `uc  1 a 1 79 ]
-[v ___ftadd@exp2 exp2 `uc  1 a 1 78 ]
-[v ___ftadd@sign sign `uc  1 a 1 77 ]
-"87
-[v ___ftadd@f1 f1 `f  1 p 3 66 ]
-[v ___ftadd@f2 f2 `f  1 p 3 69 ]
-"148
-} 0
-"63 /usr/opt/microchip/xc8/v1.20/sources/common/float.c
-[v ___ftpack __ftpack `(f  1 e 3 0 ]
-{
-[v ___ftpack@arg arg `um  1 p 3 0 ]
-[v ___ftpack@exp exp `uc  1 p 1 3 ]
-[v ___ftpack@sign sign `uc  1 p 1 4 ]
-"86
-} 0
-"162 /home/mark/MPLABXProjects/Temperature.X/RTC.c
+"153 /home/mark/MPLABXProjects/Temperature.X/RTC.c
 [v _tick tick `(uc  1 e 1 0 ]
 {
 [v tick@val val `uc  1 p 1 54 ]
-"197
+"188
 } 0
-"138
+"129
 [v _checkDST checkDST `(v  1 e 0 0 ]
 {
-"159
+"150
 } 0
-"200
+"191
 [v _dayOfWeek dayOfWeek `(uc  1 e 1 0 ]
 {
-"202
+"193
 [v dayOfWeek@tmp tmp `ul  1 a 4 41 ]
-"200
+"191
 [v dayOfWeek@year year `uc  1 p 1 30 ]
 [v dayOfWeek@month month `uc  1 p 1 31 ]
 [v dayOfWeek@day day `uc  1 p 1 32 ]
-"256
+"247
 } 0
-"109
+"100
 [v _daysOfMonth daysOfMonth `(uc  1 e 1 0 ]
 {
 [v daysOfMonth@month month `uc  1 p 1 7 ]
 [v daysOfMonth@year year `ui  1 p 2 8 ]
-"135
+"126
 } 0
-"69
+"60
 [v _saveTime saveTime `(v  1 e 0 0 ]
 {
-"71
+"62
 [v saveTime@cnt cnt `uc  1 a 1 11 ]
 [s S191 sDate 9 `uc 1 second 1 0 `uc 1 minute 1 1 `uc 1 hour 1 2 `uc 1 day 1 3 `uc 1 dow 1 4 `uc 1 month 1 5 `ui 1 year 2 6 `uc 1 dst 1 8 ]
-"69
+"60
 [v saveTime@date date `S191  1 p 9 0 ]
-"106
+"97
 } 0

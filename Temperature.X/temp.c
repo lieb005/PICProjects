@@ -5,7 +5,7 @@
 
 #include "disp.h"
 
-double temp = 0;
+float temp = 0;
 
 void initTemp()
 {
@@ -40,9 +40,9 @@ void initTemp()
 	tempMenu.printFn = &printTemp;
 }
 
-double getTemp()
+float getTemp()
 {
-	double oldTempsTemp[3];
+	float oldTempsTemp[3];
 	uint8_t cnt;
 	for (cnt = 3; cnt > 0; cnt--)
 	{
@@ -50,17 +50,17 @@ double getTemp()
 	}
 	GO = 1;
 	while (GO);
-	double temp;
+	float temp;
 
 	if (tempMenu.state == 0)
 	{
-		temp = C(((double) ADRES) * SCALE - OFFSET);
+		temp = C(((float) ADRES) * SCALE - OFFSET);
 	}
 	else
 	{
-		temp = F(((double) ADRES) * SCALE - OFFSET);
+		temp = F(((float) ADRES) * SCALE - OFFSET);
 	}
-	double total = temp;
+	float total = temp;
 	for (cnt = 0; cnt < 3; cnt++)
 	{
 		oldTemps[cnt] = oldTempsTemp[cnt];

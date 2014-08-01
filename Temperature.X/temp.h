@@ -27,10 +27,10 @@ extern "C"
 #define C(a) (a)
 
 void* printTemp(uint8_t digits);
-double getTemp();
+float getTemp();
 void initTemp();
 
-double oldTemps[4];
+float oldTemps[4];
 
 struct sMenu tempMenu;
 

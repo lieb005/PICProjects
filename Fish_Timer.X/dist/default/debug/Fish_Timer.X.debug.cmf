@@ -1,0 +1,266 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$/tmp/cgt7hJBYO.obj
+end_init CODE 0 F F 5 2
+reset_vec CODE 0 0 0 1 2
+config CONFIG 0 2007 2007 1 2
+$dist/default/debug/Fish_Timer.X.debug.obj
+intentry CODE 0 4 4 B 2
+text2 CODE 0 6C 6C 3C 2
+text1 CODE 0 A8 A8 23 2
+maintext CODE 0 14 14 58 2
+cstackBANK0 BANK0 1 20 20 14 1
+bssBANK0 BANK0 1 38 38 1 1
+cinit CODE 0 CB CB 3 2
+nvBANK0 BANK0 1 34 34 4 1
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+BANK0 0039-005D 1
+CODE 0001-0003 2
+CODE 00CE-03FE 2
+CONST 0001-0003 2
+CONST 00CE-03FE 2
+EEDATA 2100-217F 2
+ENTRY 0001-0003 2
+ENTRY 00CE-03FE 2
+IDLOC 2000-2003 2
+RAM 0039-005D 1
+SFR0 0000-001F 1
+SFR1 0080-00DD 1
+STRCODE 0001-0003 2
+STRCODE 00CE-03FE 2
+STRING 0001-0003 2
+STRING 00CE-03FE 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <file name>:<line number> <address> <psect name> <class name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$dist/default/debug/Fish_Timer.X.debug.obj
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":125 4 intentry CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":95 14 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":100 15 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":102 17 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":103 18 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":104 1E maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":106 1F maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":107 20 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":108 24 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":110 2C maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":111 2D maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":112 2F maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":113 30 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":115 33 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":116 35 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":117 3D maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":118 69 maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":113 6B maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":122 6C maintext CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":126 6C text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":127 6D text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":129 73 text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":130 74 text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":131 76 text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":132 92 text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":154 94 text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":156 97 text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":157 98 text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":158 9A text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":160 9B text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":161 9C text2 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":53 A8 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":55 AA text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":56 AB text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":57 AD text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":58 AF text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":59 B0 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":64 B2 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":65 B3 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":68 B4 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":69 B6 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":70 BA text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":71 C2 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":72 C4 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":75 C6 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":76 C7 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":77 C8 text1 CODE
+"/home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c":88 CA text1 CODE
+"/tmp/cgtgi6Wu0":186 CB cinit CODE
+"/tmp/cgtgi6Wu0":193 CC cinit CODE
+"/tmp/cgtgi6Wu0":194 CD cinit CODE
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+_GP5 2D 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__S0 2008 0 ABS 0 - -
+__S1 39 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+_GIE 5F 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__Hintentry 1E 0 CODE 0 intentry -
+__Lintentry 8 0 CODE 0 intentry -
+__CFG_BOREN$ON 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__pintentry 8 0 CODE 0 intentry dist/default/debug/Fish_Timer.X.debug.obj
+_isr D8 0 CODE 0 text2 dist/default/debug/Fish_Timer.X.debug.obj
+__CFG_PWRTE$ON 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_TMR1 E 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_PEIE 5E 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_INTE 5C 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_INTF 59 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_GPIO 5 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_time 34 0 BANK0 1 nvBANK0 dist/default/debug/Fish_Timer.X.debug.obj
+_main 28 0 CODE 0 maintext dist/default/debug/Fish_Timer.X.debug.obj
+btemp 5E 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+start 1E 0 CODE 0 init /tmp/cgt7hJBYO.obj
+_GPIO0 28 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_GPIO1 29 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+reset_vec 0 0 CODE 0 reset_vec /tmp/cgt7hJBYO.obj
+_ANSEL 9F 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_T1CON 10 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+wtemp0 5E 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_nGPPU 40F 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__Hosccal 7FE 0 CODE 0 osccal -
+__Losccal 7FE 0 CODE 0 osccal -
+interrupt_function 8 0 CODE 0 intentry dist/default/debug/Fish_Timer.X.debug.obj
+__Hconfig 4010 0 CONFIG 0 config -
+__Lconfig 400E 0 CONFIG 0 config -
+___osccal_val 7FE 0 CODE 0 osccal /tmp/cgt7hJBYO.obj
+__Hram 7FE 0 ABS 0 ram -
+__Lram 7FE 0 ABS 0 ram -
+_blink 38 0 BANK0 1 bssBANK0 dist/default/debug/Fish_Timer.X.debug.obj
+__size_of_isr 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_setup 150 0 CODE 0 text1 dist/default/debug/Fish_Timer.X.debug.obj
+__Hfunctab 0 0 CODE 0 functab -
+__Lfunctab 0 0 CODE 0 functab -
+__Hcommon 7FE 0 ABS 0 common -
+__Lcommon 7FE 0 ABS 0 common -
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+_TMR1IE 460 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_TMR1IF 60 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_INTEDG 40E 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+_TMR1ON 80 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__Habs1 7FE 0 ABS 0 abs1 -
+__Labs1 7FE 0 ABS 0 abs1 -
+__Hsfr0 7FE 0 ABS 0 sfr0 -
+__Lsfr0 7FE 0 ABS 0 sfr0 -
+_TRISIO 85 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__Hsfr1 7FE 0 ABS 0 sfr1 -
+__Lsfr1 7FE 0 ABS 0 sfr1 -
+__Hcode 7FE 0 ABS 0 code -
+__Lcode 7FE 0 ABS 0 code -
+__HcstackBANK0 7FE 0 ABS 0 cstackBANK0 -
+__LcstackBANK0 7FE 0 ABS 0 cstackBANK0 -
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/debug/Fish_Timer.X.debug.obj
+saved_w 5E 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__Hinit 1E 0 CODE 0 init -
+__Linit 1E 0 CODE 0 init -
+__end_of_main D8 0 CODE 0 maintext dist/default/debug/Fish_Timer.X.debug.obj
+__Htext 7FE 0 ABS 0 text -
+__Ltext 7FE 0 ABS 0 text -
+end_of_initialization 198 0 CODE 0 cinit dist/default/debug/Fish_Timer.X.debug.obj
+__HnvBANK0 7FE 0 ABS 0 nvBANK0 -
+__LnvBANK0 7FE 0 ABS 0 nvBANK0 -
+__pnvBANK0 34 0 BANK0 1 nvBANK0 dist/default/debug/Fish_Timer.X.debug.obj
+_TRISIO2 42A 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__Hstrings 7FE 0 ABS 0 strings -
+__Lstrings 7FE 0 ABS 0 strings -
+__Hbank0 7FE 0 ABS 0 bank0 -
+__Lbank0 7FE 0 ABS 0 bank0 -
+__Hbank1 7FE 0 BANK1 1 bank1 -
+__Lbank1 7FE 0 BANK1 1 bank1 -
+___latbits 0 0 ABS 0 - /tmp/cgt7hJBYO.obj
+__Hpowerup 0 0 CODE 0 powerup -
+__Lpowerup 0 0 CODE 0 powerup -
+__ptext1 150 0 CODE 0 text1 dist/default/debug/Fish_Timer.X.debug.obj
+__ptext2 D8 0 CODE 0 text2 dist/default/debug/Fish_Timer.X.debug.obj
+__Hclrtext 7FE 0 ABS 0 clrtext -
+__Lclrtext 7FE 0 ABS 0 clrtext -
+__end_of__initialization 198 0 CODE 0 cinit dist/default/debug/Fish_Timer.X.debug.obj
+__Hidloc 0 0 IDLOC 0 idloc -
+__Lidloc 0 0 IDLOC 0 idloc -
+__end_of_isr 150 0 CODE 0 text2 dist/default/debug/Fish_Timer.X.debug.obj
+__size_of_setup 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+main@cnt 30 0 BANK0 1 cstackBANK0 dist/default/debug/Fish_Timer.X.debug.obj
+__Hcinit 7FE 0 ABS 0 cinit -
+__Lcinit 7FE 0 ABS 0 cinit -
+__size_of_main 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__HbssBANK0 7FE 0 ABS 0 bssBANK0 -
+__LbssBANK0 7FE 0 ABS 0 bssBANK0 -
+__pbssBANK0 38 0 BANK0 1 bssBANK0 dist/default/debug/Fish_Timer.X.debug.obj
+__Hend_init 28 0 CODE 0 end_init -
+__Lend_init 1E 0 CODE 0 end_init -
+__end_of_setup 196 0 CODE 0 text1 dist/default/debug/Fish_Timer.X.debug.obj
+__Hreset_vec 2 0 CODE 0 reset_vec -
+__Lreset_vec 0 0 CODE 0 reset_vec -
+intlevel0 0 0 CODE 0 functab /tmp/cgt7hJBYO.obj
+__CFG_WDTE$OFF 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+intlevel1 0 0 CODE 0 functab /tmp/cgt7hJBYO.obj
+intlevel2 0 0 CODE 0 functab /tmp/cgt7hJBYO.obj
+intlevel3 0 0 CODE 0 functab /tmp/cgt7hJBYO.obj
+intlevel4 0 0 CODE 0 functab /tmp/cgt7hJBYO.obj
+intlevel5 0 0 CODE 0 functab /tmp/cgt7hJBYO.obj
+__HcstackCOMMON 7FE 0 ABS 0 cstackCOMMON -
+__LcstackCOMMON 7FE 0 ABS 0 cstackCOMMON -
+__pcstackCOMMON 0 0 COMMON 1 cstackCOMMON dist/default/debug/Fish_Timer.X.debug.obj
+__CFG_CPD$OFF 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+start_initialization 196 0 CODE 0 cinit dist/default/debug/Fish_Timer.X.debug.obj
+__Hmaintext 7FE 0 ABS 0 maintext -
+__Lmaintext 7FE 0 ABS 0 maintext -
+__pmaintext 28 0 CODE 0 maintext dist/default/debug/Fish_Timer.X.debug.obj
+__CFG_MCLRE$ON 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__initialization 196 0 CODE 0 cinit dist/default/debug/Fish_Timer.X.debug.obj
+__CFG_FOSC$INTRCIO 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+__CFG_CP$OFF 0 0 ABS 0 - dist/default/debug/Fish_Timer.X.debug.obj
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 5E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta> <class name>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+reset_vec 0 0 0 1 2 CODE
+intentry 0 4 8 CA 2 CODE
+config 0 2007 400E 1 2 CONFIG
+cstackBANK0 1 20 20 19 1 BANK0

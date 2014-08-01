@@ -5925,7 +5925,7 @@ void writeDigit(uint8_t digit, uint8_t segs);
 void writeChar(uint8_t digit, char num);
 
 void writeLong(uint8_t digits, int32_t num);
-void writeFloat(uint8_t digits, double num);
+void writeFloat(uint8_t digits, float num);
 void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);
@@ -6140,7 +6140,7 @@ TRISA2 = 1;
 screen.digits.bits[0] = 0;
 screen.digits.bits[1] = 0;
 
-setBrightness(0b1111);
+setBrightness(0b0111);
 
 screen.decode = 0;
 
@@ -6206,7 +6206,7 @@ writeString(digits, str);
 
 }
 
-void writeFloat(uint8_t digits, double num)
+void writeFloat(uint8_t digits, float num)
 {
 char str[9] = "";
 uint8_t bits = countBits(digits);

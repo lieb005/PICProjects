@@ -70,7 +70,7 @@ void startDisp()
 	screen.digits.bits[0] = 0;
 	screen.digits.bits[1] = 0;
 	// set brightness to ~50%
-	setBrightness(0b1111);
+	setBrightness(0b0111);
 	// No Decode
 	screen.decode = 0;
 	// set scan limit to 8 digits
@@ -161,7 +161,7 @@ void writeLong(uint8_t digits, int32_t num)
 #endif
 }
 
-void writeFloat(uint8_t digits, double num)
+void writeFloat(uint8_t digits, float num)
 {
 	char str[9] = "";
 	uint8_t bits = countBits(digits);

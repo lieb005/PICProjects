@@ -1,0 +1,12 @@
+__stringdata: SMALLCONST, 2249 0 10
+__powers_: SMALLCONST, 2210 0 39
+_lcd_font: SMALLCONST, 2048 0 43
+_pow10: SMALLCONST, 2131 0 40
+_dpowers: SMALLCONST, 2091 0 40
+_main: CODE, 2428 0 8
+_isr_low: CODE, 24 0 138
+__npowers_: SMALLCONST, 2171 0 39
+__initialization: CODE, 2364 0 44
+_isr: CODE, 8 0 2356
+_setup: CODE, 2436 0 6
+Total: 2763

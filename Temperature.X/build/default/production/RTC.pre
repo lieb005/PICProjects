@@ -5939,7 +5939,7 @@ void writeDigit(uint8_t digit, uint8_t segs);
 void writeChar(uint8_t digit, char num);
 
 void writeLong(uint8_t digits, int32_t num);
-void writeFloat(uint8_t digits, double num);
+void writeFloat(uint8_t digits, float num);
 void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);
@@ -5982,7 +5982,7 @@ uint8_t shutdown : 1;
 uint16_t changed;
 } screen;
 
-# 92 "RTC.h"
+# 91 "RTC.h"
 enum inc
 {
 second = 0,
@@ -6062,15 +6062,6 @@ EECON1 = 0b0000000;
 LATC1 = 1;
 loadTime();
 LATC1 = 0;
-
-
-T1CON = 0b10110000;
-TMR1 = (65536-63765);
-TMR1IE = 1;
-TMR1IF = CLEAR;
-TMR1IP = 1;
-TMR1ON = 1;
-
 }
 
 struct sDate loadTime()

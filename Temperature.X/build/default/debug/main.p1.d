@@ -1,9 +1,0 @@
- build/default/debug/main.d  \
- build/default/debug/main.p1:  \
- main.c  \
-defs.h  \
-RTC.h  \
-temp.h  \
-disp.h  \
-menu.h  \
-buttons.h  \

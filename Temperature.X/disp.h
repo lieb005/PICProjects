@@ -101,7 +101,7 @@ void writeDigit(uint8_t digit, uint8_t segs);
 void writeChar(uint8_t digit, char num);
 
 void writeLong(uint8_t digits, int32_t num);
-void writeFloat(uint8_t digits, double num);
+void writeFloat(uint8_t digits, float num);
 void writeString(uint8_t digits, char* num);
 
 uint8_t rotate(uint8_t seg);

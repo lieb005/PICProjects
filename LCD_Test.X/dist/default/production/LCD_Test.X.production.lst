@@ -1,0 +1,291 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.20 build 52243 
+                                                                                               Fri May  2 07:23:05 2014
+
+Microchip Technology Omniscient Code Generator (Lite mode) build 52243
+     1                           	processor	18F2550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1
+     8                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+     9                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    10                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    11                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    12  0000                     
+    13                           	psect	smallconst
+    14  000800                     __psmallconst:
+    15                           	opt stack 0
+    16  000800                     _pow10:
+    17                           	opt stack 0
+    18  000800  0001               	dw	1
+    19  000802  0000               	dw	0
+    20  000804  000A               	dw	10
+    21  000806  0000               	dw	0
+    22  000808  0064               	dw	100
+    23  00080A  0000               	dw	0
+    24  00080C  03E8               	dw	1000
+    25  00080E  0000               	dw	0
+    26  000810  2710               	dw	10000
+    27  000812  0000               	dw	0
+    28  000814  86A0               	dw	34464
+    29  000816  0001               	dw	1
+    30  000818  4240               	dw	16960
+    31  00081A  000F               	dw	15
+    32  00081C  9680               	dw	38528
+    33  00081E  0098               	dw	152
+    34  000820  E100               	dw	57600
+    35  000822  05F5               	dw	1525
+    36  000824  CA00               	dw	51712
+    37  000826  3B9A               	dw	15258
+    38  000828                     __end_of_pow10:
+    39                           	opt stack 0
+    40  0000                     _TMR0	set	4054
+    41  0000                     _T0CON	set	4053
+    42  0000                     _LATB4	set	31828
+    43  0000                     _TMR0IE	set	32661
+    44  0000                     _TMR0IF	set	32658
+    45  0000                     _TMR0ON	set	32431
+    46  000828  00                 	db	0	; dummy byte at the end
+    47  0000                     
+    48                           ; #config settings
+    49                           
+    50                           	psect	cinit
+    51  00082A                     __pcinit:
+    52                           	opt stack 0
+    53  00082A                     start_initialization:
+    54                           	opt stack 0
+    55  00082A                     __initialization:
+    56                           	opt stack 0
+    57                           
+    58                           ; Clear objects allocated to COMRAM (64 bytes)
+    59  00082A  EE00  F001         	lfsr	0,__pbssCOMRAM
+    60  00082E  0E40               	movlw	64
+    61  000830                     clear_0:
+    62  000830  6AEE               	clrf	postinc0,c
+    63  000832  06E8               	decf	wreg,f,c
+    64  000834  E1FD               	bnz	clear_0
+    65  000836                     end_of_initialization:
+    66                           	opt stack 0
+    67  000836                     __end_of__initialization:
+    68                           	opt stack 0
+    69  000836  0E00               	movlw	low (__Lmediumconst shr (0+16))
+    70  000838  6EF8               	movwf	tblptru,c
+    71  00083A  0100               	movlb	0
+    72  00083C  EF20  F004         	goto	_main	;jump to C main() function
+    73                           tblptru	equ	0xFF8
+    74                           postinc0	equ	0xFEE
+    75                           wreg	equ	0xFE8
+    76                           
+    77                           	psect	bssCOMRAM
+    78  000001                     __pbssCOMRAM:
+    79                           	opt stack 0
+    80  000001                     _lcdBuffer:
+    81                           	opt stack 0
+    82  000001                     	ds	32
+    83  000021                     _lcdCurrent:
+    84                           	opt stack 0
+    85  000021                     	ds	32
+    86                           tblptru	equ	0xFF8
+    87                           postinc0	equ	0xFEE
+    88                           wreg	equ	0xFE8
+    89                           
+    90                           	psect	cstackCOMRAM
+    91  000041                     __pcstackCOMRAM:
+    92                           	opt stack 0
+    93  000041                     
+    94                           ; 2 bytes @ 0x0
+    95  000041                     	ds	2
+    96  000043                     
+    97                           ; 3 bytes @ 0x2
+    98  000043                     	ds	3
+    99  000046                     tblptru	equ	0xFF8
+   100                           postinc0	equ	0xFEE
+   101                           wreg	equ	0xFE8
+   102                           
+   103                           ; 0 bytes @ 0x5
+   104 ;;
+   105 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   106 ;;
+   107 ;; *************** function _main *****************
+   108 ;; Defined at:
+   109 ;;		line 14 in file "LCDmain.c"
+   110 ;; Parameters:    Size  Location     Type
+   111 ;;  argc            2    0[COMRAM] int 
+   112 ;;  argv            3    2[COMRAM] PTR PTR unsigned char 
+   113 ;; Auto vars:     Size  Location     Type
+   114 ;;		None
+   115 ;; Return value:  Size  Location     Type
+   116 ;;                  2    0[COMRAM] int 
+   117 ;; Registers used:
+   118 ;;		None
+   119 ;; Tracked objects:
+   120 ;;		On entry : 0/0
+   121 ;;		On exit  : 0/0
+   122 ;;		Unchanged: 0/0
+   123 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   124 ;;      Params:         5       0       0       0       0       0       0       0       0
+   125 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   126 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   127 ;;      Totals:         5       0       0       0       0       0       0       0       0
+   128 ;;Total ram usage:        5 bytes
+   129 ;; This function calls:
+   130 ;;		Nothing
+   131 ;; This function is called by:
+   132 ;;		Startup code after reset
+   133 ;; This function uses a non-reentrant model
+   134 ;;
+   135                           
+   136                           	psect	text0
+   137  000840                     __ptext0:
+   138                           	opt stack 0
+   139  000840                     _main:
+   140                           	opt stack 31
+   141                           
+   142                           ;LCDmain.c: 15: return (0);
+   143                           ;	Return value of _main is never used
+   144                           
+   145                           ;incstack = 0
+   146                           ;incstack = 0
+   147  000840  EF00  F000         	goto	start
+   148  000844                     __end_of_main:
+   149                           	opt stack 0
+   150                           tblptru	equ	0xFF8
+   151                           postinc0	equ	0xFEE
+   152                           wreg	equ	0xFE8
+   153                           tblptru	equ	0xFF8
+   154                           postinc0	equ	0xFEE
+   155                           wreg	equ	0xFE8
+   156                           
+   157                           	psect	rparam
+   158  0000                     tblptru	equ	0xFF8
+   159                           postinc0	equ	0xFEE
+   160                           wreg	equ	0xFE8
+
+
+Data Sizes:
+    Strings     0
+    Constant    40
+    Data        0
+    BSS         64
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      5      69
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 5     0      5       0
+                                              0 COMRAM     5     0      5
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 0
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             7FF      0       0      21        0.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F      5      45       1       72.6%
+BITSFR               0      0       0      40        0.0%
+SFR                  0      0       0      40        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      45      20        0.0%
+DATA                 0      0      45       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.20 build 52243 
+Symbol Table                                                                                   Fri May  2 07:23:05 2014
+
+                    wreg 000FE8                     _TMR0 000FD6                     _main 0840  
+                   start 0000                    ?_main 0041                    _T0CON 000FD5  
+                  _LATB4 007C54                    _pow10 0800          __initialization 082A  
+           __end_of_main 0844                   ??_main 0046            __activetblptr 000002  
+                 _TMR0IE 007F95                   _TMR0IF 007F92                   _TMR0ON 007EAF  
+                 clear_0 0830             __mediumconst 0000                   tblptru 000FF8  
+             __accesstop 0060  __end_of__initialization 0836           __pcstackCOMRAM 0041  
+          __end_of_pow10 0828               _lcdCurrent 0021                  __Hparam 0000  
+                __Lparam 0000             __psmallconst 0800                  __pcinit 082A  
+                __ramtop 0800                  __ptext0 0840     end_of_initialization 0836  
+          __Lmediumconst 0000                  postinc0 000FEE      start_initialization 082A  
+            __pbssCOMRAM 0001                _lcdBuffer 0001              __smallconst 0800  
+               __Hrparam 0000                 __Lrparam 0000            __size_of_main 0004  
+               main@argc 0041                 main@argv 0043  

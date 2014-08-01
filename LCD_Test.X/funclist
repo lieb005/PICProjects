@@ -1,0 +1,4 @@
+_pow10: SMALLCONST, 2048 0 40
+_main: CODE, 2112 0 4
+__initialization: CODE, 2090 0 12
+Total: 56

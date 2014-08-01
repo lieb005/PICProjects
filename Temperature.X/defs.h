@@ -75,7 +75,7 @@ uint8_t countBits(uint32_t num);
 uint32_t hibit(uint32_t x);
 uint32_t lowbit(uint32_t x);
 
-//double log2(double num);
+//float log2(float num);
 uint32_t log2(uint32_t num);
 int32_t maxSize(uint8_t digits);
 

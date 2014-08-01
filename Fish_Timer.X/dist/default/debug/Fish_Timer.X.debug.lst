@@ -1,0 +1,686 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V1.20 build 52243 
+                                                                                               Fri Mar 28 01:48:14 2014
+
+Microchip Technology Omniscient Code Generator (Lite mode) build 52243
+     1                           	processor	12F675
+     2                           	opt	pw 120
+     3                           	opt	lm
+     4                           	psect	nvBANK0,global,class=BANK0,space=1,delta=1
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	maintext,global,class=CODE,split=1,delta=2
+    10                           	psect	text1,local,class=CODE,merge=1,delta=2
+    11                           	psect	text2,local,class=CODE,merge=1,delta=2
+    12                           	psect	intentry,global,class=CODE,delta=2
+    13                           	dabs	1,0x5E,2
+    14  0000                     	;# 
+    15  0001                     	;# 
+    16  0002                     	;# 
+    17  0003                     	;# 
+    18  0004                     	;# 
+    19  0005                     	;# 
+    20  000A                     	;# 
+    21  000B                     	;# 
+    22  000C                     	;# 
+    23  000E                     	;# 
+    24  000E                     	;# 
+    25  000F                     	;# 
+    26  0010                     	;# 
+    27  0019                     	;# 
+    28  001E                     	;# 
+    29  001F                     	;# 
+    30  0081                     	;# 
+    31  0085                     	;# 
+    32  008C                     	;# 
+    33  008E                     	;# 
+    34  0090                     	;# 
+    35  0095                     	;# 
+    36  0096                     	;# 
+    37  0096                     	;# 
+    38  0099                     	;# 
+    39  009A                     	;# 
+    40  009A                     	;# 
+    41  009B                     	;# 
+    42  009C                     	;# 
+    43  009D                     	;# 
+    44  009E                     	;# 
+    45  009F                     	;# 
+    46                           
+    47                           	psect	nvBANK0
+    48  0034                     __pnvBANK0:	
+    49  0034                     _time:	
+    50  0034                     	ds	4
+    51  000E                     _TMR1	set	14
+    52  0005                     _GPIO	set	5
+    53  0010                     _T1CON	set	16
+    54  005F                     _GIE	set	95
+    55  002D                     _GP5	set	45
+    56  0028                     _GPIO0	set	40
+    57  0029                     _GPIO1	set	41
+    58  005C                     _INTE	set	92
+    59  0059                     _INTF	set	89
+    60  005E                     _PEIE	set	94
+    61  0060                     _TMR1IF	set	96
+    62  0080                     _TMR1ON	set	128
+    63  009F                     _ANSEL	set	159
+    64  0085                     _TRISIO	set	133
+    65  040E                     _INTEDG	set	1038
+    66  0460                     _TMR1IE	set	1120
+    67  042A                     _TRISIO2	set	1066
+    68  040F                     _nGPPU	set	1039
+    69                           
+    70                           ; #config settings
+    71  0000                     
+    72                           	psect	cinit
+    73  00CB                     start_initialization:	
+    74  00CB                     __initialization:	
+    75                           
+    76                           ; Clear objects allocated to BANK0
+    77  00CB  01B8               	clrf	__pbssBANK0& (0+127)
+    78  00CC                     end_of_initialization:	
+    79                           ;End of C runtime variable initialization code
+    80                           
+    81  00CC                     __end_of__initialization:	
+    82  00CC  0183               	clrf	3
+    83  00CD  2814               	ljmp	_main	;jump to C main() function
+    84                           
+    85                           	psect	bssBANK0
+    86  0038                     __pbssBANK0:	
+    87  0038                     _blink:	
+    88  0038                     	ds	1
+    89                           
+    90                           	psect	cstackCOMMON
+    91  0000                     __pcstackCOMMON:	
+    92  0000                     ??_setup:	
+    93                           
+    94                           	psect	cstackBANK0
+    95  0020                     __pcstackBANK0:	
+    96                           ; 0 bytes @ 0x0
+    97                           
+    98  0020                     ?_setup:	
+    99  0020                     ?_isr:	
+   100                           ; 0 bytes @ 0x0
+   101                           
+   102  0020                     ??_isr:	
+   103                           ; 0 bytes @ 0x0
+   104                           
+   105                           
+   106                           ; 0 bytes @ 0x0
+   107  0020                     	ds	8
+   108  0028                     ?_main:	
+   109  0028                     main@argc:	
+   110                           ; 2 bytes @ 0x8
+   111                           
+   112                           
+   113                           ; 2 bytes @ 0x8
+   114  0028                     	ds	2
+   115  002A                     main@argv:	
+   116                           
+   117                           ; 2 bytes @ 0xA
+   118  002A                     	ds	2
+   119  002C                     ??_main:	
+   120                           
+   121                           ; 0 bytes @ 0xC
+   122  002C                     	ds	4
+   123  0030                     main@cnt:	
+   124                           
+   125                           ; 4 bytes @ 0x10
+   126  0030                     	ds	4
+   127                           
+   128                           	psect	maintext
+   129  0014                     __pmaintext:	
+   130 ;;
+   131 ;;Main: autosize = 0, tempsize = 4, incstack = 0, save=0
+   132 ;;
+   133 ;; *************** function _main *****************
+   134 ;; Defined at:
+   135 ;;		line 94 in file "fish_main.c"
+   136 ;; Parameters:    Size  Location     Type
+   137 ;;  argc            2    8[BANK0 ] int 
+   138 ;;  argv            2   10[BANK0 ] PTR PTR unsigned char 
+   139 ;; Auto vars:     Size  Location     Type
+   140 ;;  cnt             4   16[BANK0 ] unsigned long 
+   141 ;; Return value:  Size  Location     Type
+   142 ;;                  2    8[BANK0 ] int 
+   143 ;; Registers used:
+   144 ;;		wreg, status,2, status,0, pclath, cstack
+   145 ;; Tracked objects:
+   146 ;;		On entry : 17F/0
+   147 ;;		On exit  : 0/0
+   148 ;;		Unchanged: 0/0
+   149 ;; Data sizes:     COMMON   BANK0
+   150 ;;      Params:         0       4
+   151 ;;      Locals:         0       4
+   152 ;;      Temps:          0       4
+   153 ;;      Totals:         0      12
+   154 ;;Total ram usage:       12 bytes
+   155 ;; Hardware stack levels required when called:    2
+   156 ;; This function calls:
+   157 ;;		_setup
+   158 ;; This function is called by:
+   159 ;;		Startup code after reset
+   160 ;; This function uses a non-reentrant model
+   161 ;;
+   162                           
+   163                           
+   164                           ;psect for function _main
+   165  0014                     _main:	
+   166                           
+   167                           ;fish_main.c: 95: setup();
+   168                           
+   169                           ;incstack = 0
+   170                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   171  0014  20A8               	fcall	_setup
+   172  0015                     l626:	
+   173                           ;fish_main.c: 97: while (1)
+   174                           
+   175                           
+   176                           ;fish_main.c: 98: {
+   177                           ;fish_main.c: 100: TMR1ON = 1;
+   178  0015  1283               	bcf	3,5	;RP0=0, select bank0
+   179  0016  1410               	bsf	16,0	;volatile
+   180                           
+   181                           ;fish_main.c: 102: GPIO1 = 1;
+   182  0017  1485               	bsf	5,1	;volatile
+   183  0018                     l630:	
+   184                           ;fish_main.c: 103: while (time);
+   185                           
+   186  0018  0837               	movf	_time+3,w
+   187  0019  0436               	iorwf	_time+2,w
+   188  001A  0435               	iorwf	_time+1,w
+   189  001B  0434               	iorwf	_time,w
+   190  001C  1D03               	skipz
+   191  001D  2818               	goto	l630
+   192                           
+   193                           ;fish_main.c: 104: GPIO1 = 0;
+   194  001E  1085               	bcf	5,1	;volatile
+   195                           
+   196                           ;fish_main.c: 106: TMR1ON = 0;
+   197  001F  1010               	bcf	16,0	;volatile
+   198                           
+   199                           ;fish_main.c: 107: TMR1 = (65536-65535);
+   200  0020  3000               	movlw	0
+   201  0021  008F               	movwf	15	;volatile
+   202  0022  3001               	movlw	1
+   203  0023  008E               	movwf	14	;volatile
+   204                           
+   205                           ;fish_main.c: 108: time = (1+0);
+   206  0024  3000               	movlw	0
+   207  0025  00B7               	movwf	_time+3
+   208  0026  3000               	movlw	0
+   209  0027  00B6               	movwf	_time+2
+   210  0028  3000               	movlw	0
+   211  0029  00B5               	movwf	_time+1
+   212  002A  3001               	movlw	1
+   213  002B  00B4               	movwf	_time
+   214                           
+   215                           ;fish_main.c: 110: INTE = 1;
+   216  002C  160B               	bsf	11,4	;volatile
+   217                           
+   218                           ;fish_main.c: 111: blink = 1;
+   219  002D  01B8               	clrf	_blink
+   220  002E  0AB8               	incf	_blink,f
+   221                           
+   222                           ;fish_main.c: 112: GPIO0 = 1;
+   223  002F  1405               	bsf	5,0	;volatile
+   224  0030                     l646:	
+   225                           ;fish_main.c: 113: while (blink)
+   226                           
+   227  0030  08B8               	movf	_blink,f
+   228  0031  1903               	btfsc	3,2
+   229  0032  2815               	goto	l626
+   230                           
+   231                           ;fish_main.c: 114: {
+   232                           ;fish_main.c: 115: GPIO1 = ~GPIO1;
+   233  0033  3002               	movlw	2
+   234  0034  0685               	xorwf	5,f
+   235                           
+   236                           ;fish_main.c: 116: uint32_t cnt = 500000;
+   237  0035  3000               	movlw	0
+   238  0036  00B3               	movwf	main@cnt+3
+   239  0037  3007               	movlw	7
+   240  0038  00B2               	movwf	main@cnt+2
+   241  0039  30A1               	movlw	161
+   242  003A  00B1               	movwf	main@cnt+1
+   243  003B  3020               	movlw	32
+   244  003C  00B0               	movwf	main@cnt
+   245  003D                     l642:	
+   246                           ;fish_main.c: 117: while (cnt-- );
+   247                           
+   248  003D  3001               	movlw	1
+   249  003E  00AC               	movwf	??_main
+   250  003F  3000               	movlw	0
+   251  0040  00AD               	movwf	??_main+1
+   252  0041  3000               	movlw	0
+   253  0042  00AE               	movwf	??_main+2
+   254  0043  3000               	movlw	0
+   255  0044  00AF               	movwf	??_main+3
+   256  0045  082C               	movf	??_main,w
+   257  0046  02B0               	subwf	main@cnt,f
+   258  0047  082D               	movf	??_main+1,w
+   259  0048  1C03               	skipc
+   260  0049  0F2D               	incfsz	??_main+1,w
+   261  004A  284C               	goto	u115
+   262  004B  284D               	goto	u116
+   263  004C                     u115:	
+   264  004C  02B1               	subwf	main@cnt+1,f
+   265  004D                     u116:	
+   266  004D  082E               	movf	??_main+2,w
+   267  004E  1C03               	skipc
+   268  004F  0F2E               	incfsz	??_main+2,w
+   269  0050  2852               	goto	u117
+   270  0051  2853               	goto	u118
+   271  0052                     u117:	
+   272  0052  02B2               	subwf	main@cnt+2,f
+   273  0053                     u118:	
+   274  0053  082F               	movf	??_main+3,w
+   275  0054  1C03               	skipc
+   276  0055  0F2F               	incfsz	??_main+3,w
+   277  0056  2858               	goto	u119
+   278  0057  2859               	goto	u110
+   279  0058                     u119:	
+   280  0058  02B3               	subwf	main@cnt+3,f
+   281  0059                     u110:	
+   282  0059  30FF               	movlw	255
+   283  005A  0633               	xorwf	main@cnt+3,w
+   284  005B  1D03               	skipz
+   285  005C  2867               	goto	u125
+   286  005D  30FF               	movlw	255
+   287  005E  0632               	xorwf	main@cnt+2,w
+   288  005F  1D03               	skipz
+   289  0060  2867               	goto	u125
+   290  0061  30FF               	movlw	255
+   291  0062  0631               	xorwf	main@cnt+1,w
+   292  0063  1D03               	skipz
+   293  0064  2867               	goto	u125
+   294  0065  30FF               	movlw	255
+   295  0066  0630               	xorwf	main@cnt,w
+   296  0067                     u125:	
+   297  0067  1D03               	skipz
+   298  0068  283D               	goto	l642
+   299                           
+   300                           ;fish_main.c: 118: GPIO0 = ~GPIO0;
+   301  0069  3001               	movlw	1
+   302  006A  0685               	xorwf	5,f
+   303  006B  2830               	goto	l646
+   304  006C                     __end_of_main:	
+   305                           ;fish_main.c: 119: }
+   306                           ;fish_main.c: 120: }
+   307                           ;fish_main.c: 121: return (0);
+   308                           ;	Return value of _main is never used
+   309                           
+   310                           
+   311                           	psect	text1
+   312  00A8                     __ptext1:	
+   313 ;; *************** function _setup *****************
+   314 ;; Defined at:
+   315 ;;		line 51 in file "fish_main.c"
+   316 ;; Parameters:    Size  Location     Type
+   317 ;;		None
+   318 ;; Auto vars:     Size  Location     Type
+   319 ;;		None
+   320 ;; Return value:  Size  Location     Type
+   321 ;;		None               void
+   322 ;; Registers used:
+   323 ;;		wreg, status,2
+   324 ;; Tracked objects:
+   325 ;;		On entry : 0/0
+   326 ;;		On exit  : 0/0
+   327 ;;		Unchanged: 0/0
+   328 ;; Data sizes:     COMMON   BANK0
+   329 ;;      Params:         0       0
+   330 ;;      Locals:         0       0
+   331 ;;      Temps:          0       0
+   332 ;;      Totals:         0       0
+   333 ;;Total ram usage:        0 bytes
+   334 ;; Hardware stack levels used:    1
+   335 ;; Hardware stack levels required when called:    1
+   336 ;; This function calls:
+   337 ;;		Nothing
+   338 ;; This function is called by:
+   339 ;;		_main
+   340 ;; This function uses a non-reentrant model
+   341 ;;
+   342                           
+   343                           
+   344                           ;psect for function _setup
+   345  00A8                     _setup:	
+   346                           
+   347                           ;fish_main.c: 53: ANSEL = 0;
+   348                           
+   349                           ;incstack = 0
+   350                           ; Regs used in _setup: [wreg+status,2]
+   351  00A8  1683               	bsf	3,5	;RP0=1, select bank1
+   352  00A9  019F               	clrf	31	;volatile
+   353                           
+   354                           ;fish_main.c: 55: TRISIO = 0b000000;
+   355  00AA  0185               	clrf	5	;volatile
+   356                           
+   357                           ;fish_main.c: 56: GPIO = 0b000000;
+   358  00AB  1283               	bcf	3,5	;RP0=0, select bank0
+   359  00AC  0185               	clrf	5	;volatile
+   360                           
+   361                           ;fish_main.c: 57: nGPPU = ~1;
+   362  00AD  1683               	bsf	3,5	;RP0=1, select bank1
+   363  00AE  1381               	bcf	1,7	;volatile
+   364                           
+   365                           ;fish_main.c: 58: TRISIO2 = 1;
+   366  00AF  1505               	bsf	5,2	;volatile
+   367                           
+   368                           ;fish_main.c: 59: GP5 = 1;
+   369  00B0  1283               	bcf	3,5	;RP0=0, select bank0
+   370  00B1  1685               	bsf	5,5	;volatile
+   371                           
+   372                           ;fish_main.c: 64: GIE = 1;
+   373  00B2  178B               	bsf	11,7	;volatile
+   374                           
+   375                           ;fish_main.c: 65: PEIE = 1;
+   376  00B3  170B               	bsf	11,6	;volatile
+   377                           
+   378                           ;fish_main.c: 68: T1CON = 0b00110000;
+   379  00B4  3030               	movlw	48
+   380  00B5  0090               	movwf	16	;volatile
+   381                           
+   382                           ;fish_main.c: 69: TMR1 = (65536-65535);
+   383  00B6  3000               	movlw	0
+   384  00B7  008F               	movwf	15	;volatile
+   385  00B8  3001               	movlw	1
+   386  00B9  008E               	movwf	14	;volatile
+   387                           
+   388                           ;fish_main.c: 70: time = (1+0);
+   389  00BA  3000               	movlw	0
+   390  00BB  00B7               	movwf	_time+3
+   391  00BC  3000               	movlw	0
+   392  00BD  00B6               	movwf	_time+2
+   393  00BE  3000               	movlw	0
+   394  00BF  00B5               	movwf	_time+1
+   395  00C0  3001               	movlw	1
+   396  00C1  00B4               	movwf	_time
+   397                           
+   398                           ;fish_main.c: 71: TMR1IE = 1;
+   399  00C2  1683               	bsf	3,5	;RP0=1, select bank1
+   400  00C3  140C               	bsf	12,0	;volatile
+   401                           
+   402                           ;fish_main.c: 72: TMR1IF = 0;
+   403  00C4  1283               	bcf	3,5	;RP0=0, select bank0
+   404  00C5  100C               	bcf	12,0	;volatile
+   405                           
+   406                           ;fish_main.c: 75: INTE = 1;
+   407  00C6  160B               	bsf	11,4	;volatile
+   408                           
+   409                           ;fish_main.c: 76: INTF = 0;
+   410  00C7  108B               	bcf	11,1	;volatile
+   411                           
+   412                           ;fish_main.c: 77: INTEDG = 1;
+   413  00C8  1683               	bsf	3,5	;RP0=1, select bank1
+   414  00C9  1701               	bsf	1,6	;volatile
+   415  00CA  0008               	return
+   416  00CB                     __end_of_setup:	
+   417                           
+   418                           	psect	text2
+   419  006C                     __ptext2:	
+   420 ;; *************** function _isr *****************
+   421 ;; Defined at:
+   422 ;;		line 125 in file "fish_main.c"
+   423 ;; Parameters:    Size  Location     Type
+   424 ;;		None
+   425 ;; Auto vars:     Size  Location     Type
+   426 ;;		None
+   427 ;; Return value:  Size  Location     Type
+   428 ;;		None               void
+   429 ;; Registers used:
+   430 ;;		wreg, status,2
+   431 ;; Tracked objects:
+   432 ;;		On entry : 0/0
+   433 ;;		On exit  : 0/0
+   434 ;;		Unchanged: 0/0
+   435 ;; Data sizes:     COMMON   BANK0
+   436 ;;      Params:         0       0
+   437 ;;      Locals:         0       0
+   438 ;;      Temps:          0       8
+   439 ;;      Totals:         0       8
+   440 ;;Total ram usage:        8 bytes
+   441 ;; Hardware stack levels used:    1
+   442 ;; This function calls:
+   443 ;;		Nothing
+   444 ;; This function is called by:
+   445 ;;		Interrupt level 1
+   446 ;; This function uses a non-reentrant model
+   447 ;;
+   448                           
+   449                           
+   450                           ;psect for function _isr
+   451  006C                     _isr:	
+   452                           
+   453                           ;fish_main.c: 126: GIE = 0;
+   454  006C  138B               	bcf	11,7	;volatile
+   455                           
+   456                           ;fish_main.c: 127: if (TMR1IE && TMR1IF)
+   457  006D  1683               	bsf	3,5	;RP0=1, select bank1
+   458  006E  1C0C               	btfss	12,0	;volatile
+   459  006F  2894               	goto	i1l660
+   460  0070  1283               	bcf	3,5	;RP0=0, select bank0
+   461  0071  1C0C               	btfss	12,0	;volatile
+   462  0072  2894               	goto	i1l660
+   463                           
+   464                           ;fish_main.c: 128: {
+   465                           ;fish_main.c: 129: TMR1IF = 0;
+   466  0073  100C               	bcf	12,0	;volatile
+   467                           
+   468                           ;fish_main.c: 130: TMR1 = 0;
+   469  0074  018E               	clrf	14	;volatile
+   470  0075  018F               	clrf	15	;volatile
+   471                           
+   472                           ;fish_main.c: 131: time--;
+   473  0076  3001               	movlw	1
+   474  0077  00A0               	movwf	??_isr
+   475  0078  3000               	movlw	0
+   476  0079  00A1               	movwf	??_isr+1
+   477  007A  3000               	movlw	0
+   478  007B  00A2               	movwf	??_isr+2
+   479  007C  3000               	movlw	0
+   480  007D  00A3               	movwf	??_isr+3
+   481  007E  0820               	movf	??_isr,w
+   482  007F  02B4               	subwf	_time,f
+   483  0080  0821               	movf	??_isr+1,w
+   484  0081  1C03               	skipc
+   485  0082  0F21               	incfsz	??_isr+1,w
+   486  0083  2885               	goto	u16_25
+   487  0084  2886               	goto	u16_26
+   488  0085                     u16_25:	
+   489  0085  02B5               	subwf	_time+1,f
+   490  0086                     u16_26:	
+   491  0086  0822               	movf	??_isr+2,w
+   492  0087  1C03               	skipc
+   493  0088  0F22               	incfsz	??_isr+2,w
+   494  0089  288B               	goto	u16_27
+   495  008A  288C               	goto	u16_28
+   496  008B                     u16_27:	
+   497  008B  02B6               	subwf	_time+2,f
+   498  008C                     u16_28:	
+   499  008C  0823               	movf	??_isr+3,w
+   500  008D  1C03               	skipc
+   501  008E  0F23               	incfsz	??_isr+3,w
+   502  008F  2891               	goto	u16_29
+   503  0090  2892               	goto	i1l658
+   504  0091                     u16_29:	
+   505  0091  02B7               	subwf	_time+3,f
+   506  0092                     i1l658:	
+   507                           
+   508                           ;fish_main.c: 132: GPIO1 = ~GPIO1;
+   509  0092  3002               	movlw	2
+   510  0093  0685               	xorwf	5,f
+   511  0094                     i1l660:	
+   512                           
+   513                           ;fish_main.c: 153: }
+   514                           ;fish_main.c: 154: if (INTE && INTF)
+   515  0094  1A0B               	btfsc	11,4	;volatile
+   516  0095  1C8B               	btfss	11,1	;volatile
+   517  0096  289B               	goto	i1l670
+   518                           
+   519                           ;fish_main.c: 155: {
+   520                           ;fish_main.c: 156: INTF = 0;
+   521  0097  108B               	bcf	11,1	;volatile
+   522                           
+   523                           ;fish_main.c: 157: blink = 0;
+   524  0098  1283               	bcf	3,5	;RP0=0, select bank0
+   525  0099  01B8               	clrf	_blink
+   526                           
+   527                           ;fish_main.c: 158: INTE = 0;
+   528  009A  120B               	bcf	11,4	;volatile
+   529  009B                     i1l670:	
+   530                           
+   531                           ;fish_main.c: 159: }
+   532                           ;fish_main.c: 160: GIE = 1;
+   533  009B  178B               	bsf	11,7	;volatile
+   534  009C  1283               	bcf	3,5	;RP0=0, select bank0
+   535  009D  0827               	movf	??_isr+7,w
+   536  009E  00DF               	movwf	95
+   537  009F  0826               	movf	??_isr+6,w
+   538  00A0  008A               	movwf	10
+   539  00A1  0825               	movf	??_isr+5,w
+   540  00A2  0084               	movwf	4
+   541  00A3  0E24               	swapf	(??_isr+4)^0,w
+   542  00A4  0083               	movwf	3
+   543  00A5  0EDE               	swapf	94,f
+   544  00A6  0E5E               	swapf	94,w
+   545  00A7  0009               	retfie
+   546  00A8                     __end_of_isr:	
+   547  005E                     btemp	set	94	;btemp
+   548  005E                     wtemp0	set	94
+   549                           
+   550                           	psect	intentry
+   551  0004                     __pintentry:	
+   552                           ;incstack = 0
+   553                           ; Regs used in _isr: [wreg+status,2]
+   554                           
+   555  0004                     interrupt_function:	
+   556  005E                     saved_w	set	btemp
+   557  0004  00DE               	movwf	btemp
+   558  0005  0E03               	swapf	3,w
+   559  0006  1283               	bcf	3,5	;RP0=0, select bank0
+   560  0007  00A4               	movwf	??_isr+4
+   561  0008  0804               	movf	4,w
+   562  0009  00A5               	movwf	??_isr+5
+   563  000A  080A               	movf	10,w
+   564  000B  00A6               	movwf	??_isr+6
+   565  000C  085F               	movf	btemp+1,w
+   566  000D  00A7               	movwf	??_isr+7
+   567  000E  286C               	ljmp	_isr
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         1
+    Persistent  4
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON            0      0       0
+    BANK0            62     20      25
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _isr in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _isr in BANK0
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                12     8      4      23
+                                              8 BANK0     12     8      4
+                              _setup
+ ---------------------------------------------------------------------------------
+ (1) _setup                                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _isr                                                  8     8      0       0
+                                              0 BANK0      8     8      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _setup
+
+ _isr (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            0      0       0       0        0.0%
+EEDATA              80      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       1       2        0.0%
+BITBANK0            3E      0       0       3        0.0%
+BANK0               3E     14      19       4       40.3%
+ABS                  0      0      19       5        0.0%
+DATA                 0      0      1A       6        0.0%
+
+
+Microchip Technology PIC Macro Assembler V1.20 build 52243 
+Symbol Table                                                                                   Fri Mar 28 01:48:14 2014
+
+            __CFG_CP$OFF 0000                      l630 0018                      l642 003D  
+                    l626 0015                      l646 0030                      _GP5 002D  
+                    _GIE 005F                      u110 0059                      u115 004C  
+                    u116 004D                      u125 0067                      u117 0052  
+                    u118 0053                      u119 0058             __CFG_CPD$OFF 0000  
+                    _isr 006C                      fsr0 0004                     ?_isr 0020  
+                   _GPIO 0005                     _PEIE 005E                     _INTE 005C  
+                   _INTF 0059                     _TMR1 000E                     _main 0014  
+                   _time 0034                     btemp 005E            __CFG_BOREN$ON 0000  
+                   start 000F            __CFG_MCLRE$ON 0000                    ??_isr 0020  
+                  ?_main 0028            __CFG_WDTE$OFF 0000                    _ANSEL 009F  
+                  _T1CON 0010                    _GPIO0 0028                    _GPIO1 0029  
+                  i1l660 0094                    i1l670 009B                    i1l658 0092  
+                  u16_25 0085                    u16_26 0086                    u16_27 008B  
+                  u16_28 008C                    u16_29 0091            __CFG_PWRTE$ON 0000  
+                  _nGPPU 040F                    _blink 0038                    _setup 00A8  
+                  pclath 000A                    status 0003                    wtemp0 005E  
+        __initialization 00CB             __end_of_main 006C                   ??_main 002C  
+                 ?_setup 0020                   _INTEDG 040E                   _TMR1IE 0460  
+                 _TMR1IF 0060                   _TMR1ON 0080                   _TRISIO 0085  
+                 saved_w 005E  __end_of__initialization 00CC           __pcstackCOMMON 0000  
+          __end_of_setup 00CB                  ??_setup 0000               __pbssBANK0 0038  
+             __pmaintext 0014               __pintentry 0004                  _TRISIO2 042A  
+                __ptext1 00A8                  __ptext2 006C             __size_of_isr 003C  
+                main@cnt 0030     end_of_initialization 00CC      start_initialization 00CB  
+            __end_of_isr 00A8            __pcstackBANK0 0020                __pnvBANK0 0034  
+         __size_of_setup 0023        interrupt_function 0004            __size_of_main 0058  
+               main@argc 0028                 main@argv 002A                 intlevel1 0000  
+      __CFG_FOSC$INTRCIO 0000  

@@ -4,5 +4,4 @@
 defs.h  \
 temp.h  \
 temp_main.h  \
-disp.h  \
 menu.h  \
