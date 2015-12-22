@@ -9,8 +9,7 @@
 #define	DEFS_H
 
 #ifdef	__cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include <stdint.h>
@@ -40,6 +39,11 @@ extern "C"
 #define	CAT3(a,b,c)		CAT3EXP(a, b, c)
 #define	CAT3EXP(a,b,c)		a ## b ## c
 
+//Shift a to the right i bits and then isolate the first bit
+#define MASK1(a,i)               ((a)&(0b1<<(i)))
+// Mask out the specified bit and shift it to bit n
+#define MASKN(a,i,n)               ((MASK1(a,i)>>(i))<<n)
+
 
 #define OFF	0
 #define ON	1
@@ -67,7 +71,7 @@ const uint32_t pow10[] = {
 
 #define POW10(a) (pow10[a])
 
-#define WAIT 0
+#define WAIT 1
 
 extern void wait(uint32_t count);
 

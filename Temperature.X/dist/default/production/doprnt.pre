@@ -1,12 +1,12 @@
 
-# 1 "/usr/opt/microchip/xc8/v1.20/sources/common/doprnt.c"
+# 1 "/opt/microchip/xc8/v1.32/sources/common/doprnt.c"
 
-# 8 "/usr/opt/microchip/xc8/v1.20/include/stdio.h"
+# 8 "/opt/microchip/xc8/v1.32/include/stdio.h"
 typedef int ptrdiff_t;
 typedef unsigned size_t;
 typedef unsigned short wchar_t;
 
-# 7 "/usr/opt/microchip/xc8/v1.20/include/stdarg.h"
+# 7 "/opt/microchip/xc8/v1.32/include/stdarg.h"
 typedef void * va_list[1];
 
 #pragma intrinsic(__va_start)
@@ -15,7 +15,7 @@ extern void * __va_start(void);
 #pragma intrinsic(__va_arg)
 extern void * __va_arg(void *, ...);
 
-# 23 "/usr/opt/microchip/xc8/v1.20/include/stdio.h"
+# 23 "/opt/microchip/xc8/v1.32/include/stdio.h"
 extern int errno;
 
 # 54
@@ -25,7 +25,7 @@ char * ptr;
 void (* func)(char);
 };
 
-# 17 "/usr/opt/microchip/xc8/v1.20/include/conio.h"
+# 17 "/opt/microchip/xc8/v1.32/include/conio.h"
 extern int errno;
 
 
@@ -42,7 +42,7 @@ extern __bit kbhit(void);
 extern char * cgets(char *);
 extern void cputs(const char *);
 
-# 99 "/usr/opt/microchip/xc8/v1.20/include/stdio.h"
+# 99 "/opt/microchip/xc8/v1.32/include/stdio.h"
 extern int cprintf(char *, ...);
 #pragma printf_check(cprintf)
 
@@ -57,19 +57,19 @@ extern int _doprnt(struct __prbuf *, const register char *, register va_list);
 
 extern char * gets(char *);
 extern int puts(const char *);
-extern int scanf(const char *, ...);
-extern int sscanf(const char *, const char *, ...);
-extern int vprintf(const char *, va_list);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
 extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap);
-extern int vsscanf(const char *, const char *, va_list);
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 
 #pragma printf_check(printf) const
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 4 "/usr/opt/microchip/xc8/v1.20/include/ctype.h"
+# 4 "/opt/microchip/xc8/v1.32/include/ctype.h"
 extern __bit isalpha(char);
 extern __bit isupper(char);
 extern __bit islower(char);
@@ -86,7 +86,7 @@ extern __bit iscntrl(char);
 extern char toupper(char);
 extern char tolower(char);
 
-# 27 "/usr/opt/microchip/xc8/v1.20/include/stdlib.h"
+# 27 "/opt/microchip/xc8/v1.32/include/stdlib.h"
 typedef struct {
 int rem;
 int quot;
@@ -154,12 +154,12 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
-# 22 "/usr/opt/microchip/xc8/v1.20/include/string.h"
+# 22 "/opt/microchip/xc8/v1.32/include/string.h"
 extern void * memcpy(void *, const void *, size_t);
 extern void * memmove(void *, const void *, size_t);
 extern void * memset(void *, int, size_t);
 
-# 35
+# 42
 extern char * strcat(char *, const char *);
 extern char * strcpy(char *, const char *);
 extern char * strncat(char *, const char *, size_t);
@@ -186,7 +186,7 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 17 "/usr/opt/microchip/xc8/v1.20/include/conio.h"
+# 17 "/opt/microchip/xc8/v1.32/include/conio.h"
 extern int errno;
 
 
@@ -203,7 +203,7 @@ extern __bit kbhit(void);
 extern char * cgets(char *);
 extern void cputs(const char *);
 
-# 17 "/usr/opt/microchip/xc8/v1.20/include/sys.h"
+# 17 "/opt/microchip/xc8/v1.32/include/sys.h"
 extern int errno;
 
 # 30
@@ -243,7 +243,7 @@ extern void brk(void *);
 extern int _pnum(unsigned long, signed char, signed char, unsigned char, unsigned char, struct __prbuf *, unsigned char);
 extern int _fnum(double, short, short, short, struct __prbuf *, short);
 
-# 3 "/usr/opt/microchip/xc8/v1.20/include/math.h"
+# 3 "/opt/microchip/xc8/v1.32/include/math.h"
 extern double fabs(double);
 extern double floor(double);
 extern double ceil(double);
@@ -272,7 +272,7 @@ extern double trunc(double);
 extern double round(double);
 
 
-# 13 "/usr/opt/microchip/xc8/v1.20/sources/common/doprnt.c"
+# 13 "/opt/microchip/xc8/v1.32/sources/common/doprnt.c"
 #pragma warning disable 350
 
 # 354
@@ -579,7 +579,13 @@ width--;
 
 if(flag & 0x04) {
 
-# 1175
+
+
+if(flag & 0x03)
+
+((*sp++ = ('-')));
+
+# 1177
 while(width > 0) {
 ((*sp++ = ('0')));
 width--;
@@ -589,7 +595,7 @@ width--;
 
 {
 
-# 1187
+# 1189
 while(width > 0) {
 ((*sp++ = (' ')));
 width--;
@@ -602,14 +608,14 @@ if(flag & 0x03)
 
 ((*sp++ = ('-')));
 
-# 1202
+# 1204
 }
 while(c--) {
 
 
 
 {
-unsigned vd = _val._val/dpowers[c];
+unsigned long vd = _val._val/dpowers[c];
 vd %= 10;
 ((*sp++ = ('0' + vd)));
 }
@@ -631,10 +637,10 @@ if(c)
 
 ((*sp++ = ('.')));
 
-# 1234
+# 1236
 _val._val = (long)(fval * scale(c));
 while(c--) {
-unsigned vd = _val._val/dpowers[c];
+unsigned long vd = _val._val/dpowers[c];
 vd %= 10;
 ((*sp++ = ('0' + vd)));
 _val._val %= dpowers[c];
@@ -645,11 +651,11 @@ while(prec) {
 prec--;
 }
 
-# 1252
+# 1254
 continue;
 }
 
-# 1260
+# 1262
 {
 
 if(flag & 0x10)
@@ -665,16 +671,16 @@ _val._val = -_val._val;
 
 }
 
-# 1297
+# 1299
 if(prec == 0 && _val._val == 0)
 prec++;
 
-# 1312
+# 1314
 for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
 if(_val._val < dpowers[c])
 break;
 
-# 1346
+# 1348
 if(c < prec)
 c = prec;
 else if(prec < c)
@@ -691,7 +697,7 @@ else
 width = 0;
 }
 
-# 1388
+# 1390
 if(width > c)
 width -= c;
 else
@@ -706,7 +712,7 @@ if(flag & 0x04) {
 if(flag & 0x03)
 ((*sp++ = ('-')));
 
-# 1422
+# 1424
 if(width)
 do
 ((*sp++ = ('0')));
@@ -718,34 +724,34 @@ while(--width);
 
 if(width
 
-# 1435
+# 1437
 )
 do
 ((*sp++ = (' ')));
 while(--width);
 
-# 1445
+# 1447
 if(flag & 0x03)
 ((*sp++ = ('-')));
 
-# 1476
+# 1478
 }
 
-# 1481
+# 1483
 while(prec--) {
 
-# 1485
+# 1487
 {
 
-# 1496
+# 1498
 c = (_val._val / dpowers[prec]) % 10 + '0';
 
-# 1530
+# 1532
 }
 ((*sp++ = (c)));
 }
 
-# 1540
+# 1542
 }
 
 alldone:

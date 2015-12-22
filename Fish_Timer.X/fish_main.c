@@ -5,21 +5,20 @@
  * Created on 7. Oktober 2013, 01:41
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <xc.h>
-
 // CONFIG
-#pragma config FOSC = INTRCIO   // Oscillator Selection bits (INTOSC oscillator: I/O function on GP4/OSC2/CLKOUT pin, I/O function on GP5/OSC1/CLKIN)
+#pragma config FOSC = XT        // Oscillator Selection bits (XT oscillator: Crystal/resonator on GP4/OSC2/CLKOUT and GP5/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
 #pragma config PWRTE = ON       // Power-Up Timer Enable bit (PWRT enabled)
-#pragma config MCLRE = ON       // GP3/MCLR pin function select (GP3/MCLR pin function is MCLR)
-#pragma config BOREN = ON       // Brown-out Detect Enable bit (BOD enabled)
+#pragma config MCLRE = OFF      // GP3/MCLR pin function select (GP3/MCLR pin function is digital I/O, MCLR internally tied to VDD)
+#pragma config BOREN = OFF      // Brown-out Detect Enable bit (BOD disabled)
 #pragma config CP = OFF         // Code Protection bit (Program Memory code protection is disabled)
 #pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
 
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <htc.h>
+#include <xc.h>
 
 //#define EEPROM
 
@@ -49,15 +48,16 @@ uint8_t blink;
 
 void setup()
 {
+    asm("nop");
 	// Disable Analog Inputs
 	ANSEL = 0;
 	//GPIO's
 	TRISIO = 0b000000;
-	GPIO = 0b000000;
-	nGPPU = ~ON;
-	TRISIO2 = INPUT;
-	GP5 = ON;
-	//while(1);
+	//GPIO = 0b000000;
+	//nGPPU = !ON;
+	//TRISIO2 = INPUT;
+	GPIO0 = ON;
+	while(1);
 
 
 	//Interrupts

@@ -44,7 +44,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit2PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>1.20</languageToolchainVersion>
+        <languageToolchainVersion>1.35</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <compileType>
@@ -52,8 +52,11 @@
           <linkerLibItems>
           </linkerLibItems>
         </linkerTool>
+        <archiverTool>
+        </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
+          <parseOnProdLoad>true</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
       </compileType>
@@ -78,6 +81,8 @@
         <property key="optimization-assembler-files" value="true"/>
         <property key="optimization-debug" value="false"/>
         <property key="optimization-global" value="true"/>
+        <property key="optimization-invariant-enable" value="false"/>
+        <property key="optimization-invariant-value" value="16"/>
         <property key="optimization-level" value="9"/>
         <property key="optimization-set" value="default"/>
         <property key="optimization-speed" value="false"/>
@@ -131,7 +136,7 @@
       </HI-TECH-LINK>
       <PICkit2PlatformTool>
         <property key="pk2settings.3state" value="true"/>
-        <property key="pk2settings.preserveee" value="false"/>
+        <property key="pk2settings.preserveee" value="true"/>
         <property key="pk2settings.setvddvoltage" value="5,00"/>
         <property key="pk2settings.userpgmexec" value="true"/>
         <property key="pk2settings.usetargetpower" value="false"/>

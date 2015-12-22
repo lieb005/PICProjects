@@ -23,7 +23,7 @@ struct sMenu
 	uint8_t state;
 	uint8_t digits;
 	uint8_t num_states;
-	void* (*printFn)(uint8_t digits);
+	void (*printFn)(uint8_t digits);
 };
 
 struct sMenu* menu;

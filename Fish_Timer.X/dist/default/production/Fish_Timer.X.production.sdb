@@ -2,184 +2,177 @@
 [d version 1.1 ]
 [d edition pro ]
 [d chip 12F675 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/abdiv.c
+[d frameptr 6 ]
+"4 /opt/microchip/xc8/v1.32/sources/common/abdiv.c
 [v ___abdiv __abdiv `(c  1 e 1 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/abmod.c
+"4 /opt/microchip/xc8/v1.32/sources/common/abmod.c
 [v ___abmod __abmod `(c  1 e 1 0 ]
-"34 /usr/opt/microchip/xc8/v1.20/sources/pic/abtoft.c
+"33 /opt/microchip/xc8/v1.32/sources/common/abtoft.c
 [v ___abtoft __abtoft `(f  1 e 3 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/aldiv.c
+"6 /opt/microchip/xc8/v1.32/sources/common/aldiv.c
 [v ___aldiv __aldiv `(l  1 e 4 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/almod.c
+"5 /opt/microchip/xc8/v1.32/sources/common/almod.c
 [v ___almod __almod `(l  1 e 4 0 ]
-"43 /usr/opt/microchip/xc8/v1.20/sources/pic/altoft.c
+"42 /opt/microchip/xc8/v1.32/sources/common/altoft.c
 [v ___altoft __altoft `(f  1 e 3 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/atdiv.c
+"6 /opt/microchip/xc8/v1.32/sources/common/atdiv.c
 [v ___atdiv __atdiv `(m  1 e 3 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/atmod.c
+"6 /opt/microchip/xc8/v1.32/sources/common/atmod.c
 [v ___atmod __atmod `(m  1 e 3 0 ]
-"38 /usr/opt/microchip/xc8/v1.20/sources/pic/attoft.c
+"37 /opt/microchip/xc8/v1.32/sources/common/attoft.c
 [v ___attoft __attoft `(f  1 e 3 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/awdiv.c
+"6 /opt/microchip/xc8/v1.32/sources/common/awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/awmod.c
+"6 /opt/microchip/xc8/v1.32/sources/common/awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
-"33 /usr/opt/microchip/xc8/v1.20/sources/pic/awtoft.c
+"32 /opt/microchip/xc8/v1.32/sources/common/awtoft.c
 [v ___awtoft __awtoft `(f  1 e 3 0 ]
-"3 /usr/opt/microchip/xc8/v1.20/sources/pic/bmul.c
-[v ___bmul __bmul `(uc  1 e 1 0 ]
-"7 /usr/opt/microchip/xc8/v1.20/sources/pic/eeprom.c
-[v _eecpymem eecpymem `(v  1 e 0 0 ]
-"25
-[v _memcpyee memcpyee `(v  1 e 0 0 ]
-"49
-[v ___eetoc __eetoc `(uc  1 e 1 0 ]
-"57
-[v ___eetoi __eetoi `(ui  1 e 2 0 ]
-"65
-[v ___eetom __eetom `(um  1 e 3 0 ]
-"73
-[v ___eetol __eetol `(ul  1 e 4 0 ]
-"81
-[v ___ctoee __ctoee `(uc  1 e 1 0 ]
-"88
-[v ___itoee __itoee `(ui  1 e 2 0 ]
-"95
-[v ___mtoee __mtoee `(um  1 e 3 0 ]
-"102
-[v ___ltoee __ltoee `(ul  1 e 4 0 ]
-"109
-[v ___eetoft __eetoft `(f  1 e 3 0 ]
-"117
-[v ___eetofl __eetofl `(d  1 e 3 0 ]
-"125
-[v ___fttoee __fttoee `(f  1 e 3 0 ]
-"132
-[v ___fltoee __fltoee `(d  1 e 3 0 ]
-"63 /usr/opt/microchip/xc8/v1.20/sources/pic/float.c
+"62 /opt/microchip/xc8/v1.32/sources/common/float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
-"87 /usr/opt/microchip/xc8/v1.20/sources/pic/ftadd.c
+"86 /opt/microchip/xc8/v1.32/sources/common/ftadd.c
 [v ___ftadd __ftadd `(f  1 e 3 0 ]
-"50 /usr/opt/microchip/xc8/v1.20/sources/pic/ftdiv.c
-[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/ftge.c
+"4 /opt/microchip/xc8/v1.32/sources/common/ftge.c
 [v ___ftge __ftge `(b  1 e 0 0 ]
-"52 /usr/opt/microchip/xc8/v1.20/sources/pic/ftmul.c
+"62 /opt/microchip/xc8/v1.32/sources/common/ftmul.c
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
-"16 /usr/opt/microchip/xc8/v1.20/sources/pic/ftneg.c
+"15 /opt/microchip/xc8/v1.32/sources/common/ftneg.c
 [v ___ftneg __ftneg `(f  1 e 3 0 ]
-"17 /usr/opt/microchip/xc8/v1.20/sources/pic/ftsub.c
+"18 /opt/microchip/xc8/v1.32/sources/common/ftsub.c
 [v ___ftsub __ftsub `(f  1 e 3 0 ]
-"45 /usr/opt/microchip/xc8/v1.20/sources/pic/fttol.c
+"44 /opt/microchip/xc8/v1.32/sources/common/fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/lbdiv.c
+"4 /opt/microchip/xc8/v1.32/sources/common/lbdiv.c
 [v ___lbdiv __lbdiv `(uc  1 e 1 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/lbmod.c
+"4 /opt/microchip/xc8/v1.32/sources/common/lbmod.c
 [v ___lbmod __lbmod `(uc  1 e 1 0 ]
-"28 /usr/opt/microchip/xc8/v1.20/sources/pic/lbtoft.c
+"27 /opt/microchip/xc8/v1.32/sources/common/lbtoft.c
 [v ___lbtoft __lbtoft `(f  1 e 3 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/lldiv.c
+"6 /opt/microchip/xc8/v1.32/sources/common/lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/llmod.c
+"6 /opt/microchip/xc8/v1.32/sources/common/llmod.c
 [v ___llmod __llmod `(ul  1 e 4 0 ]
-"36 /usr/opt/microchip/xc8/v1.20/sources/pic/lltoft.c
+"35 /opt/microchip/xc8/v1.32/sources/common/lltoft.c
 [v ___lltoft __lltoft `(f  1 e 3 0 ]
-"3 /usr/opt/microchip/xc8/v1.20/sources/pic/lmul.c
-[v ___lmul __lmul `(ul  1 e 4 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/ltdiv.c
+"6 /opt/microchip/xc8/v1.32/sources/common/ltdiv.c
 [v ___ltdiv __ltdiv `(um  1 e 3 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/ltmod.c
+"6 /opt/microchip/xc8/v1.32/sources/common/ltmod.c
 [v ___ltmod __ltmod `(um  1 e 3 0 ]
-"31 /usr/opt/microchip/xc8/v1.20/sources/pic/lttoft.c
+"30 /opt/microchip/xc8/v1.32/sources/common/lttoft.c
 [v ___lttoft __lttoft `(f  1 e 3 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/lwdiv.c
+"6 /opt/microchip/xc8/v1.32/sources/common/lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
-"5 /usr/opt/microchip/xc8/v1.20/sources/pic/lwmod.c
+"6 /opt/microchip/xc8/v1.32/sources/common/lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
-"29 /usr/opt/microchip/xc8/v1.20/sources/pic/lwtoft.c
+"28 /opt/microchip/xc8/v1.32/sources/common/lwtoft.c
 [v ___lwtoft __lwtoft `(f  1 e 3 0 ]
-"3 /usr/opt/microchip/xc8/v1.20/sources/pic/tmul.c
-[v ___tmul __tmul `(um  1 e 3 0 ]
-"3 /usr/opt/microchip/xc8/v1.20/sources/pic/wmul.c
+"15 /opt/microchip/xc8/v1.32/sources/common/Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
-"51 /home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c
-[v _setup setup `(v  1 e 0 0 ]
-"94
-[v _main main `(i  1 e 2 0 ]
-"125
-[v _isr isr `II(v  1 e 0 0 ]
-"207 /usr/opt/microchip/xc8/v1.20/include/pic12f675.h
-[v _GPIO GPIO `VEuc  1 e 1 @5 ]
-"437
-[v _TMR1 TMR1 `VEus  1 e 2 @14 ]
-"481
-[v _T1CON T1CON `VEuc  1 e 1 @16 ]
-"774
-[v _TRISIO TRISIO `VEuc  1 e 1 @133 ]
-"1238
-[v _EEDATA EEDATA `VEuc  1 e 1 @154 ]
-"1275
-[v _EEADR EEADR `VEuc  1 e 1 @155 ]
-"1294
-[v _EECON1 EECON1 `VEuc  1 e 1 @156 ]
-"1331
-[v _EECON2 EECON2 `VEuc  1 e 1 @157 ]
-"1369
-[v _ANSEL ANSEL `VEuc  1 e 1 @159 ]
-"1478
-[v _CARRY CARRY `VEb  1 e 0 @24 ]
-"1506
-[v _GIE GIE `VEb  1 e 0 @95 ]
-"1524
-[v _GP5 GP5 `VEb  1 e 0 @45 ]
-"1530
-[v _GPIO0 GPIO0 `VEb  1 e 0 @40 ]
-"1532
-[v _GPIO1 GPIO1 `VEb  1 e 0 @41 ]
-"1542
-[v _INTE INTE `VEb  1 e 0 @92 ]
-"1544
-[v _INTEDG INTEDG `VEb  1 e 0 @1038 ]
-"1546
-[v _INTF INTF `VEb  1 e 0 @89 ]
-"1574
-[v _PEIE PEIE `VEb  1 e 0 @94 ]
-"1584
-[v _RD RD `VEb  1 e 0 @1248 ]
-"1616
-[v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
-"1618
-[v _TMR1IF TMR1IF `VEb  1 e 0 @96 ]
-"1620
-[v _TMR1ON TMR1ON `VEb  1 e 0 @128 ]
-"1626
-[v _TRISIO2 TRISIO2 `VEb  1 e 0 @1066 ]
-"1658
-[v _WR WR `VEb  1 e 0 @1249 ]
-"1660
-[v _WREN WREN `VEb  1 e 0 @1250 ]
-"1672
-[v _nGPPU nGPPU `VEb  1 e 0 @1039 ]
-"47 /home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c
-[v _time time `ul  1 e 4 0 ]
+"15 /opt/microchip/xc8/v1.32/sources/common/Umul24.c
+[v ___tmul __tmul `(um  1 e 3 0 ]
+"15 /opt/microchip/xc8/v1.32/sources/common/Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"4 /opt/microchip/xc8/v1.32/sources/common/Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+"6 /opt/microchip/xc8/v1.32/sources/pic/eeprom.c
+[v _eecpymem eecpymem `(v  1 e 0 0 ]
+"24
+[v _memcpyee memcpyee `(v  1 e 0 0 ]
 "48
-[v _blink blink `uc  1 e 1 0 ]
+[v ___eetoc __eetoc `(uc  1 e 1 0 ]
+"56
+[v ___eetoi __eetoi `(ui  1 e 2 0 ]
+"64
+[v ___eetom __eetom `(um  1 e 3 0 ]
+"72
+[v ___eetol __eetol `(ul  1 e 4 0 ]
+"80
+[v ___ctoee __ctoee `(uc  1 e 1 0 ]
+"87
+[v ___itoee __itoee `(ui  1 e 2 0 ]
 "94
+[v ___mtoee __mtoee `(um  1 e 3 0 ]
+"101
+[v ___ltoee __ltoee `(ul  1 e 4 0 ]
+"108
+[v ___eetoft __eetoft `(f  1 e 3 0 ]
+"116
+[v ___eetofl __eetofl `(d  1 e 3 0 ]
+"124
+[v ___fttoee __fttoee `(f  1 e 3 0 ]
+"131
+[v ___fltoee __fltoee `(d  1 e 3 0 ]
+"49 /opt/microchip/xc8/v1.32/sources/pic/ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+"49 /home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c
+[v _setup setup `(v  1 e 0 0 ]
+"93
+[v _main main `(i  1 e 2 0 ]
+"124
+[v _isr isr `II(v  1 e 0 0 ]
+"440 /opt/microchip/xc8/v1.32/include/pic12f675.h
+[v _TMR1 TMR1 `VEus  1 e 2 @14 ]
+"484
+[v _T1CON T1CON `VEuc  1 e 1 @16 ]
+"777
+[v _TRISIO TRISIO `VEuc  1 e 1 @133 ]
+"1241
+[v _EEDATA EEDATA `VEuc  1 e 1 @154 ]
+"1278
+[v _EEADR EEADR `VEuc  1 e 1 @155 ]
+"1297
+[v _EECON1 EECON1 `VEuc  1 e 1 @156 ]
+"1334
+[v _EECON2 EECON2 `VEuc  1 e 1 @157 ]
+"1372
+[v _ANSEL ANSEL `VEuc  1 e 1 @159 ]
+"1481
+[v _CARRY CARRY `VEb  1 e 0 @24 ]
+"1509
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"1533
+[v _GPIO0 GPIO0 `VEb  1 e 0 @40 ]
+"1535
+[v _GPIO1 GPIO1 `VEb  1 e 0 @41 ]
+"1545
+[v _INTE INTE `VEb  1 e 0 @92 ]
+"1547
+[v _INTEDG INTEDG `VEb  1 e 0 @1038 ]
+"1549
+[v _INTF INTF `VEb  1 e 0 @89 ]
+"1577
+[v _PEIE PEIE `VEb  1 e 0 @94 ]
+"1587
+[v _RD RD `VEb  1 e 0 @1248 ]
+"1619
+[v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
+"1621
+[v _TMR1IF TMR1IF `VEb  1 e 0 @96 ]
+"1623
+[v _TMR1ON TMR1ON `VEb  1 e 0 @128 ]
+"1661
+[v _WR WR `VEb  1 e 0 @1249 ]
+"1663
+[v _WREN WREN `VEb  1 e 0 @1250 ]
+"46 /home/mark/MPLABXProjects/Fish_Timer.X/fish_main.c
+[v _time time `ul  1 e 4 0 ]
+"47
+[v _blink blink `uc  1 e 1 0 ]
+"93
 [v _main main `(i  1 e 2 0 ]
 {
 "116
 [v main@cnt cnt `ul  1 a 4 16 ]
-"94
+"93
 [v main@argc argc `i  1 p 2 8 ]
 [v main@argv argv `*.1*.1uc  1 p 2 10 ]
 "122
 } 0
-"51
+"49
 [v _setup setup `(v  1 e 0 0 ]
 {
 "88
 } 0
-"125
+"124
 [v _isr isr `II(v  1 e 0 0 ]
 {
 "161

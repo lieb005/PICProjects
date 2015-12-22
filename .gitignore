@@ -16,3 +16,9 @@
 *.exe
 *.out
 *.app
+/USBIR.X/nbproject/private/
+/Battery_meter.X/nbproject/private/
+/Test-asm.X/nbproject/private/
+/LCD_Clock.X/nbproject/private/
+/LCD_Clock.X/build/default/
+/LCD_Clock.X/dist/default/

@@ -11,7 +11,7 @@ uint32_t waitcnt = 0;
 
 void setupButtons()
 {
-	LATC = 0;
+	//LATC = 0;
 	LATB = 0;
 
 	// make them all inputs
@@ -24,11 +24,11 @@ void buttons()
 {
 	waitcnt++;
 	//LATA5 = 0;
-	LATC2 = 0;
+	//LATC2 = 0;
 	if (((INV PRT) & BIT0) && ((int32_t) (waitCnt[0] - waitcnt) <= 0))
 	{
 		waitCnt[0] = waitcnt + WAITCNT;
-		LATC2 = advState();
+		LATC7 = advState();
 	}
 	if (((INV PRT) & BIT1) && ((int32_t) (waitCnt[1] - waitcnt) <= 0))
 	{
@@ -47,11 +47,9 @@ void buttons()
 		screen.brightness--;
 		screen.changed |= BRIGHTNESS;
 	}
-	LATC0 = OFF;
 	if (((INV PRT) & BIT4) && ((int32_t) (waitCnt[4] - waitcnt) <= 0))
 	{
 		waitCnt[4] = waitcnt + WAITCNT;
-		LATC0 = ON;
 	}
 	if (((INV PRT) & BIT5) && ((int32_t) (waitCnt[5] - waitcnt) <= 0))
 	{
@@ -65,21 +63,13 @@ void buttons()
 	{
 		waitCnt[7] = waitcnt + WAITCNT;
 	}
-	LATC2 = 0;
 	if (INV PRT)
 	{
-		//LATC2 = 1;
-		update();
+		//update();
 	}
 	if (!INV PRT)
 	{
-		waitCnt[0] = 0;
-		waitCnt[1] = 0;
-		waitCnt[2] = 0;
-		waitCnt[3] = 0;
-		waitCnt[4] = 0;
-		waitCnt[5] = 0;
-		waitCnt[6] = 0;
-		waitCnt[7] = 0;
+		//Clear counts for later use.
+		*waitCnt = 0;
 	}
 }

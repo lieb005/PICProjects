@@ -36,16 +36,25 @@ extern "C"
 // 3; 59392
 #define RTC_OFFSET	(65536-53248)
 #define RTC_TICKS	7
-#define T1C 0b11111110
-#else
-//runs at 500kHz (16MHz/4/prescale)
+#define T1CFG 0b11111110
+#elif 0
+//runs at 500kHz (16MHz/4/prescale(8))
 //500.000Hz
-//15; 16960
-#define RTC_OFFSET	(65536-16960)
-#define RTC_TICKS	(15+1)
+//7; 41248
+#define RTC_OFFSET	(65536-41248)
+#define RTC_TICKS	(7+1)
 //#define RTC_OFFSET	(65536-63765)
 //#define RTC_TICKS	(1+1)
-#define T1C 0b10110000
+#define T1CFG 0b10110000
+
+#else
+//runs at 4MHz (16MHz/4/prescale(1))
+//7; 41248
+#define RTC_OFFSET	(65536-2304)
+#define RTC_TICKS	(61)
+//#define RTC_OFFSET	(65536-63765)
+//#define RTC_TICKS	(1+1)
+#define T1CFG 0b10000000
 
 #endif
 
@@ -147,7 +156,7 @@ uint8_t dayOfWeek(uint8_t yr, uint8_t mo, uint8_t dy);
 uint8_t daysOfMonth(uint8_t month, uint16_t year);
 uint8_t tick(uint8_t val);
 void checkDST();
-void* printRTC(uint8_t digits);
+void printRTC(uint8_t digits);
 struct sDate loadTime();
 void saveTime(struct sDate date);
 

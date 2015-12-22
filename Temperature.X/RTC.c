@@ -7,19 +7,22 @@
 
 void initRTC()
 {
-	rtcMenu.state = hhmmss;
-	rtcMenu.digits = DIG0_6;
+	rtcMenu.digits = DIG0_7;
+	rtcMenu.state = ddd_hhmm;
 	rtcMenu.num_states = DATEVIEWS;
 	rtcMenu.printFn = &printRTC;
 
 	date.month = 1;
 	date.day = 1;
 	date.year = 2013;
+	date.hour = 0;
+	date.minute = 0;
+	date.second = 0;
 
 	EECON1 = EECFG;
-	LATC1 = 1;
+	LATC6 = 1;
 	loadTime();
-	LATC1 = 0;
+	LATC6 = 0;
 }
 
 struct sDate loadTime()
@@ -31,28 +34,43 @@ struct sDate loadTime()
 	{
 		EEADR = EESTARTADDR + cnt;
 		RD = 1;
+		uint8_t data = EEDATA;
 		switch (cnt)
 		{
 		case minute:
-			newDate.minute = EEDATA;
+			if (data >= 60)
+				data = 0;
+			newDate.minute = data;
 			break;
 		case hour:
-			newDate.hour = EEDATA;
+			if (data >= 24)
+				data = 0;
+			newDate.hour = data;
 			break;
 		case day:
-			newDate.day = EEDATA;
+			if (data >= 31)
+				data = 1;
+			newDate.day = data;
 			break;
 		case month:
-			newDate.month = EEDATA;
+			if (data >= 12)
+				data = 1;
+			newDate.month = data;
 			break;
 		case year:
-			newDate.year = EEDATA;
+			if (data >= 21)
+				data = 20;
+			newDate.year = data;
 			break;
 		case year + 1:
-			newDate.year |= EEDATA << 8;
+			if (data >= 100)
+				data = 0;
+			newDate.year |= data << 8;
 			break;
 		}
+		asm("nop");
 	}
+	date = newDate;
 	return newDate;
 }
 
@@ -90,9 +108,9 @@ void saveTime(struct sDate date)
 		WR = 1;
 		while (WR)
 		{
-			LATC2 = 1;
+			LATC6 = 1;
 		}
-		LATC2 = 0;
+		LATC6 = 0;
 	}
 }
 
@@ -151,28 +169,39 @@ void checkDST()
 
 uint8_t tick(uint8_t val)
 {
+	uint8_t save_t = false;
+	uint8_t ret = 0;
 	switch (val)
 	{
 	case second:
-		if (++date.second >= 60)
+		date.second++;
+		ret = date.second;
+		if (date.second >= 60)
 		{
 			date.second = 0;
 		case minute:
-			saveTime(date);
-			if (++date.minute >= 60)
+			date.minute++;
+			save_t = true;
+			ret = date.second;
+			if (date.minute >= 60)
 			{
 				date.minute = 0;
 			case hour:
 				date.hour++;
 				checkDST();
+				ret = date.hour;
 				if (date.hour >= 24)
 				{
 					date.hour = 0;
 				case day:
-					if (++date.day >= daysOfMonth(date.month, date.year))
+					date.day++;
+					ret = date.hour;
+					if (date.day >= daysOfMonth(date.month, date.year))
 					{
 						date.day = 1;
 					case month:
+						date.month++;
+						ret = date.hour;
 						if (++date.month > 12)
 						{
 							date.month = 1;
@@ -184,7 +213,11 @@ uint8_t tick(uint8_t val)
 			}
 		}
 	}
-	return 0;
+	if (save_t)
+	{
+		saveTime(date);
+	}
+	return ret;
 }
 
 uint8_t dayOfWeek(uint8_t year, uint8_t month, uint8_t day)
@@ -246,87 +279,133 @@ uint8_t dayOfWeek(uint8_t year, uint8_t month, uint8_t day)
 	return (uint8_t) ((tmp + 6) % 7);
 }
 
-void* printRTC(uint8_t digits)
+void printRTC(uint8_t digits)
 {
-	char str[12] = "";
-	uint8_t cnt;
-	bool first = 1;
-	for (cnt = rtcMenu.state; cnt != rtcMenu.state && !first; cnt++)
+	// 8 chars, X decimal points, and \0 at the end
+	static char str[BUF_SIZE];
+	uint8_t cnt = 0;
+
+	uint8_t bits = countBits(digits);
+
+	uint8_t i;
+
+menu_loop:
+
+	switch (bits)
 	{
-		if (cnt == 0)
+	case 8:
+		switch (rtcMenu.state)
 		{
-			first = false;
-		}
-		switch (countBits(digits))
-		{
-		case 8:
-			switch (cnt)
-			{
-			case ddd_hhmm:
-				sprintf(&str, "%s %02d.%02d", DOW(date.dow), date.hour, date.minute);
-				break;
-			case DD_MM_YY:
-				sprintf(&str, "%02d %02d %02d", date.day, date.month, date.year % 100);
-				break;
-			case hhmmss:
-				sprintf(&str, "  %02d.%02d.%02d", date.hour, date.minute, date.second);
-				break;
-			case dd_hhmm:
-				sprintf(&str, " %c%c %02d.%02d", DOW(date.dow)[0], DOW(date.dow)[1], date.minute, date.second);
-				break;
-			case DDMMYY:
-				sprintf(&str, "  %02d.%02d.%02d", date.day, date.month, date.year % 100);
-				break;
-			case hhmm:
-				sprintf(&str, "    %02d.%02d", date.hour, date.minute);
+		case ddd_hhmm:
+			sprintf(str, "%s %02d.%02d", dow[date.dow], date.hour, date.minute);
+			break;
+		case DD_MM_YY:
+			sprintf(str, "%02d-%02d-%02d", date.day, date.month, date.year % 100);
+			break;
+		case hhmmss:
+			sprintf(str, "  %02d.%02d.%02d", date.hour, date.minute, date.second);
+			break;
+			/*case dd_hhmm:
+				sprintf(str, " %c%c %02d.%02d", DOW(date.dow)[0], DOW(date.dow)[1], date.hour, date.minute);
+				break;*/
+			/*case DDMMYY:
+				sprintf(str, "  %02d.%02d.%02d", date.day, date.month, date.year % 100);
+				break;*/
+			/*case hhmm:
+				sprintf(str, "    %02d.%02d", date.hour, date.minute);
 				break;
 			case DDMM:
-				sprintf(&str, "    %02d.%02d", date.day, date.month);
-				break;
-			}
-		case 6 ... 7:
-			switch (cnt)
-			{
-			case hhmmss:
-				sprintf(&str, "%02d.%02d.%02d", date.hour, date.minute, date.second);
-				break;
-			case dd_hhmm:
-				sprintf(&str, "%c%c %02d.%02d", DOW(date.dow)[0], DOW(date.dow)[1], date.minute, date.second);
-				break;
-			case DDMMYY:
-				sprintf(&str, "%02d.%02d.%02d", date.day, date.month, date.year % 100);
-				break;
-			case hhmm:
-				sprintf(&str, "  %02d.%02d", date.hour, date.minute);
-				break;
-			case DDMM:
-				sprintf(&str, "  %02d.%02d", date.day, date.month);
-				break;
-			default:
-				continue;
-			}
-		case 4 ... 5:
-			switch (cnt)
-			{
-			case hhmm:
-				sprintf(&str, "%02d.%02d", date.hour, date.minute);
-				break;
-			case DDMM:
-				sprintf(&str, "%02d.%02d", date.day, date.month);
-				break;
-			default:
-				continue;
-			}
-		case 0 ... 3:
-			sprintf(&str, "    ");
+				sprintf(str, "    %02d.%02d", date.day, date.month);
+				break;*/
+		default:
+			i = BUF_SIZE;
+			while (--i)
+				str[i-1] = '\0';
 			break;
 		}
+		break;
+	case 6 ... 7:
+		switch (rtcMenu.state)
+		{
+		case hhmmss:
+			sprintf(str, "%02d.%02d.%02d", date.hour, date.minute, date.second);
+			break;
+		case dd_hhmm:
+			sprintf(str, "%c%c %02d.%02d", DOW(date.dow)[0], DOW(date.dow)[1], date.minute, date.second);
+			break;
+		case DDMMYY:
+			sprintf(str, "%02d.%02d.%02d", date.day, date.month, date.year % 100);
+			break;
+			/*case hhmm:
+				sprintf(str, "  %02d.%02d", date.hour, date.minute);
+				break;
+			case DDMM:
+				sprintf(str, "  %02d.%02d", date.day, date.month);
+				break;*/
+		default:
+			i = BUF_SIZE;
+			while (--i)
+				str[i - 1] = '\0';
+			break;
+		}
+		break;
+	case 4 ... 5:
+		switch (rtcMenu.state)
+		{
+		case hhmm:
+			sprintf(str, "%02d.%02d", date.hour, date.minute);
+			break;
+		case DDMM:
+			sprintf(str, "%02d.%02d", date.day, date.month);
+			break;
+		default:
+			i = BUF_SIZE;
+			while (--i)
+				str[i - 1] = '\0';
+			break;
+		}
+		break;
+	case 3:
+		switch (rtcMenu.state)
+		{
+		case ddd:
+			sprintf(str, "%02d.%02d", date.hour, date.minute);
+			break;
+		}
+		break;
+	case 2:
+		switch (rtcMenu.state)
+		{
+		case dd:
+			sprintf(str, "%c%c", date.hour, date.minute);
+			break;
+		default:
+			i = BUF_SIZE;
+			while (--i)
+				str[i - 1] = '\0';
+			break;
+		}
+		break;
+	case 0 ... 1:
+		sprintf(str, "    ");
+		break;
 	}
-	rtcMenu.state = cnt;
-	writeString(digits, &str);
+	if (*str == 0)
+	{
+		cnt++;
+		advState();
+		if (cnt < DATEVIEWS)
+		{
+			goto menu_loop;
+		}
+		else
+		{
+			sprintf(str, "ERR");
+		}
+	}
+
+	writeString(digits, str);
 	screen.changed |= digits;
-	LATC1 = ~LATC1;
-	return NULL;
 }
 
 #endif //ifdef RTC

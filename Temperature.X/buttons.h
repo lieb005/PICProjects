@@ -35,13 +35,26 @@ extern "C"
 void setupButtons();
 void buttons();
 
+/* Button defs are:
+ * 0 - next state
+ * 1 - brightness +
+ * 2 - next menu
+ * 3 - brightness -
+ * 4 - none
+ * 5 - none
+ * 6 - none
+ * 7 - none
+ * 8-9 - undefined
+ */
+
 uint32_t tmr0BigCounts;
 //#define PRT (((LATC & 0b11110000) >> 4) | ((LATB & 0b00001111) << 4))
 #define PRT PORTB
 #define TRS	TRISB
 
-#define WAITCNT 15
+#define WAITCNT 150
 
+// blank or ~
 #define INV 
 
 #ifdef	__cplusplus

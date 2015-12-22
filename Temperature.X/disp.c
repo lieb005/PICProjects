@@ -83,6 +83,11 @@ void startDisp()
 	screen.changed = 0xFFFF;
 }
 
+void clearScreen()
+{
+	writeString(DIG0_7, (char*)"");
+}
+
 void spi(uint8_t addr, uint8_t data)
 {
 	uint16_t send = (addr << 8) | data;
@@ -155,7 +160,7 @@ void writeLong(uint8_t digits, int32_t num)
 		}
 	}
 #else
-	char str[9] = "00000000";
+	char str[BUF_SIZE] = "00000000";
 	sprintf(&str, "%*li", countBits(digits), num);
 	writeString(digits, str);
 #endif
@@ -163,7 +168,7 @@ void writeLong(uint8_t digits, int32_t num)
 
 void writeFloat(uint8_t digits, float num)
 {
-	char str[9] = "";
+	char str[BUF_SIZE] = "";
 	uint8_t bits = countBits(digits);
 	sprintf(&str, "%.*f", bits, num);
 
@@ -178,6 +183,14 @@ void writeString(uint8_t digits, char* string)
 
 	int8_t cnt = 0, i = 0;
 	uint8_t bits = countBits(digits);
+
+	for (cnt = 0;cnt < 8;cnt++)
+	{
+		if ((1<<cnt) & digits)
+		{
+			screen.digits.screen[cnt].bits = 0;
+		}
+	}
 
 	bits += 1;
 	for (cnt = log2(hibit(digits)); --bits; cnt--)

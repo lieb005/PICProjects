@@ -51,7 +51,7 @@ extern "C"
 #define SEG_G  0b01000000
 #define SEG_DP 0b10000000
 
-
+#define BUF_SIZE (8 + 6 + 1)
 
 #define PORT		A
 #define MOSI_PIN	1
@@ -91,6 +91,8 @@ static const char* floatg[8] = {
 void startDisp();
 
 void update();
+
+void clearScreen();
 
 void spi(uint8_t addr, uint8_t data);
 

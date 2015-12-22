@@ -30,9 +30,11 @@ void initTemp()
 	 * 5-3	- Acquisition time
 	 * 2-0	- conversion clock setting
 	 */
-	// TAQC = 1.29MHz; Aqct = 2 Tad
+	// Need ~728kHz for TACQ ~ 1.37µs
+	//// TAQC = 1.29MHz; Aqct = 2 Tad
 	// Fosc = 16MHz; AD CS = Fosc/16
-	ADCON2 = 0b10001101;
+	ADCON2 = 0b10110101;
+	TRISA0 = INPUT;
 
 	tempMenu.digits = DIG0_4;
 	tempMenu.state = 0;
@@ -48,35 +50,38 @@ float getTemp()
 	{
 		oldTempsTemp[cnt - 1] = oldTemps[cnt];
 	}
-	GO = 1;
+	GO = ON;
 	while (GO);
-	float temp;
+	float tmp;
 
+	tmp = OFFSET;
+	tmp = (ADRES * VOLTS) / STEPS;
+	tmp = ADRES;
 	if (tempMenu.state == 0)
 	{
-		temp = C(((float) ADRES) * SCALE - OFFSET);
+		tmp = C(TEMP_REAL);
 	}
 	else
 	{
-		temp = F(((float) ADRES) * SCALE - OFFSET);
+		tmp = F(TEMP_REAL);
 	}
-	float total = temp;
+	float total = tmp;
+	oldTemps[3] = tmp;
 	for (cnt = 0; cnt < 3; cnt++)
 	{
 		oldTemps[cnt] = oldTempsTemp[cnt];
 		total += oldTemps[cnt];
 	}
-	oldTemps[3] = temp;
 
 	temp = total / 4;
-	return total / 4;
+	return temp;
 }
 
-void* printTemp(uint8_t digits)
+void printTemp(uint8_t digits)
 {
 	uint8_t units = 0;
 	units |= lowbit(digits);
-	units |= lowbit(digits &= (~lowbit(digits)));
+	units |= lowbit(digits & (~lowbit(digits)));
 	digits &= ~units;
 	if (tempMenu.state == 0)
 	{
@@ -86,10 +91,15 @@ void* printTemp(uint8_t digits)
 	{
 		writeString(units, (char*) "*F");
 	}
-	char* str = (char*)"    ";
-	sprintf(str, "%*g", countBits(digits), temp);
+	char str[BUF_SIZE];
+	//temp = 35.4;
+	uint8_t bits = countBits(digits);
+	temp *= POW10(bits - 2);
+	temp = (int32_t) temp;
+	temp /= POW10(bits - 2);
+
+	sprintf(str, "%*f", bits, temp);
 	writeString(digits, str);
-	return NULL;
 }
 
 #endif //endif TEMP

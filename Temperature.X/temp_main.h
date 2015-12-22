@@ -13,7 +13,7 @@ extern "C"
 {
 #endif
 
-//#define TEMP	0
+#define TEMP	0
 #define RTC		1
 #define DEFAULT	RTC
 

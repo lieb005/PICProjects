@@ -15,7 +15,7 @@ extern "C"
 
 #include "defs.h"
 
-#define NEWCHAR
+#define NEW_CHAR
 #define OLD_SCH
 
 // Table with memory bit assignment for digits "0" to "9" and characters "A" to "Z"
