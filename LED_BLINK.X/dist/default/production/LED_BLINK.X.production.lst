@@ -1,438 +1,176 @@
 
 
-Microchip Technology PIC LITE Macro Assembler V1.32 build 58300 
-                                                                                               Mon Aug 11 00:17:04 2014
+Microchip Technology PIC LITE Macro Assembler V1.35 build -356382666 
+                                                                                               Wed May  4 08:08:33 2016
 
-Microchip Technology Omniscient Code Generator (Lite mode) build 58300
+Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080246
      1                           	processor	12F675
      2                           	opt	pw 120
      3                           	opt	lm
-     4                           	psect	text0,local,class=CODE,merge=1,delta=2
-     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
-     6                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
-     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
-     8                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
-     9                           	psect	maintext,global,class=CODE,split=1,delta=2
-    10                           	psect	text1,local,class=CODE,merge=1,delta=2
-    11                           	psect	intentry,global,class=CODE,delta=2
-    12                           	dabs	1,0x5E,2
-    13  0000                     	;# 
-    14  0001                     	;# 
-    15  0002                     	;# 
-    16  0003                     	;# 
-    17  0004                     	;# 
-    18  0005                     	;# 
-    19  000A                     	;# 
-    20  000B                     	;# 
-    21  000C                     	;# 
-    22  000E                     	;# 
-    23  000E                     	;# 
-    24  000F                     	;# 
-    25  0010                     	;# 
-    26  0019                     	;# 
-    27  001E                     	;# 
-    28  001F                     	;# 
-    29  0081                     	;# 
-    30  0085                     	;# 
-    31  008C                     	;# 
-    32  008E                     	;# 
-    33  0090                     	;# 
-    34  0095                     	;# 
-    35  0096                     	;# 
-    36  0096                     	;# 
-    37  0099                     	;# 
-    38  009A                     	;# 
-    39  009A                     	;# 
-    40  009B                     	;# 
-    41  009C                     	;# 
-    42  009D                     	;# 
-    43  009E                     	;# 
-    44  009F                     	;# 
-    45  005F                     _GIE	set	95
-    46  0028                     _GP0	set	40
-    47  0029                     _GP1	set	41
-    48  002A                     _GP2	set	42
-    49  005D                     _T0IE	set	93
-    50  005A                     _T0IF	set	90
-    51  0085                     _TRISIO	set	133
-    52  0408                     _PS0	set	1032
-    53  0409                     _PS1	set	1033
-    54  040A                     _PS2	set	1034
-    55  040B                     _PSA	set	1035
-    56  040D                     _T0CS	set	1037
-    57  040C                     _T0SE	set	1036
-    58                           
-    59                           	psect	text0
-    60  0000                     __ptext0:	
-    61                           ; #config settings
-    62                           
-    63                           
-    64                           ;psect for function _timeroverflow
-    65  0000                     
-    66                           	psect	cinit
-    67  0014                     start_initialization:	
-    68  0014                     __initialization:	
+     4                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     5                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     6                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     7                           	psect	maintext,global,class=CODE,split=1,delta=2
+     8                           	dabs	1,0x5E,2
+     9  0000                     	;# 
+    10  0001                     	;# 
+    11  0002                     	;# 
+    12  0003                     	;# 
+    13  0004                     	;# 
+    14  0005                     	;# 
+    15  000A                     	;# 
+    16  000B                     	;# 
+    17  000C                     	;# 
+    18  000E                     	;# 
+    19  000E                     	;# 
+    20  000F                     	;# 
+    21  0010                     	;# 
+    22  0019                     	;# 
+    23  001E                     	;# 
+    24  001F                     	;# 
+    25  0081                     	;# 
+    26  0085                     	;# 
+    27  008C                     	;# 
+    28  008E                     	;# 
+    29  0090                     	;# 
+    30  0095                     	;# 
+    31  0096                     	;# 
+    32  0096                     	;# 
+    33  0099                     	;# 
+    34  009A                     	;# 
+    35  009A                     	;# 
+    36  009B                     	;# 
+    37  009C                     	;# 
+    38  009D                     	;# 
+    39  009E                     	;# 
+    40  009F                     	;# 
+    41  0005                     _GPIO	set	5
+    42  009F                     _ANSEL	set	159
+    43  0085                     _TRISIO	set	133
+    44                           
+    45                           ; #config settings
+    46  0000                     
+    47                           	psect	cinit
+    48  03FD                     start_initialization:	
+    49  03FD                     __initialization:	
+    50  03FD                     end_of_initialization:	
+    51                           ;End of C runtime variable initialization code
+    52                           
+    53  03FD                     __end_of__initialization:	
+    54  03FD  0183               	clrf	3
+    55  03FE  2BF6               	ljmp	_main	;jump to C main() function
+    56                           
+    57                           	psect	cstackCOMMON
+    58  0000                     __pcstackCOMMON:	
+    59  0000                     ??_main:	
+    60                           
+    61                           	psect	cstackBANK0
+    62  0020                     __pcstackBANK0:	
+    63                           ; 0 bytes @ 0x0
+    64                           
+    65  0020                     ?_main:	
+    66  0020                     main@argc:	
+    67                           ; 2 bytes @ 0x0
+    68                           
     69                           
-    70                           ; Clear objects allocated to BANK0
-    71  0014  01A5               	clrf	__pbssBANK0& (0+127)
-    72  0015  01A6               	clrf	(__pbssBANK0+1)& (0+127)
-    73  0016  01A7               	clrf	(__pbssBANK0+2)& (0+127)
-    74  0017                     end_of_initialization:	
-    75                           ;End of C runtime variable initialization code
+    70                           ; 2 bytes @ 0x0
+    71  0020                     	ds	2
+    72  0022                     main@argv:	
+    73                           
+    74                           ; 2 bytes @ 0x2
+    75  0022                     	ds	2
     76                           
-    77  0017                     __end_of__initialization:	
-    78  0017  0183               	clrf	3
-    79  0018  284C               	ljmp	_main	;jump to C main() function
-    80                           
-    81                           	psect	bssBANK0
-    82  0025                     __pbssBANK0:	
-    83  0025                     _counter1:	
-    84  0025                     	ds	1
-    85  0026                     _counter2:	
-    86  0026                     	ds	1
-    87  0027                     _counter3:	
-    88  0027                     	ds	1
-    89                           
-    90                           	psect	cstackCOMMON
-    91  0000                     __pcstackCOMMON:	
-    92  0000                     ??_main:	
-    93                           
-    94                           	psect	cstackBANK0
-    95  0020                     __pcstackBANK0:	
-    96                           ; 0 bytes @ 0x0
-    97                           
-    98  0020                     ?_main:	
-    99  0020                     ?_timeroverflow:	
-   100                           ; 0 bytes @ 0x0
-   101                           
-   102  0020                     ??_timeroverflow:	
-   103                           ; 0 bytes @ 0x0
-   104                           
-   105                           
-   106                           ; 0 bytes @ 0x0
-   107  0020                     	ds	5
-   108                           
-   109                           	psect	maintext
-   110  004C                     __pmaintext:	
-   111 ;;
-   112 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   113 ;;
-   114 ;; *************** function _main *****************
-   115 ;; Defined at:
-   116 ;;		line 151 in file "blink_main.c"
-   117 ;; Parameters:    Size  Location     Type
-   118 ;;		None
-   119 ;; Auto vars:     Size  Location     Type
-   120 ;;		None
-   121 ;; Return value:  Size  Location     Type
-   122 ;;		None               void
-   123 ;; Registers used:
-   124 ;;		wreg
-   125 ;; Tracked objects:
-   126 ;;		On entry : 17F/0
-   127 ;;		On exit  : 0/0
-   128 ;;		Unchanged: 0/0
-   129 ;; Data sizes:     COMMON   BANK0
-   130 ;;      Params:         0       0
-   131 ;;      Locals:         0       0
-   132 ;;      Temps:          0       0
-   133 ;;      Totals:         0       0
-   134 ;;Total ram usage:        0 bytes
-   135 ;; Hardware stack levels required when called:    1
-   136 ;; This function calls:
-   137 ;;		Nothing
-   138 ;; This function is called by:
-   139 ;;		Startup code after reset
-   140 ;; This function uses a non-reentrant model
-   141 ;;
-   142                           
-   143                           
-   144                           ;psect for function _main
-   145  004C                     _main:	
-   146                           
-   147                           ;blink_main.c: 152: GP2 = 1;
-   148                           
-   149                           ;incstack = 0
-   150                           ; Regs used in _main: [wreg]
-   151  004C  1283               	bcf	3,5	;RP0=0, select bank0
-   152  004D  1505               	bsf	5,2	;volatile
-   153                           
-   154                           ;blink_main.c: 153: GP1 = GP0 = 0;
-   155  004E  1005               	bcf	5,0	;volatile
-   156  004F  1085               	bcf	5,1	;volatile
-   157                           
-   158                           ;blink_main.c: 154: PSA = 0;
-   159  0050  1683               	bsf	3,5	;RP0=1, select bank1
-   160  0051  1181               	bcf	1,3	;volatile
-   161                           
-   162                           ;blink_main.c: 155: PS2 = 1;
-   163  0052  1501               	bsf	1,2	;volatile
-   164                           
-   165                           ;blink_main.c: 156: PS1 = 1;
-   166  0053  1481               	bsf	1,1	;volatile
-   167                           
-   168                           ;blink_main.c: 157: PS0 = 1;
-   169  0054  1401               	bsf	1,0	;volatile
-   170                           
-   171                           ;blink_main.c: 158: T0CS = 0;
-   172  0055  1281               	bcf	1,5	;volatile
-   173                           
-   174                           ;blink_main.c: 159: T0SE = 0;
-   175  0056  1201               	bcf	1,4	;volatile
-   176                           
-   177                           ;blink_main.c: 160: GP1 = 1;
-   178  0057  1283               	bcf	3,5	;RP0=0, select bank0
-   179  0058  1485               	bsf	5,1	;volatile
-   180                           
-   181                           ;blink_main.c: 162: T0IE = 1;
-   182  0059  168B               	bsf	11,5	;volatile
-   183                           
-   184                           ;blink_main.c: 163: T0IF = 0;
-   185  005A  110B               	bcf	11,2	;volatile
-   186                           
-   187                           ;blink_main.c: 164: GIE = 1;
-   188  005B  178B               	bsf	11,7	;volatile
-   189                           
-   190                           ;blink_main.c: 166: TRISIO = 0b11001010;
-   191  005C  30CA               	movlw	202
-   192  005D  1683               	bsf	3,5	;RP0=1, select bank1
-   193  005E  0085               	movwf	5	;volatile
-   194                           
-   195                           ;blink_main.c: 168: GP2 = 1;
-   196  005F  1283               	bcf	3,5	;RP0=0, select bank0
-   197  0060  1505               	bsf	5,2	;volatile
-   198                           
-   199                           ;blink_main.c: 169: GP1 = 1;
-   200  0061  1485               	bsf	5,1	;volatile
-   201  0062                     L1:	
-   202                           
-   203                           ;blink_main.c: 170: GP0 = 1;
-   204  0062  1405               	bsf	5,0	;volatile
-   205  0063                     l35:	
-   206                           ;blink_main.c: 172: while (1) {
-   207                           
-   208                           
-   209                           ;blink_main.c: 173: if (counter1 == 1) {
-   210  0063  0825               	movf	_counter1,w	;volatile
-   211  0064  3A01               	xorlw	1
-   212  0065  1903               	btfsc	3,2
-   213                           
-   214                           ;blink_main.c: 174: GP2 = 0;
-   215  0066  1105               	bcf	5,2	;volatile
-   216                           
-   217                           ;blink_main.c: 175: }
-   218                           ;blink_main.c: 176: if (counter1 == 2) {
-   219  0067  0825               	movf	_counter1,w	;volatile
-   220  0068  3A02               	xorlw	2
-   221  0069  1903               	btfsc	3,2
-   222                           
-   223                           ;blink_main.c: 177: GP2 = 1;
-   224  006A  1505               	bsf	5,2	;volatile
-   225                           
-   226                           ;blink_main.c: 178: }
-   227                           ;blink_main.c: 179: if (counter2 == 1) {
-   228  006B  0826               	movf	_counter2,w	;volatile
-   229  006C  3A01               	xorlw	1
-   230  006D  1903               	btfsc	3,2
-   231                           
-   232                           ;blink_main.c: 180: GP1 = 0;
-   233  006E  1085               	bcf	5,1	;volatile
-   234                           
-   235                           ;blink_main.c: 181: }
-   236                           ;blink_main.c: 182: if (counter2 == 2) {
-   237  006F  0826               	movf	_counter2,w	;volatile
-   238  0070  3A02               	xorlw	2
-   239  0071  1903               	btfsc	3,2
-   240                           
-   241                           ;blink_main.c: 183: GP1 = 1;
-   242  0072  1485               	bsf	5,1	;volatile
-   243                           
-   244                           ;blink_main.c: 184: }
-   245                           ;blink_main.c: 185: if (counter3 == 1) {
-   246  0073  0827               	movf	_counter3,w	;volatile
-   247  0074  3A01               	xorlw	1
-   248  0075  1903               	btfsc	3,2
-   249                           
-   250                           ;blink_main.c: 186: GP0 = 0;
-   251  0076  1005               	bcf	5,0	;volatile
-   252                           
-   253                           ;blink_main.c: 187: }
-   254                           ;blink_main.c: 188: if (counter3 == 2) {
-   255  0077  0827               	movf	_counter3,w	;volatile
-   256  0078  3A02               	xorlw	2
-   257  0079  1D03               	skipz
-   258  007A  2863               	goto	l35
-   259  007B  2862               	goto	L1
-   260  007C                     __end_of_main:	
-   261                           ;blink_main.c: 189: GP0 = 1;
-   262                           
-   263                           
-   264                           	psect	text1
-   265  0019                     __ptext1:	
-   266 ;; *************** function _timeroverflow *****************
-   267 ;; Defined at:
-   268 ;;		line 194 in file "blink_main.c"
-   269 ;; Parameters:    Size  Location     Type
-   270 ;;		None
-   271 ;; Auto vars:     Size  Location     Type
-   272 ;;		None
-   273 ;; Return value:  Size  Location     Type
-   274 ;;		None               void
-   275 ;; Registers used:
-   276 ;;		wreg, status,2, status,0
-   277 ;; Tracked objects:
-   278 ;;		On entry : 0/0
-   279 ;;		On exit  : 0/0
-   280 ;;		Unchanged: 0/0
-   281 ;; Data sizes:     COMMON   BANK0
-   282 ;;      Params:         0       0
-   283 ;;      Locals:         0       0
-   284 ;;      Temps:          0       5
-   285 ;;      Totals:         0       5
-   286 ;;Total ram usage:        5 bytes
-   287 ;; Hardware stack levels used:    1
-   288 ;; This function calls:
-   289 ;;		Nothing
-   290 ;; This function is called by:
-   291 ;;		Interrupt level 1
-   292 ;; This function uses a non-reentrant model
-   293 ;;
-   294                           
-   295                           
-   296                           ;psect for function _timeroverflow
-   297  0019                     _timeroverflow:	
-   298                           
-   299                           ;blink_main.c: 195: if (T0IF && T0IE) {
-   300  0019  190B               	btfsc	11,2	;volatile
-   301  001A  1E8B               	btfss	11,5	;volatile
-   302  001B  2841               	goto	i1l51
-   303                           
-   304                           ;blink_main.c: 196: T0IF = 0;
-   305  001C  110B               	bcf	11,2	;volatile
-   306                           
-   307                           ;blink_main.c: 197: counter1++;
-   308  001D  3001               	movlw	1
-   309  001E  00A0               	movwf	??_timeroverflow
-   310  001F  0820               	movf	??_timeroverflow,w
-   311  0020  07A5               	addwf	_counter1,f	;volatile
-   312                           
-   313                           ;blink_main.c: 198: counter2++;
-   314  0021  3001               	movlw	1
-   315  0022  00A0               	movwf	??_timeroverflow
-   316  0023  0820               	movf	??_timeroverflow,w
-   317  0024  07A6               	addwf	_counter2,f	;volatile
-   318                           
-   319                           ;blink_main.c: 199: counter3++;
-   320  0025  3001               	movlw	1
-   321  0026  00A0               	movwf	??_timeroverflow
-   322  0027  0820               	movf	??_timeroverflow,w
-   323  0028  07A7               	addwf	_counter3,f	;volatile
-   324                           
-   325                           ;blink_main.c: 200: if (counter1 == 3) {
-   326  0029  0825               	movf	_counter1,w	;volatile
-   327  002A  3A03               	xorlw	3
-   328  002B  1D03               	skipz
-   329  002C  2831               	goto	i1l48
-   330                           
-   331                           ;blink_main.c: 201: counter1 = 1;
-   332  002D  3001               	movlw	1
-   333  002E  00A0               	movwf	??_timeroverflow
-   334  002F  0820               	movf	??_timeroverflow,w
-   335  0030  00A5               	movwf	_counter1	;volatile
-   336  0031                     i1l48:	
-   337                           
-   338                           ;blink_main.c: 202: }
-   339                           ;blink_main.c: 203: if (counter2 == 6) {
-   340  0031  0826               	movf	_counter2,w	;volatile
-   341  0032  3A06               	xorlw	6
-   342  0033  1D03               	skipz
-   343  0034  2839               	goto	i1l49
-   344                           
-   345                           ;blink_main.c: 204: counter2 = 1;
-   346  0035  3001               	movlw	1
-   347  0036  00A0               	movwf	??_timeroverflow
-   348  0037  0820               	movf	??_timeroverflow,w
-   349  0038  00A6               	movwf	_counter2	;volatile
-   350  0039                     i1l49:	
-   351                           
-   352                           ;blink_main.c: 205: }
-   353                           ;blink_main.c: 206: if (counter3 == 5) {
-   354  0039  0827               	movf	_counter3,w	;volatile
-   355  003A  3A05               	xorlw	5
-   356  003B  1D03               	skipz
-   357  003C  2841               	goto	i1l51
-   358                           
-   359                           ;blink_main.c: 207: counter3 = 1;
-   360  003D  3001               	movlw	1
-   361  003E  00A0               	movwf	??_timeroverflow
-   362  003F  0820               	movf	??_timeroverflow,w
-   363  0040  00A7               	movwf	_counter3	;volatile
-   364  0041                     i1l51:	
-   365  0041  0824               	movf	??_timeroverflow+4,w
-   366  0042  00DF               	movwf	95
-   367  0043  0823               	movf	??_timeroverflow+3,w
-   368  0044  008A               	movwf	10
-   369  0045  0822               	movf	??_timeroverflow+2,w
-   370  0046  0084               	movwf	4
-   371  0047  0E21               	swapf	(??_timeroverflow+1)^0,w
-   372  0048  0083               	movwf	3
-   373  0049  0EDE               	swapf	94,f
-   374  004A  0E5E               	swapf	94,w
-   375  004B  0009               	retfie
-   376  004C                     __end_of_timeroverflow:	
-   377  005E                     btemp	set	94	;btemp
-   378  005E                     wtemp	set	94
-   379  005E                     wtemp0	set	94
-   380  0060                     wtemp1	set	96
-   381  0062                     wtemp2	set	98
-   382  0064                     wtemp3	set	100
-   383  0066                     wtemp4	set	102
-   384  0068                     wtemp5	set	104
-   385  005F                     wtemp6	set	95
-   386  005E                     ttemp	set	94
-   387  005E                     ttemp0	set	94
-   388  0061                     ttemp1	set	97
-   389  0064                     ttemp2	set	100
-   390  0067                     ttemp3	set	103
-   391  005F                     ttemp4	set	95
-   392  005E                     ltemp	set	94
-   393  005E                     ltemp0	set	94
-   394  0062                     ltemp1	set	98
-   395  0066                     ltemp2	set	102
-   396  0060                     ltemp3	set	96
-   397                           
-   398                           	psect	intentry
-   399  0004                     __pintentry:	
-   400                           ;incstack = 0
-   401                           ; Regs used in _timeroverflow: [wreg+status,2+status,0]
-   402                           
-   403  0004                     interrupt_function:	
-   404  005E                     saved_w	set	btemp
-   405  0004  00DE               	movwf	btemp
-   406  0005  0E03               	swapf	3,w
-   407  0006  1283               	bcf	3,5	;RP0=0, select bank0
-   408  0007  00A1               	movwf	??_timeroverflow+1
-   409  0008  0804               	movf	4,w
-   410  0009  00A2               	movwf	??_timeroverflow+2
-   411  000A  080A               	movf	10,w
-   412  000B  00A3               	movwf	??_timeroverflow+3
-   413  000C  085F               	movf	btemp+1,w
-   414  000D  00A4               	movwf	??_timeroverflow+4
-   415  000E  2819               	ljmp	_timeroverflow
+    77                           	psect	maintext
+    78  03F6                     __pmaintext:	
+    79 ;;
+    80 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    81 ;;
+    82 ;; *************** function _main *****************
+    83 ;; Defined at:
+    84 ;;		line 227 in file "blink_main.c"
+    85 ;; Parameters:    Size  Location     Type
+    86 ;;  argc            2    0[BANK0 ] int 
+    87 ;;  argv            2    2[BANK0 ] PTR PTR unsigned char 
+    88 ;; Auto vars:     Size  Location     Type
+    89 ;;		None
+    90 ;; Return value:  Size  Location     Type
+    91 ;;                  2    0[BANK0 ] int 
+    92 ;; Registers used:
+    93 ;;		wreg, status,2
+    94 ;; Tracked objects:
+    95 ;;		On entry : B00/0
+    96 ;;		On exit  : 0/0
+    97 ;;		Unchanged: 0/0
+    98 ;; Data sizes:     COMMON   BANK0
+    99 ;;      Params:         0       4
+   100 ;;      Locals:         0       0
+   101 ;;      Temps:          0       0
+   102 ;;      Totals:         0       4
+   103 ;;Total ram usage:        4 bytes
+   104 ;; This function calls:
+   105 ;;		Nothing
+   106 ;; This function is called by:
+   107 ;;		Startup code after reset
+   108 ;; This function uses a non-reentrant model
+   109 ;;
+   110                           
+   111                           
+   112                           ;psect for function _main
+   113  03F6                     _main:	
+   114                           
+   115                           ;blink_main.c: 229: GPIO = 0xff;
+   116                           
+   117                           ;incstack = 0
+   118                           ; Regs used in _main: [wreg+status,2]
+   119  03F6  30FF               	movlw	255
+   120  03F7  1283               	bcf	3,5	;RP0=0, select bank0
+   121  03F8  0085               	movwf	5	;volatile
+   122                           
+   123                           ;blink_main.c: 230: ANSEL = 0;
+   124  03F9  1683               	bsf	3,5	;RP0=1, select bank1
+   125  03FA  019F               	clrf	31	;volatile
+   126                           
+   127                           ;blink_main.c: 231: TRISIO = 0;
+   128  03FB  0185               	clrf	5	;volatile
+   129  03FC                     l9:	
+   130                           ;blink_main.c: 232: while(1);
+   131                           
+   132  03FC  2BFC               	goto	l9
+   133  03FD                     __end_of_main:	
+   134  005E                     btemp	set	94	;btemp
+   135  005E                     wtemp	set	94
+   136  005E                     wtemp0	set	94
+   137  0060                     wtemp1	set	96
+   138  0062                     wtemp2	set	98
+   139  0064                     wtemp3	set	100
+   140  0066                     wtemp4	set	102
+   141  0068                     wtemp5	set	104
+   142  005F                     wtemp6	set	95
+   143  005E                     ttemp	set	94
+   144  005E                     ttemp0	set	94
+   145  0061                     ttemp1	set	97
+   146  0064                     ttemp2	set	100
+   147  0067                     ttemp3	set	103
+   148  005F                     ttemp4	set	95
+   149  005E                     ltemp	set	94
+   150  005E                     ltemp0	set	94
+   151  0062                     ltemp1	set	98
+   152  0066                     ltemp2	set	102
+   153  0060                     ltemp3	set	96
 
 
 Data Sizes:
     Strings     0
     Constant    0
     Data        0
-    BSS         3
+    BSS         0
     Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
     COMMON            0      0       0
-    BANK0            62      5       8
+    BANK0            62      4       4
 
 Pointer List with Targets:
 
@@ -442,15 +180,7 @@ Critical Paths under _main in COMMON
 
     None.
 
-Critical Paths under _timeroverflow in COMMON
-
-    None.
-
 Critical Paths under _main in BANK0
-
-    None.
-
-Critical Paths under _timeroverflow in BANK0
 
     None.
 
@@ -459,23 +189,15 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 0     0      0       0
+ (0) _main                                                 4     0      4       0
+                                              0 BANK0      4     0      4
  ---------------------------------------------------------------------------------
  Estimated maximum stack depth 0
- ---------------------------------------------------------------------------------
- (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
- ---------------------------------------------------------------------------------
- (1) _timeroverflow                                        5     5      0       0
-                                              0 BANK0      5     5      0
- ---------------------------------------------------------------------------------
- Estimated maximum stack depth 1
  ---------------------------------------------------------------------------------
 
  Call Graph Graphs:
 
  _main (ROOT)
-
- _timeroverflow (ROOT)
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
@@ -490,37 +212,26 @@ BITSFR1              0      0       0       2        0.0%
 SFR1                 0      0       0       2        0.0%
 STACK                0      0       0       2        0.0%
 BITBANK0            3E      0       0       3        0.0%
-BANK0               3E      5       8       4       12.9%
-ABS                  0      0       8       5        0.0%
-DATA                 0      0       8       6        0.0%
+BANK0               3E      4       4       4        6.5%
+ABS                  0      0       0       5        0.0%
+DATA                 0      0       0       6        0.0%
 
 
-Microchip Technology PIC Macro Assembler V1.32 build 58300 
-Symbol Table                                                                                   Mon Aug 11 00:17:04 2014
+Microchip Technology PIC Macro Assembler V1.35 build -356382666 
+Symbol Table                                                                                   Wed May  4 08:08:33 2016
 
-            __CFG_CP$OFF 0000                       l35 0063                      _GP0 0028  
-                    _GP1 0029                      _GP2 002A                      _GIE 005F  
-                    _PS0 0408                      _PS1 0409                      _PS2 040A  
-           __CFG_CPD$OFF 0000                      _PSA 040B                      fsr0 0004  
-           __CFG_FOSC$XT 0000                     _T0IE 005D                     _T0IF 005A  
-                   _T0CS 040D                     _T0SE 040C                     i1l51 0041  
-                   i1l48 0031                     i1l49 0039                     _main 004C  
-                   btemp 005E                     ltemp 005E                     start 000F  
+                      l9 03FC                     _GPIO 0005                     _main 03F6  
+                   btemp 005E                     ltemp 005E                     start 0000  
                    ttemp 005E                     wtemp 005E                    ?_main 0020  
-          __CFG_WDTE$OFF 0000            __CFG_PWRTE$ON 0000           __CFG_BOREN$OFF 0000  
-                  pclath 000A                    ltemp0 005E                    ltemp1 0062  
-                  ltemp2 0066                    ltemp3 0060          ??_timeroverflow 0020  
+          __CFG_WDTE$OFF 0000                    _ANSEL 009F                    ltemp0 005E  
+                  ltemp1 0062                    ltemp2 0066                    ltemp3 0060  
                   ttemp0 005E                    ttemp1 0061                    ttemp2 0064  
                   ttemp3 0067                    ttemp4 005F                    status 0003  
                   wtemp0 005E                    wtemp1 0060                    wtemp2 0062  
                   wtemp3 0064                    wtemp4 0066                    wtemp5 0068  
-                  wtemp6 005F           __CFG_MCLRE$OFF 0000          __initialization 0014  
-           __end_of_main 007C                   ??_main 0000                   _TRISIO 0085  
-                 saved_w 005E  __end_of__initialization 0017           __pcstackCOMMON 0000  
-             __pbssBANK0 0025               __pmaintext 004C               __pintentry 0004  
-                __ptext0 0000                  __ptext1 0019     end_of_initialization 0017  
-  __end_of_timeroverflow 004C      start_initialization 0014                ___latbits 0000  
-          __pcstackBANK0 0020        interrupt_function 0004   __size_of_timeroverflow 0033  
-               _counter1 0025                 _counter2 0026                 _counter3 0027  
-          __size_of_main 0030                 intlevel1 0000            _timeroverflow 0019  
-         ?_timeroverflow 0020  
+                  wtemp6 005F           __CFG_MCLRE$OFF 0000          __initialization 03FD  
+           __end_of_main 03FD                   ??_main 0000                   _TRISIO 0085  
+__end_of__initialization 03FD           __pcstackCOMMON 0000               __pmaintext 03F6  
+   end_of_initialization 03FD      start_initialization 03FD                ___latbits 0000  
+          __pcstackBANK0 0020            __size_of_main 0007                 main@argc 0020  
+               main@argv 0022        __CFG_FOSC$INTRCIO 0000  

@@ -120,7 +120,13 @@ void delay_s(float t)
 //	PEIE = 1;
 //}
 //
-#else
+
+
+
+#elif 0
+
+
+
 //******************************************************************************
 // HARDWARE MAKERS
 //
@@ -207,6 +213,23 @@ void interrupt timeroverflow() {
             counter3 = 1;
         }
     }
+}
+
+#elif 1
+
+#include <xc.h>
+#include <stdio.h>
+
+#pragma config FOSC = INTRCIO
+#pragma config WDTE = OFF
+#pragma config MCLRE = OFF
+
+int main (int argc, char** argv)
+{
+	GPIO = 0xff;
+	ANSEL = 0;
+	TRISIO = 0;
+	while(1);
 }
 
 #endif
